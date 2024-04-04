@@ -45,6 +45,14 @@
     {{--    <link href="{{ gc_file($gc_templateFile.'assets/css/style.dark.bundle.css')}}" rel="stylesheet" type="text/css"/>--}}
     <!--end::Global Stylesheets Bundle-->
 
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{{ gc_file('admin/LTE/plugins/iCheck/square/blue.css')}}">
+    <link rel="stylesheet" href="{{ gc_file('admin/LTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+
+    @section('block_component_css')
+        @include($templatePathAdmin.'component.css')
+    @show
+
     <style>
         {!! gc_store_css() !!}
     </style>
@@ -162,7 +170,9 @@
 
                                 @if (!empty($breadcrumb))
                                     <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted">File Manager</li>
+                                    <li class="breadcrumb-item text-muted">
+                                        <a href="{{ $breadcrumb['url'] }}" class="text-muted text-hover-primary"> {{ $breadcrumb['name'] }}</a>
+                                    </li>
                                     <!--end::Item-->
                                     <!--begin::Item-->
                                     <li class="breadcrumb-item">
@@ -191,7 +201,7 @@
                                 <!--begin::Details-->
                                 <div class="d-flex flex-wrap flex-sm-nowrap">
                                     <!--begin::Row-->
-                                    <div class="row gy-5 g-xl-8">
+                                    <div class="col-12">
                                         @yield('main')
                                     </div>
                                     <!--end::Row-->
@@ -207,7 +217,7 @@
             </div>
             <!--end::Content-->
             @section('block_footer')
-                @includeIf($templatePathAdmin.'footer')
+{{--                @includeIf($templatePathAdmin.'footer')--}}
             @show
         </div>
         <!--end::Wrapper-->
@@ -231,6 +241,7 @@
 
 
 <!--begin::Javascript-->
+
 <script>var hostUrl = "{{ gc_file($gc_templateFile.'assets/')}}";</script>
 <!--begin::Global Javascript Bundle(used by all pages)-->
 <script src="{{ gc_file($gc_templateFile.'assets/plugins/global/plugins.bundle.js')}}"></script>
@@ -249,6 +260,21 @@
 <script src="{{ gc_file($gc_templateFile.'assets/js/custom/utilities/modals/users-search.js')}}"></script>
 <!--end::Page Custom Javascript-->
 <!--end::Javascript-->
+
+<script src="{{ gc_file('admin/LTE/plugins/iCheck/icheck.min.js')}}"></script>
+<script src="{{ gc_file('admin/LTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+
+
+@stack('scripts')
+
+@section('block_component_script')
+    @include($templatePathAdmin.'component.script')
+@show
+
+@section('block_component_alerts')
+    @include($templatePathAdmin.'component.alerts')
+@show
+
 </body>
 <!--end::Body-->
 </html>

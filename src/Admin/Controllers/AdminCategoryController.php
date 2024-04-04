@@ -114,7 +114,7 @@ class AdminCategoryController extends RootAdminController
 
 
         //menuRight
-        $data['menuRight'][] = '<a href="' . gc_route_admin('admin_category.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
+        $data['menuRight'][] = '<a href="' . gc_route_admin('admin_category.create') . '" class="btn btn-sm btn-light btn-active-primary" title="New" id="button_create_new">
         <i class="fa fa-plus" title="'.gc_language_render('action.add_new').'"></i>
         </a>';
         //=menuRight

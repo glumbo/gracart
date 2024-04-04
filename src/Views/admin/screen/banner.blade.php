@@ -2,7 +2,7 @@
 
 @section('main')
    <div class="row">
-      <div class="col-md-12">
+      <div class="col-12">
          <div class="card">
                 <div class="card-header with-border">
                     <h2 class="card-title">{{ $title_description??'' }}</h2>

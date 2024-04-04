@@ -55,6 +55,7 @@ class AdminOrderController extends RootAdminController
             'css'           => '',
             'js'            => '',
         ];
+
         //Process add content
         $data['menuRight']    = gc_config_group('menuRight', \Request::route()->getName());
         $data['menuLeft']     = gc_config_group('menuLeft', \Request::route()->getName());
@@ -155,8 +156,8 @@ class AdminOrderController extends RootAdminController
 
 
         //menuRight
-        $data['menuRight'][] = '<a href="' . gc_route_admin('admin_order.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
-                           <i class="fa fa-plus" title="'.gc_language_render('action.add').'"></i>
+        $data['menuRight'][] = '<a href="' . gc_route_admin('admin_order.create') . '" class="btn btn-sm btn-light btn-active-primary" title="New" id="button_create_new">
+                           <i class="fa fa-plus" title="'.gc_language_render('action.add').'"></i>'.gc_language_render('action.add').'
                            </a>';
         //=menuRight
 

@@ -2,7 +2,7 @@
 
 @section('main')
    <div class="row">
-      <div class="col-md-12">
+      <div class="col-12">
 
         <div class="card card-primary card-outline card-outline-tabs">
           <div class="card-header p-0 border-bottom-0">

@@ -109,8 +109,8 @@ class AdminPageController extends RootAdminController
 
 
         //menuRight
-        $data['menuRight'][] = '<a href="' . gc_route_admin('admin_page.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
-                           <i class="fa fa-plus" title="'.gc_language_render('action.add').'"></i>
+        $data['menuRight'][] = '<a href="' . gc_route_admin('admin_page.create') . '" class="btn btn-sm btn-light btn-active-primary" title="New" id="button_create_new">
+                           <i class="fa fa-plus" title="'.gc_language_render('action.add').'"></i>'.gc_language_render('action.add').'
                            </a>';
         //=menuRight
 

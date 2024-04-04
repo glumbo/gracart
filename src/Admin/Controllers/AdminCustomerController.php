@@ -99,7 +99,7 @@ class AdminCustomerController extends RootAdminController
         $data['resultItems'] = gc_language_render('admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'total' =>  $dataTmp->total()]);
 
         //menuRight
-        $data['menuRight'][] = '<a href="' . gc_route_admin('admin_customer.create') . '" class="btn  btn-success  btn-flat" title="New" id="button_create_new">
+        $data['menuRight'][] = '<a href="' . gc_route_admin('admin_customer.create') . '" class="btn btn-sm btn-light btn-active-primary" title="New" id="button_create_new">
                            <i class="fa fa-plus" title="'.gc_language_render('admin.add_new').'"></i>
                            </a>';
         //=menuRight
