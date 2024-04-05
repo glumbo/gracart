@@ -76,6 +76,8 @@ class AdminBrandController extends RootAdminController
             $dataMap['action'] = '<a href="' . gc_route_admin('admin_brand.edit', ['id' => $row['id'] ? $row['id'] : 'not-found-id']) . '"><span title="' . gc_language_render('action.edit') . '" type="button" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
                                 <span onclick="deleteItem(\'' . $row['id'] . '\');"  title="' . gc_language_render('action.delete') . '" class="btn btn-flat btn-sm btn-danger"><i class="fas fa-trash-alt"></i></span>
                                 ';
+//            $dataMap['action'] = view($this->templatePathAdmin.'component.actions.action', ['edit_text' => gc_language_render('action.edit'),'edit_url' => gc_route_admin('admin_brand.edit', ['id' => $row['id'] ? $row['id'] : 'not-found-id']), 'delete_id' => $row['id'], 'delete_text' => gc_language_render('action.delete')])->render();
+
             $dataTr[$row['id']] = $dataMap;
         }
 

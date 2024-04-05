@@ -63,10 +63,10 @@
     z-index: 9999;
     background: rgba(255,255,255,0.7);
   }
-  .select2-selection{
-    border-radius: inherit  !important;
-    border: 1px solid #ccc !important;
-  }
+  /*.select2-selection{*/
+  /*  border-radius: inherit  !important;*/
+  /*  border: 1px solid #ccc !important;*/
+  /*}*/
   
   .form-group > label.asterisk:after {
       content: " *";
@@ -328,5 +328,8 @@
 }
 .notice {
   font-size: 14px;
+}
+.form-group.form-check.form-check-custom {
+    margin: -10px;
 }
 </style>

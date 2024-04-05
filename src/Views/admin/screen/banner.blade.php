@@ -20,144 +20,15 @@
 
                     <div class="card-body">
                         <div class="fields-group">
+                            @includeIf($templatePathAdmin.'forms.file', ['name' => 'image', 'data' => $banner, 'label' => gc_language_render('admin.banner.image'),  'text' => gc_language_render('product.admin.choose_image')])
+                            @includeIf($templatePathAdmin.'forms.input', ['name' => 'url', 'data' => $banner, 'label' => gc_language_render('admin.banner.url')])
+                            @includeIf($templatePathAdmin.'forms.input', ['name' => 'title', 'data' => $banner, 'label' => gc_language_render('admin.banner.title')])
+                            @includeIf($templatePathAdmin.'forms.select', ['name' => 'target', 'data' => $banner, 'options' => $arrTarget, 'label' => gc_language_render('admin.banner.select_target')])
+                            @includeIf($templatePathAdmin.'forms.textarea', ['name' => 'html', 'data' => $banner, 'label' => gc_language_render('admin.email_template.html')])
+                            @includeIf($templatePathAdmin.'forms.select', ['name' => 'type', 'data' => $banner, 'options' => $dataType, 'label' => gc_language_render('admin.banner.type'), 'add_url' => gc_route_admin('admin_banner_type.index')])
+                            @includeIf($templatePathAdmin.'forms.input', ['name' => 'sort', 'type' => 'number', 'min' => 0,  'data' => $banner, 'label' => gc_language_render('admin.banner.sort')])
 
-                            <div class="form-group  row {{ $errors->has('image') ? ' text-red' : '' }}">
-                                <label for="image" class="col-sm-2 col-form-label">{{ gc_language_render('admin.banner.image') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <input type="text" id="image" name="image" value="{{ old('image',$banner['image']??'') }}" class="form-control image" placeholder=""  />
-                                        <div class="input-group-append">
-                                         <a data-input="image" data-preview="preview_image" data-type="banner" class="btn btn-primary lfm">
-                                           <i class="fa fa-image"></i> {{gc_language_render('product.admin.choose_image')}}
-                                         </a>
-                                        </div>
-                                    </div>
-                                        @if ($errors->has('image'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('image') }}
-                                            </span>
-                                        @endif
-                                    <div id="preview_image" class="img_holder">
-                                        @if (old('image',$banner['image']??''))
-                                        <img src="{{ gc_file(old('image',$banner['image']??'')) }}">
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group  row {{ $errors->has('url') ? ' text-red' : '' }}">
-                                <label for="url" class="col-sm-2 col-form-label">{{ gc_language_render('admin.banner.url') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                            </div>
-                                        </div>
-                                        <input type="text" id="url" name="url" value="{{ old()?old('url'):$banner['url']??'' }}" class="form-control" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('url'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('url') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-
-
-                            <div class="form-group  row {{ $errors->has('title') ? ' text-red' : '' }}">
-                                <label for="title" class="col-sm-2 col-form-label">{{ gc_language_render('admin.banner.title') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                            </div>
-                                        </div>
-                                        <input type="text" id="title" name="title" value="{{ old()?old('title'):$banner['title']??'' }}" class="form-control" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('title'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('title') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-
-
-                            <div class="form-group row {{ $errors->has('target') ? ' text-red' : '' }}">
-                                    <label for="target" class="col-sm-2 col-form-label">{{ gc_language_render('admin.banner.select_target') }}</label>
-                                    <div class="col-sm-8">
-                                        <select class="form-control target select2" style="width: 100%;" name="target" >
-                                            <option value=""></option>
-                                            @foreach ($arrTarget as $k => $v)
-                                                <option value="{{ $k }}" {{ (old('target',$banner['target']??'') ==$k) ? 'selected':'' }}>{{ $v }}</option>
-                                            @endforeach
-                                        </select>
-                                            @if ($errors->has('target'))
-                                                <span class="form-text">
-                                                    <i class="fa fa-info-circle"></i> {{ $errors->first('target') }}
-                                                </span>
-                                            @endif
-                                    </div>
-                                </div>
-
-                            <div class="form-group row {{ $errors->has('html') ? ' text-red' : '' }}">
-                                <label for="html" class="col-sm-2 col-form-label">{{ gc_language_render('admin.email_template.html') }}</label>
-                                <div class="col-sm-8">
-                                        <textarea class="form-control" rows="10" id="html" name="html">{{ old('html',$banner['html']??'') }}</textarea>
-                                        @if ($errors->has('html'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('html') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-                            
-                            @if (!empty($dataType))
-                            <div class="form-group row {{ $errors->has('type') ? ' text-red' : '' }}">
-                                <label class="col-sm-2 col-form-label">{{ gc_language_render('admin.banner.type') }}</label>
-                                <div class="col-sm-8">
-                                <div class="input-group">
-                                <select class="form-control" name="type">
-                                    @foreach ($dataType as $key => $name)
-                                    <option {{ (old('type', $banner['type']??'') ==  $key)?'selected':'' }} value="{{ $key }}">{{ $name }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="input-group-append">
-                                    <a href="{{ gc_route_admin('admin_banner_type.index') }}" class="btn  btn-flat" title="New">
-                                        <i class="fa fa-plus" title="{{ gc_language_render('action.add') }}"></i>
-                                     </a>
-                                </div>
-                                </div>
-                                @if ($errors->has('type'))
-                                <span class="form-text">
-                                    {{ $errors->first('type') }}
-                                </span>
-                                @endif
-                                </div>
-                              </div>
-                            @endif
-
-
-                            <div class="form-group  row {{ $errors->has('sort') ? ' text-red' : '' }}">
-                                <label for="sort" class="col-sm-2 col-form-label">{{ gc_language_render('admin.banner.sort') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                        <input type="number" style="width: 100px;" min = 0 id="sort" name="sort" value="{{ old('sort',$banner['sort']??0) }}" class="form-control sort" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('sort'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-
-@if (gc_check_multi_shop_installed())
+                            @if (gc_check_multi_shop_installed())
                             {{-- select shop_store --}}
                             @php
                             $listStore = [];
@@ -201,12 +72,7 @@
                             </div>
                             {{-- //select shop_store --}}
     @endif
-                            <div class="form-group row ">
-                                <label for="status" class="col-sm-2 col-form-label">{{ gc_language_render('admin.banner.status') }}</label>
-                                <div class="col-sm-8">
-                                    <input class="checkbox" type="checkbox" name="status"  {{ old('status',(empty($banner['status'])?0:1))?'checked':''}}>
-                                </div>
-                            </div>
+                            @includeIf($templatePathAdmin.'forms.checkbox', ['name' => 'status', 'data' => $banner, 'label' => gc_language_render('admin.banner.status')])
 
 
                 {{-- Custom fields --}}
