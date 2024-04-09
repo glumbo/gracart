@@ -120,6 +120,9 @@ class AdminOrderController extends RootAdminController
         });
         $dataTr = [];
         foreach ($dataTmp as $key => $row) {
+            if($row['currency'] == 0){
+                $row['currency'] = 'USD';
+            }
             $dataMap = [
                 'email'          => $row['email'] ?? 'N/A',
                 'subtotal'       => gc_currency_render_symbol($row['subtotal'] ?? 0, $row['currency']),
@@ -142,13 +145,13 @@ class AdminOrderController extends RootAdminController
                     $dataMap['shop_store'] = '';
                 }
             }
+
             $dataMap['created_at'] = $row['created_at'];
             $dataMap['action'] = '<a href="' . gc_route_admin('admin_order.detail', ['id' => $row['id'] ? $row['id'] : 'not-found-id']) . '"><span title="' . gc_language_render('action.edit') . '" type="button" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
             <span onclick="deleteItem(\'' . $row['id'] . '\');"  title="' . gc_language_render('action.delete') . '" class="btn btn-flat btn-sm btn-danger"><i class="fas fa-trash-alt"></i></span>
             ';
             $dataTr[$row['id']] = $dataMap;
         }
-
         $data['listTh'] = $listTh;
         $data['dataTr'] = $dataTr;
         $data['pagination'] = $dataTmp->appends(request()->except(['_token', '_pjax']))->links($this->templatePathAdmin.'component.pagination');
@@ -173,15 +176,15 @@ class AdminOrderController extends RootAdminController
         foreach ($this->statusOrder as $key => $status) {
             $optionStatus .= '<option  ' . (($order_status == $key) ? "selected" : "") . ' value="' . $key . '">' . $status . '</option>';
         }
+        $rnd = rand(0,9999999999);
         $data['topMenuRight'][] = '
                 <form action="' . gc_route_admin('admin_order.index') . '" id="button_search">
                     <div class="input-group float-left">
-
-                        <div style="width:130px">
+                        <div style="width:150px">
                             <div class="form-group">
                                 <label>'.gc_language_render('action.sort').':</label>
                                 <div class="input-group">
-                                    <select class="form-control rounded-0 select2" name="sort_order" id="sort_order">
+                                    <select class="form-control form-select form-select-solid rounded-0" name="sort_order" id="sort_order" data-control="select2" data-hide-search="true">
                                     '.$optionSort.'
                                     </select>
                                 </div>
@@ -193,7 +196,7 @@ class AdminOrderController extends RootAdminController
                             <div class="form-group">
                                 <label>'.gc_language_render('action.from').':</label>
                                 <div class="input-group">
-                                <input type="text" name="from_to" id="from_to" class="form-control input-sm date_time rounded-0" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" /> 
+                                <input type="text" name="from_to" id="from_to" class="form-control form-control-solid input-sm date_time rounded-0" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" /> 
                                 </div>
                             </div>
                         </div> &nbsp;
@@ -201,7 +204,7 @@ class AdminOrderController extends RootAdminController
                             <div class="form-group">
                                 <label>'.gc_language_render('action.to').':</label>
                                 <div class="input-group">
-                                <input type="text" name="end_to" id="end_to" class="form-control input-sm date_time rounded-0" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" /> 
+                                <input type="text" name="end_to" id="end_to" class="form-control form-control-solid input-sm date_time rounded-0" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" /> 
                                 </div>
                             </div>
                         </div> &nbsp;
@@ -209,7 +212,7 @@ class AdminOrderController extends RootAdminController
                             <div class="form-group">
                                 <label>'.gc_language_render('order.admin.status').':</label>
                                 <div class="input-group">
-                                <select class="form-control rounded-0" name="order_status">
+                                <select class="form-control form-select form-select-solid rounded-0" name="order_status" data-control="select2" data-hide-search="true">
                                 <option value="">'.gc_language_render('order.admin.search_order_status').'</option>
                                 ' . $optionStatus . '
                                 </select>
@@ -220,7 +223,7 @@ class AdminOrderController extends RootAdminController
                             <div class="form-group">
                                 <label>'.gc_language_render('order.admin.search_email').':</label>
                                 <div class="input-group">
-                                    <input type="text" name="email" class="form-control rounded-0 float-right" placeholder="' . gc_language_render('order.admin.search_email') . '" value="' . $email . '">
+                                    <input type="text" name="email" class="form-control form-control-solid rounded-0 float-right" placeholder="' . gc_language_render('order.admin.search_email') . '" value="' . $email . '">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-primary  btn-flat"><i class="fas fa-search"></i></button>
                                     </div>

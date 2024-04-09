@@ -267,7 +267,7 @@
 @php
   $htmlSelectProduct = '<tr>
               <td>
-                <select onChange="selectProduct($(this));"  class="add_id form-control select2" name="add_id[]" style="width:100% !important;">
+                <select onChange="selectProduct($(this));"  class="add_id form-control form-select form-select-solid" name="add_id[]" style="width:100% !important;">
                 <option value="0">'.gc_language_render('order.admin.select_product').'</option>';
                 if(count($products)){
                   foreach ($products as $pId => $product){

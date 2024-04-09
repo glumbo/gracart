@@ -21,8 +21,8 @@
 
 <script>
   $(function () {
-      $(".date_time").datepicker({
-          dateFormat: "yy-mm-dd"
+      $(".date_time").flatpickr({
+          dateFormat: "Y-m-d"
       });
   });
 </script>
@@ -149,6 +149,8 @@ $('.nav-treeview > li.active').parents('.has-treeview').addClass('active menu-op
         title: msg
       })
     }
-    $('[data-toggle="tooltip"]').tooltip();
-    $('.select2').select2();
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+        // $('.select2').select2();
+    });
 </script>

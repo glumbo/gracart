@@ -7,11 +7,16 @@ $rnd = rand(0,9999999999);
 
 @if (!empty($options))
     <div class="form-group row mb-3 {{ $errors->has($name) ? ' text-red' : '' }} border-0"  data-kt-menu="true" id="kt_menu_{{ $rnd }}">
+        @if(!empty($label))
         <label for="{{ $id ?? $name.$rnd }}" class="col-sm-2 col-form-label">{{ $label ?? $name }}</label>
-        <div class="col-sm-8">
-            <select class="form-control form-select form-select-solid" id="{{ $id ?? $name.$rnd }}" name="{{ $name }}"  data-kt-select2="true" data-placeholder="{{ $label ?? $name }}" data-dropdown-parent="#kt_menu_{{ $rnd }}" data-allow-clear="true">
+        @endif
+        <div class="col-sm-6">
+            <select class="form-select form-select-solid {{$id ?? ''}}" id="{{ $id ?? $name.$rnd }}" name="{{ $name }}">
+                @if( isset($placeholder) || isset($text))
+                <option value="">{{ $placeholder ?? ($text ?? '')  }}</option>
+                @endif
                 @foreach ($options as $k => $v)
-                    <option {{ (old($name, $data[$name]??'') ==  $k)?'selected':'' }} value="{{ $k }}">{{ $v }}</option>
+                    <option {{ (old($name, $data[$name]??'') ==  $k)?'selected':'' }} value="{{ $v->code ?? ($v->id ?? $k) }}">{{ isset($v->email) && isset($v->name) ? ($v->name.' <'.$v->email.'>') : ($v->name ?? gc_language_render($v) ) }}</option>
                 @endforeach
             </select>
             @if ($errors->has($name))

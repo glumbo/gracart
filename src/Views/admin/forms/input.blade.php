@@ -9,11 +9,17 @@ if(!isset($name)){
     <div class="col-sm-8">
         <div class="input-group">
             @if(!empty($prepend))
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="la la-prepend icon-lg la-2x"></i></span>
-            </div>
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="la la-{{ $prepend }} icon-lg la-2x"></i></span>
+                </div>
             @endif
             <input type="{{ $type ?? 'text' }}" min="{{ $min ?? '' }}" id="{{ $id ?? $name }}" name="{{ $name }}" value="{{ old()?old($name):$data[$name] ?? '' }}" class="form-control form-control-solid" placeholder="{{ $placeholder ?? '' }}" />
+            @if(!empty($append))
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="la la-{{ $append }} icon-lg la-2x"></i></span>
+                </div>
+            @endif
+
         </div>
         @if ($errors->has($name))
             <span class="form-text">
