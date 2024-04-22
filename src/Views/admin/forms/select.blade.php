@@ -3,6 +3,13 @@ if(!isset($name)){
     $name = 'name';
 }
 $rnd = rand(0,9999999999);
+if(!isset($data) || empty($data)){
+    if(isset($multiple)){
+        $data = [];
+    }else{
+        $data = null;
+    }
+}
 @endphp
 
 @if (!empty($options))
@@ -11,12 +18,12 @@ $rnd = rand(0,9999999999);
         <label for="{{ $id ?? $name.$rnd }}" class="col-sm-2 col-form-label">{{ $label ?? $name }}</label>
         @endif
         <div class="col-sm-6">
-            <select class="form-select form-select-solid {{$id ?? ''}}" id="{{ $id ?? $name.$rnd }}" name="{{ $name }}">
+            <select class="form-select form-select-solid {{$id ?? ''}}" id="{{ $id ?? $name.$rnd }}" name="{{ $name }}" {{ isset($multiple) ? 'multiple="multiple"' : '' }}>
                 @if( isset($placeholder) || isset($text))
                 <option value="">{{ $placeholder ?? ($text ?? '')  }}</option>
                 @endif
                 @foreach ($options as $k => $v)
-                    <option {{ (old($name, $data[$name]??'') ==  $k)?'selected':'' }} value="{{ $v->code ?? ($v->id ?? $k) }}">{{ isset($v->email) && isset($v->name) ? ($v->name.' <'.$v->email.'>') : ($v->name ?? gc_language_render($v) ) }}</option>
+                    <option {{ isset($multiple) && in_array($k, $data) ? 'selected' : (( old($name, $data[$name] ?? $data->{$name} ?? '') ==  $k)?'selected':'') }} value="{{ $v->code ?? ($v->id ?? $k) }}">{{ isset($v->email) && isset($v->name) ? ($v->name.' <'.$v->email.'>') : ($v->name ?? gc_language_render($v) ) }}</option>
                 @endforeach
             </select>
             @if ($errors->has($name))

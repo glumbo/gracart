@@ -130,6 +130,7 @@ class AdminProductController extends RootAdminController
         }
 
         $dataTr = [];
+
         foreach ($dataTmp as $key => $row) {
             $kind = $this->kinds()[$row['kind']] ?? $row['kind'];
             if ($row['kind'] == GC_PRODUCT_BUILD) {
@@ -203,14 +204,14 @@ class AdminProductController extends RootAdminController
         $data['resultItems'] = gc_language_render('admin.result_item', ['item_from' => $dataTmp->firstItem(), 'item_to' => $dataTmp->lastItem(), 'total' =>  $dataTmp->total()]);
 
         //menuRight
-        $data['menuRight'][] = '<a href="' . gc_route_admin('admin_product.create') . '" class="btn btn-success btn-flat" title="'.gc_language_render('product.admin.add_new_title').'" id="button_create_new">
-        <i class="fa fa-plus"></i>
+        $data['menuRight'][] = '<a href="' . gc_route_admin('admin_product.create') . '" class="btn btn-icon btn-bg-light btn-active-color-primary me-1" title="'.gc_language_render('product.admin.add_new_title').'" id="button_create_new">
+        <i class="la la-plus"></i>
         </a>';
         if (gc_config_admin('product_kind')) {
-            $data['menuRight'][] = '<a href="' . gc_route_admin('admin_product.build_create') . '" class="btn btn-success btn-flat" title="'.gc_language_render('product.admin.add_new_title_build').'" id="button_create_new">
+            $data['menuRight'][] = '<a href="' . gc_route_admin('admin_product.build_create') . '" class="btn btn-icon btn-bg-light btn-active-color-primary me-1" title="'.gc_language_render('product.admin.add_new_title_build').'" id="button_create_new">
             <i class="fas fa-puzzle-piece"></i>
             </a>';
-            $data['menuRight'][] = '<a href="' . gc_route_admin('admin_product.group_create') . '" class="btn btn-success btn-flat" title="'.gc_language_render('product.admin.add_new_title_group').'" id="button_create_new">
+            $data['menuRight'][] = '<a href="' . gc_route_admin('admin_product.group_create') . '" class="btn btn-icon btn-bg-light btn-active-color-primary me-1" title="'.gc_language_render('product.admin.add_new_title_group').'" id="button_create_new">
             <i class="fas fa-network-wired"></i>
             </a>';
         }
@@ -264,11 +265,11 @@ class AdminProductController extends RootAdminController
     {
         $categories = (new AdminCategory)->getTreeCategoriesAdmin();
         // html add more images
-        $htmlMoreImage = '<div class="input-group"><input type="text" id="id_sub_image" name="sub_image[]" value="image_value" class="form-control rounded-0 input-sm sub_image" placeholder=""  /><span class="input-group-btn"><a data-input="id_sub_image" data-preview="preview_sub_image" data-type="product" class="btn btn-primary lfm"><i class="fa fa-picture-o"></i> Choose</a></span></div><div id="preview_sub_image" class="img_holder"></div>';
+        $htmlMoreImage = '<div class="input-group"><input type="text" id="id_sub_image" name="sub_image[]" value="image_value" class="form-control form-control-solid rounded-0 input-sm sub_image" placeholder=""  /><span class="input-group-btn"><a data-input="id_sub_image" data-preview="preview_sub_image" data-type="product" class="btn btn-primary lfm"><i class="fa fa-picture-o"></i> Choose</a></span></div><div id="preview_sub_image" class="img_holder"></div>';
         //end add more images
 
         // html select attribute
-        $htmlProductAtrribute = '<tr><td><br><input type="text" name="attribute[attribute_group][name][]" value="attribute_value" class="form-control rounded-0 input-sm" placeholder="' . gc_language_render('product.admin.add_attribute_place') . '" /></td><td><br><input type="number" step="0.01" name="attribute[attribute_group][add_price][]" value="add_price_value" class="form-control rounded-0 input-sm" placeholder="' . gc_language_render('product.admin.add_price_place') . '"></td><td><br><span title="Remove" class="btn btn-flat btn-sm btn-danger removeAttribute"><i class="fa fa-times"></i></span></td></tr>';
+        $htmlProductAtrribute = '<tr><td><br><input type="text" name="attribute[attribute_group][name][]" value="attribute_value" class="form-control form-control-solid rounded-0 input-sm" placeholder="' . gc_language_render('product.admin.add_attribute_place') . '" /></td><td><br><input type="number" step="0.01" name="attribute[attribute_group][add_price][]" value="add_price_value" class="form-control form-control-solid rounded-0 input-sm" placeholder="' . gc_language_render('product.admin.add_price_place') . '"></td><td><br><span title="Remove" class="btn btn-danger btn-active-color-light ms-3 me-3 border-2 border removeAttribute"><i class="fa fa-times"></i></span></td></tr>';
         //end select attribute
 
         $data = [
@@ -281,6 +282,7 @@ class AdminProductController extends RootAdminController
             'brands'               => (new ShopBrand)->getListAll(),
             'suppliers'            => (new ShopSupplier)->getListAll(),
             'taxs'                 => (new ShopTax)->getListAll(),
+            'taxs_options'         => (new ShopTax)->getListOptions(),
             'properties'           => $this->properties,
             'kinds'                => $this->kinds(),
             'attributeGroup'       => $this->attributeGroup,
@@ -307,12 +309,12 @@ class AdminProductController extends RootAdminController
 
         // html select product build
         $htmlSelectBuild = '<div class="select-product">';
-        $htmlSelectBuild .= '<table width="100%"><tr><td width="70%"><select class="form-control rounded-0 productInGroup select2" data-placeholder="' . gc_language_render('product.admin.select_product_in_build') . '" style="width: 100%;" name="productBuild[]" >';
+        $htmlSelectBuild .= '<table width="100%"><tr><td width="70%"><select class="form-select form-select-solid rounded-0 productInGroup" data-placeholder="' . gc_language_render('product.admin.select_product_in_build') . '" style="width: 100%;" name="productBuild[]" >';
         $htmlSelectBuild .= '';
         foreach ($listProductSingle as $k => $v) {
             $htmlSelectBuild .= '<option value="' . $k . '">' . $v['name'] . '</option>';
         }
-        $htmlSelectBuild .= '</select></td><td style="width:100px"><input class="form-control rounded-0"  type="number" name="productBuildQty[]" value="1" min=1></td><td><span title="Remove" class="btn btn-flat btn-sm btn-danger removeproductBuild"><i class="fa fa-times"></i></span></td></tr></table>';
+        $htmlSelectBuild .= '</select></td><td style="width:100px"><input class="form-control form-control-solid ms-2 rounded-0"  type="number" name="productBuildQty[]" value="1" min=1></td><td><span title="Remove" class="btn btn-danger btn-active-color-light ms-3 me-3 border-2 border removeproductBuild"><i class="fa fa-times"></i></span></td></tr></table>';
         $htmlSelectBuild .= '</div>';
         //end select product build
 
@@ -335,6 +337,7 @@ class AdminProductController extends RootAdminController
         'brands'               => (new ShopBrand)->getListAll(),
         'suppliers'            => (new ShopSupplier)->getListAll(),
         'taxs'                 => (new ShopTax)->getListAll(),
+        'taxs_options'         => (new ShopTax)->getListOptions(),
         'properties'           => $this->properties,
         'kinds'                => $this->kinds(),
         'attributeGroup'       => $this->attributeGroup,
@@ -363,12 +366,12 @@ class AdminProductController extends RootAdminController
 
         // html select product group
         $htmlSelectGroup = '<div class="select-product">';
-        $htmlSelectGroup .= '<table width="100%"><tr><td width="80%"><select class="form-control rounded-0 productInGroup select2" data-placeholder="' . gc_language_render('product.admin.select_product_in_group') . '" style="width: 100%;" name="productInGroup[]" >';
+        $htmlSelectGroup .= '<table width="100%"><tr><td width="80%"><select class="form-control form-control-solid rounded-0 productInGroup select2" data-placeholder="' . gc_language_render('product.admin.select_product_in_group') . '" style="width: 100%;" name="productInGroup[]" >';
         $htmlSelectGroup .= '';
         foreach ($listProductSingle as $k => $v) {
             $htmlSelectGroup .= '<option value="' . $k . '">' . $v['name'] . '</option>';
         }
-        $htmlSelectGroup .= '</select></td><td><span title="Remove" class="btn btn-flat btn-sm btn-danger removeproductInGroup"><i class="fa fa-times"></i></span></td></tr></table>';
+        $htmlSelectGroup .= '</select></td><td><span title="Remove" class="btn btn-danger btn-active-color-light ms-2 me-3 border-2 border removeproductInGroup"><i class="fa fa-times"></i></span></td></tr></table>';
         $htmlSelectGroup .= '</div>';
         //End select product group
 
@@ -383,6 +386,7 @@ class AdminProductController extends RootAdminController
         'brands'               => (new ShopBrand)->getListAll(),
         'suppliers'            => (new ShopSupplier)->getListAll(),
         'taxs'                 => (new ShopTax)->getListAll(),
+        'taxs_options'         => (new ShopTax)->getListOptions(),
         'properties'           => $this->properties,
         'kinds'                => $this->kinds(),
         'attributeGroup'       => $this->attributeGroup,
@@ -668,7 +672,7 @@ class AdminProductController extends RootAdminController
 
         // html select product group
         $htmlSelectGroup = '<div class="select-product">';
-        $htmlSelectGroup .= '<table width="100%"><tr><td width="80%"><select class="form-control rounded-0 productInGroup select2" data-placeholder="' . gc_language_render('product.admin.select_product_in_group') . '" style="width: 100%;" name="productInGroup[]" >';
+        $htmlSelectGroup .= '<table width="100%"><tr><td width="80%"><select class="form-control form-control-solid rounded-0 productInGroup select2" data-placeholder="' . gc_language_render('product.admin.select_product_in_group') . '" style="width: 100%;" name="productInGroup[]" >';
         $htmlSelectGroup .= '';
         foreach ($listProductSingle as $k => $v) {
             $htmlSelectGroup .= '<option value="' . $k . '">' . $v['name'] . '</option>';
@@ -679,19 +683,18 @@ class AdminProductController extends RootAdminController
 
         // html select product build
         $htmlSelectBuild = '<div class="select-product">';
-        $htmlSelectBuild .= '<table width="100%"><tr><td width="70%"><select class="form-control rounded-0 productInGroup select2" data-placeholder="' . gc_language_render('product.admin.select_product_in_build') . '" style="width: 100%;" name="productBuild[]" >';
+        $htmlSelectBuild .= '<table width="100%"><tr><td width="70%"><select class="form-control form-control-solid rounded-0 productInGroup select2" data-placeholder="' . gc_language_render('product.admin.select_product_in_build') . '" style="width: 100%;" name="productBuild[]" >';
         $htmlSelectBuild .= '';
         foreach ($listProductSingle as $k => $v) {
             $htmlSelectBuild .= '<option value="' . $k . '">' . $v['name'] . '</option>';
         }
-        $htmlSelectBuild .= '</select></td><td style="width:100px"><input class="form-control rounded-0"  type="number" name="productBuildQty[]" value="1" min=1></td><td><span title="Remove" class="btn btn-flat btn-sm btn-danger removeproductBuild"><i class="fa fa-times"></i></span></td></tr></table>';
+        $htmlSelectBuild .= '</select></td><td style="width:100px"><input class="form-control form-control-solid rounded-0"  type="number" name="productBuildQty[]" value="1" min=1></td><td><span title="Remove" class="btn btn-light btn-active-color-primary me-3 border-2 border removeproductBuild"><i class="fa fa-times"></i></span></td></tr></table>';
         $htmlSelectBuild .= '</div>';
         //end select product build
 
         // html select attribute
-        $htmlProductAtrribute = '<tr><td><br><input type="text" name="attribute[attribute_group][name][]" value="attribute_value" class="form-control rounded-0 input-sm" placeholder="' . gc_language_render('product.admin.add_attribute_place') . '" /></td><td><br><input type="number" step="0.01" name="attribute[attribute_group][add_price][]" value="add_price_value" class="form-control rounded-0 input-sm" placeholder="' . gc_language_render('product.admin.add_price_place') . '"></td><td><br><span title="Remove" class="btn btn-flat btn-sm btn-danger removeAttribute"><i class="fa fa-times"></i></span></td></tr>';
+        $htmlProductAtrribute = '<tr><td><br><input type="text" name="attribute[attribute_group][name][]" value="attribute_value" class="form-control form-control-solid rounded-0 input-sm me-3" placeholder="' . gc_language_render('product.admin.add_attribute_place') . '" /></td><td><br><input type="number" step="0.01" name="attribute[attribute_group][add_price][]" value="add_price_value" class="form-control form-control-solid rounded-0 input-sm border ms-2 me-3" placeholder="' . gc_language_render('product.admin.add_price_place') . '"></td><td><br><span title="Remove" class="btn btn-danger btn-active-color-light ms-3 me-3 border-2 border removeAttribute"><i class="fa fa-times"></i></span></td></tr>';
         //end select attribute
-
 
         $data = [
             'title'                => gc_language_render('product.admin.edit'),
@@ -704,6 +707,7 @@ class AdminProductController extends RootAdminController
             'brands'               => (new ShopBrand)->getListAll(),
             'suppliers'            => (new ShopSupplier)->getListAll(),
             'taxs'                 => (new ShopTax)->getListAll(),
+            'taxs_options'         => (new ShopTax)->getListOptions(),
             'properties'           => $this->properties,
             'kinds'                => $this->kinds(),
             'attributeGroup'       => $this->attributeGroup,
@@ -978,6 +982,7 @@ class AdminProductController extends RootAdminController
                 $product->images()->saveMany($arrSubImages);
             }
         }
+
 
         gc_clear_cache('cache_product');
 

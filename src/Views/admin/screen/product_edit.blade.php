@@ -25,20 +25,20 @@
             <form action="{{ gc_route_admin('admin_product.edit',['id'=>$product['id']]) }}" method="post" accept-charset="UTF-8"
                 class="form-horizontal" id="form-main" enctype="multipart/form-data">
 
-@if (gc_config_admin('product_kind'))
-            <div class="d-flex d-flex justify-content-center mb-3"  id="start-add">
-                <div class="form-group">
-                    <div style="width: 300px;text-align: center; z-index:999">
-                        <b>{{ gc_language_render('product.kind') }}:</b> {{ $kinds[$product->kind]??'' }}
-                    </div>
-                </div>
-            </div>    
-@endif
+                @if (gc_config_admin('product_kind'))
+                            <div class="d-flex d-flex justify-content-center mb-3"  id="start-add">
+                                <div class="form-group">
+                                    <div style="width: 300px;text-align: center; z-index:999">
+                                        <b>{{ gc_language_render('product.kind') }}:</b> {{ $kinds[$product->kind]??'' }}
+                                    </div>
+                                </div>
+                            </div>
+                @endif
 
                 <div class="card-body">
                     {{-- Descriptions --}}
                     @php
-                    $descriptions = $product->descriptions->keyBy('lang')->toArray();
+                        $descriptions = $product->descriptions->keyBy('lang')->toArray();
                     @endphp
 
                     @foreach ($languages as $code => $language)
@@ -54,98 +54,12 @@
                 
                         <div class="card-body">
 
-                        <div class="form-group row  {{ $errors->has('descriptions.'.$code.'.name') ? ' text-red' : '' }}">
-                            <label for="{{ $code }}__name"
-                                class="col-sm-2 col-form-label">{{ gc_language_render('product.name') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
-
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="text" id="{{ $code }}__name" name="descriptions[{{ $code }}][name]"
-                                        value="{{ old('descriptions.'.$code.'.name',($descriptions[$code]['name']??'')) }}"
-                                        class="form-control {{ $code.'__name' }}" placeholder="" />
-                                </div>
-                                @if ($errors->has('descriptions.'.$code.'.name'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i>
-                                    {{ $errors->first('descriptions.'.$code.'.name') }}
-                                </span>
-                                @else
-                                    <span class="form-text">
-                                        <i class="fa fa-info-circle"></i> {{ gc_language_render('admin.max_c',['max'=>200]) }}
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div
-                            class="form-group row  {{ $errors->has('descriptions.'.$code.'.keyword') ? ' text-red' : '' }}">
-                            <label for="{{ $code }}__keyword"
-                                class="col-sm-2 col-form-label">{{ gc_language_render('product.keyword') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="text" id="{{ $code }}__keyword"
-                                        name="descriptions[{{ $code }}][keyword]"
-                                        value="{{ old('descriptions.'.$code.'.keyword',($descriptions[$code]['keyword']??'')) }}"
-                                        class="form-control {{ $code.'__keyword' }}" placeholder="" />
-                                </div>
-                                @if ($errors->has('descriptions.'.$code.'.keyword'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i>
-                                    {{ $errors->first('descriptions.'.$code.'.keyword') }}
-                                </span>
-                                @else
-                                    <span class="form-text">
-                                        <i class="fa fa-info-circle"></i> {{ gc_language_render('admin.max_c',['max'=>200]) }}
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div
-                            class="form-group row  {{ $errors->has('descriptions.'.$code.'.description') ? ' text-red' : '' }}">
-                            <label for="{{ $code }}__description"
-                                class="col-sm-2 col-form-label">{{ gc_language_render('product.description') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
-                            <div class="col-sm-8">
-                                    <textarea  id="{{ $code }}__description"
-                                        name="descriptions[{{ $code }}][description]"
-                                        class="form-control {{ $code.'__description' }}" placeholder="" />{{ old('descriptions.'.$code.'.description',($descriptions[$code]['description']??'')) }}</textarea>
-                                @if ($errors->has('descriptions.'.$code.'.description'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i>
-                                    {{ $errors->first('descriptions.'.$code.'.description') }}
-                                </span>
-                                @else
-                                    <span class="form-text">
-                                        <i class="fa fa-info-circle"></i> {{ gc_language_render('admin.max_c',['max'=>300]) }}
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        @if ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD)
-                        <div
-                            class="form-group row {{ $errors->has('descriptions.'.$code.'.content') ? ' text-red' : '' }}">
-                            <label for="{{ $code }}__content"
-                                class="col-sm-2 col-form-label">{{ gc_language_render('product.content') }}</label>
-                            <div class="col-sm-8">
-                                <textarea id="{{ $code }}__content" class="editor"
-                                    name="descriptions[{{ $code }}][content]">
-                                    {{ old('descriptions.'.$code.'.content',($descriptions[$code]['content']??'')) }}</textarea>
-                                @if ($errors->has('descriptions.'.$code.'.content'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i>
-                                    {{ $errors->first('descriptions.'.$code.'.content') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        @endif
+                            @includeIf($templatePathAdmin.'forms.input', ['str1' => 'descriptions', 'str2' => $code, 'str3' => 'name', 'label' => gc_language_render('product.name'), 'info' => gc_language_render('admin.max_c',['max'=>200])])
+                            @includeIf($templatePathAdmin.'forms.input', ['str1' => 'descriptions', 'str2' => $code, 'str3' => 'keyword', 'label' => gc_language_render('product.keyword'), 'info' => gc_language_render('admin.max_c',['max'=>200]), 'seo' => 1])
+                            @includeIf($templatePathAdmin.'forms.textarea', ['str1' => 'descriptions', 'str2' => $code, 'str3' => 'description', 'label' => gc_language_render('product.description'), 'info' => gc_language_render('admin.max_c',['max'=>300]), 'seo' => 1])
+                            @if ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD)
+                                @includeIf($templatePathAdmin.'forms.textarea', ['str1' => 'descriptions', 'str2' => $code, 'str3' => 'content', 'class' => 'editor', 'label' => gc_language_render('product.content')])
+                            @endif
                             </div>
                         </div>
                         @endforeach
@@ -162,38 +76,9 @@
                         }
                         @endphp
 
-                        <div class="form-group row {{ $errors->has('category') ? ' text-red' : '' }}">
-                            <label for="category"
-                                class="col-sm-2 col-form-label">{{ gc_language_render('product.admin.select_category') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                <select class="form-control category select2" multiple="multiple"
-                                    data-placeholder="{{ gc_language_render('product.admin.select_category') }}"
-                                    name="category[]">
-                                    <option value=""></option>
-                                    @foreach ($categories as $k => $v)
-                                    <option value="{{ $k }}"
-                                        {{ (count($listCate) && in_array($k, $listCate))?'selected':'' }}>{{ $v }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                <div class="input-group-append">
-                                    <a target=_new href="{{ gc_route_admin('admin_category.index') }}" class="btn  btn-flat" title="New">
-                                        <i class="fa fa-plus" title="{{ gc_language_render('action.add') }}"></i>
-                                     </a>
-                                </div>
-                                </div>
-                                @if ($errors->has('category'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('category') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        {{-- //Category --}}
+                        @includeIf($templatePathAdmin.'forms.select', ['name' => 'category[]', 'data' => $listCate, 'options' => $categories, 'label' => gc_language_render('product.admin.select_category'), 'add_url' => gc_route_admin('admin_category.index'), 'multiple' => 1 ])
 
-
- @if (gc_check_multi_shop_installed())
+                    @if (gc_check_multi_shop_installed())
                         {{-- select shop_store --}}
                         @php
                         if (function_exists('gc_get_list_store_of_product_detail')) {
@@ -210,667 +95,73 @@
                         }
                         @endphp
 
-                        <div class="form-group row {{ $errors->has('shop_store') ? ' text-red' : '' }}">
-                            <label for="shop_store"
-                                class="col-sm-2 col-form-label">{{ gc_language_render('admin.select_store') }}</label>
-                            <div class="col-sm-8">
-                                <select class="form-control shop_store select2" 
-                                @if (gc_check_multi_store_installed())
-                                    multiple="multiple"
-                                @endif
-                                data-placeholder="{{ gc_language_render('admin.select_store') }}" style="width: 100%;"
-                                name="shop_store[]">
-                                    <option value=""></option>
-                                    @foreach (gc_get_list_code_store() as $k => $v)
-                                    <option value="{{ $k }}"
-                                        {{ (count($listStore) && in_array($k, $listStore))?'selected':'' }}>{{ $v }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('shop_store'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('shop_store') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        {{-- //select shop_store --}}
-@endif
+                        @includeIf($templatePathAdmin.'forms.select', ['name' => 'shop_store[]', 'data' => $listStore, 'options' => gc_get_list_code_store(), 'label' => gc_language_render('admin.select_store'), 'multiple' => 1 ])
 
-                        {{-- Images --}}
-                        <div class="form-group row  {{ $errors->has('image') ? ' text-red' : '' }}">
-                            <label for="image" class="col-sm-2 col-form-label">{{ gc_language_render('product.image') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <input type="text" id="image" name="image"
-                                        value="{!! old('image',$product->image) !!}" class="form-control image"
-                                        placeholder="" />
-                                        <div class="input-group-append">
-                                            <a data-input="image" data-preview="preview_image" data-type="product"
-                                                class="btn btn-primary lfm">
-                                                <i class="fa fa-image"></i> {{gc_language_render('product.admin.choose_image')}}
-                                            </a>
-                                        </div>
-                                </div>
-                                @if ($errors->has('image'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('image') }}
-                                </span>
-                                @endif
-                                <div id="preview_image" class="img_holder">
-                                    @if (old('image',$product->image))
-                                        <img src="{{ gc_file(old('image',$product->image)) }}">
-                                    @endif
-                                </div>
-                                @php
-                                $listsubImages = old('sub_image',$product->images->pluck('image')->all());
-                                @endphp
-                                @if (!empty($listsubImages))
-                                @foreach ($listsubImages as $key => $sub_image)
-                                @if ($sub_image)
-                                <div class="group-image">
-                                    <div class="input-group"><input type="text" id="sub_image_{{ $key }}"
-                                            name="sub_image[]" value="{!! $sub_image !!}"
-                                            class="form-control sub_image" placeholder="" /><span
-                                            class="input-group-btn"><span><a data-input="sub_image_{{ $key }}"
-                                                    data-preview="preview_sub_image_{{ $key }}" data-type="product"
-                                                    class="btn btn-flat btn-primary lfm"><i
-                                                        class="fa fa-image"></i>
-                                                    {{gc_language_render('product.admin.choose_image')}}</a></span><span
-                                                title="Remove" class="btn btn-flat btn-danger removeImage"><i
-                                                    class="fa fa-times"></i></span></span></div>
-                                    <div id="preview_sub_image_{{ $key }}" class="img_holder"><img
-                                            src="{{ gc_file($sub_image) }}"></div>
-                                </div>
-
-                                @endif
-                                @endforeach
-                                @endif
-                                <button type="button" id="add_sub_image" class="btn btn-flat btn-success">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                    {{ gc_language_render('product.admin.add_sub_image') }}
-                                </button>
-
-                            </div>
-                        </div>
-                        {{-- //Images --}}
+                     @endif
+                    @includeIf($templatePathAdmin.'forms.file', ['name' => 'image', 'data' => $product, 'label' => gc_language_render('product.image'),  'text' => gc_language_render('product.admin.choose_image'), 'sub_images' => old('sub_image',$product->images->pluck('image')->all()) ])
+                    @includeIf($templatePathAdmin.'forms.input', ['name' => 'sku', 'data' => $product, 'label' => gc_language_render('product.sku')])
+                    @includeIf($templatePathAdmin.'forms.input', ['name' => 'alias', 'data' => $product, 'label' => gc_language_render('product.alias'), 'info' => gc_language_render('product.alias_validate')])
 
 
-                        {{-- Sku --}}
-                        <div class="form-group row {{ $errors->has('sku') ? ' text-red' : '' }}">
-                            <label for="sku" class="col-sm-2 col-form-label">{{ gc_language_render('product.sku') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="text" style="width: 100px;" id="sku" name="sku"
-                                        value="{!! old('sku',$product->sku) !!}" class="form-control sku"
-                                        placeholder="" />
-                                </div>
-                                @if ($errors->has('sku'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('sku') }}
-                                </span>
-                                @else
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ gc_language_render('product.sku_validate') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        {{-- //Sku --}}
-
-
-                        {{-- Alias --}}
-                        <div class="form-group row {{ $errors->has('alias') ? ' text-red' : '' }}">
-                            <label for="alias" class="col-sm-2 col-form-label">{!! gc_language_render('product.alias') !!}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="text" id="alias" name="alias"
-                                        value="{!! old('alias', $product->alias) !!}" class="form-control alias"
-                                        placeholder="" />
-                                </div>
-                                @if ($errors->has('alias'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('alias') }}
-                                </span>
-                                @else
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ gc_language_render('product.alias_validate') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        {{-- //Alias --}}
-
-@if (gc_config_admin('product_brand') && ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD))
-                        {{-- Brand --}}
-                        <div class="form-group row kind kind0 kind1 {{ $errors->has('brand_id') ? ' text-red' : '' }}">
-                            <label for="brand_id" class="col-sm-2 col-form-label">{{ gc_language_render('product.brand') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                <select class="form-control brand_id select2"
-                                    name="brand_id">
-                                    <option value=""></option>
-                                    @foreach ($brands as $k => $v)
-                                    <option value="{{ $k }}"
-                                        {{ (old('brand_id') ==$k || (!old() && $product->brand_id ==$k) ) ? 'selected':'' }}>
-                                        {{ $v->name }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="input-group-append">
-                                    <a target=_new href="{{ gc_route_admin('admin_brand.index') }}" class="btn  btn-flat" title="New">
-                                        <i class="fa fa-plus" title="{{ gc_language_render('action.add') }}"></i>
-                                     </a>
-                                </div>
-                                </div>
-                                @if ($errors->has('brand_id'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('brand_id') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        {{-- //Brand --}}
-@endif
-
-@if (gc_config_admin('product_supplier') && ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD))
-                        {{-- supplier --}}
-                        <div class="form-group row kind kind0 kind1 {{ $errors->has('supplier_id') ? ' text-red' : '' }}">
-                            <label for="supplier_id" class="col-sm-2 col-form-label">{{ gc_language_render('product.supplier') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                <select class="form-control supplier_id select2" 
-                                    name="supplier_id">
-                                    <option value=""></option>
-                                    @foreach ($suppliers as $k => $v)
-                                    <option value="{{ $k }}"
-                                        {{ (old('supplier_id') ==$k || (!old() && $product->supplier_id ==$k) ) ? 'selected':'' }}>
-                                        {{ $v->name }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="input-group-append">
-                                    <a target=_new href="{{ gc_route_admin('admin_supplier.index') }}" class="btn  btn-flat" title="New">
-                                        <i class="fa fa-plus" title="{{ gc_language_render('action.add') }}"></i>
-                                     </a>
-                                </div>
-                                </div>
-                                @if ($errors->has('supplier_id'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('supplier_id') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        {{-- //supplier --}}
-@endif
-
-@if (gc_config_admin('product_cost'))
-                        {{-- Cost --}}
-                        @if ($product->kind == GC_PRODUCT_SINGLE)
-                        <div class="form-group row kind kind0 kind1  {{ $errors->has('cost') ? ' text-red' : '' }}">
-                            <label for="cost" class="col-sm-2 col-form-label">{{ gc_language_render('product.cost') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="number" step="0.01" style="width: 100px;" id="cost" name="cost"
-                                        value="{!! old('cost',$product->cost) !!}" class="form-control cost"
-                                        placeholder="" />
-                                </div>
-                                @if ($errors->has('cost'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('cost') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        @endif
-                        {{-- //Cost --}}
-@endif
-
-@if (gc_config_admin('product_price'))
-                        @if ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD)
-                        {{-- Price --}}
-                        <div class="form-group row  {{ $errors->has('price') ? ' text-red' : '' }}">
-                            <label for="price" class="col-sm-2 col-form-label">{{ gc_language_render('product.price') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="number" step="0.01" style="width: 100px;" id="price" name="price"
-                                        value="{!! old('price',$product->price) !!}" class="form-control price"
-                                        placeholder="" />
-                                </div>
-                                @if ($errors->has('price'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('price') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        {{-- //Price --}}
-@endif
-
-@if (gc_config_admin('product_tax'))
-                    @if ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD)
-                        {{-- Tax --}}
-                        <div class="form-group row {{ $errors->has('tax_id') ? ' text-red' : '' }}">
-                            <label for="tax_id" class="col-sm-2 col-form-label">{{ gc_language_render('product.tax') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                <select class="form-control tax_id select2"
-                                    name="tax_id">
-                                    <option value="0" {{ (old('tax_id', $product->tax_id) == 0) ? 'selected':'' }}>{{ gc_language_render('admin.tax.non_tax') }}</option>
-                                    <option value="auto" {{ (old('tax_id', $product->tax_id) == 'auto') ? 'selected':'' }}>{{ gc_language_render('admin.tax.auto') }}</option>
-                                    @foreach ($taxs as $k => $v)
-                                    <option value="{{ $k }}"
-                                        {{ (old('tax_id') ==$k || (!old() && $product->tax_id ==$k) ) ? 'selected':'' }}>
-                                        {{ $v->name }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="input-group-append">
-                                    <a target=_new href="{{ gc_route_admin('admin_tax.index') }}" class="btn  btn-flat" title="New">
-                                        <i class="fa fa-plus" title="{{ gc_language_render('action.add') }}"></i>
-                                     </a>
-                                </div>
-                                </div>
-                                @if ($errors->has('tax_id'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('tax_id') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        {{-- //Tax --}}
+                    @if (gc_config_admin('product_brand') && ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD))
+                        @includeIf($templatePathAdmin.'forms.select', ['name' => 'brand_id', 'data' => $product, 'options' => $brands, 'label' => gc_language_render('product.brand'), 'placeholder' => '', 'add_url' => gc_route_admin('admin_brand.index') ])
                     @endif
-@endif
 
-@if (gc_config_admin('product_promotion'))
-                        {{-- price promotion --}}
-                        <div class="form-group row kind kind0 kind1  {{ $errors->has('price_promotion') ? ' text-red' : '' }}">
-                            <label for="price"
-                                class="col-sm-2 col-form-label">{{ gc_language_render('product.price_promotion') }}</label>
-                            <div class="col-sm-8">
-                                @if (old('price_promotion') || $product->promotionPrice)
-                                <div class="price_promotion">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                        <input type="number" step="0.01"  style="width: 100px;" id="price_promotion"
-                                            name="price_promotion"
-                                            value="{!! old('price_promotion',$product->promotionPrice->price_promotion ?? '') !!}"
-                                            class="form-control price_promotion" placeholder="" />
-                                        <span title="Remove" class="btn btn-flat btn-danger removePromotion"><i
-                                                class="fa fa-times"></i></span>
-                                    </div>
-                                    <div class="form-group">
-                                            <label>{{ gc_language_render('product.price_promotion_start') }}</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fa fa-calendar fa-fw"></i></span>
-                                                </div>
-                                                <input type="text" style="width: 100px;" id="price_promotion_start"
-                                                    name="price_promotion_start"
-                                                    value="{!!old('price_promotion_start', gc_datetime_to_date($product->promotionPrice->date_start))!!}"
-                                                    class="form-control price_promotion_start date_time" data-date-format="yyyy-mm-dd"
-                                                    placeholder="yyyy-mm-dd" />
-                                            </div>
+                    @if (gc_config_admin('product_supplier') && ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD))
+                        @includeIf($templatePathAdmin.'forms.select', ['name' => 'supplier_id', 'data' => $product, 'options' => $suppliers, 'label' => gc_language_render('product.supplier'), 'placeholder' => '', 'add_url' => gc_route_admin('admin_supplier.index') ])
+                    @endif
 
-                                            <label>{{ gc_language_render('product.price_promotion_end') }}</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fa fa-calendar fa-fw"></i></span>
-                                                </div>
-                                                <input type="text" style="width: 100px;" id="price_promotion_end"
-                                                    name="price_promotion_end"
-                                                    value="{!!old('price_promotion_end', gc_datetime_to_date($product->promotionPrice->date_end))!!}"
-                                                    class="form-control price_promotion_end date_time" data-date-format="yyyy-mm-dd"
-                                                    placeholder="yyyy-mm-dd" />
-                                            </div>
-                                    </div>
-                                </div>
+                    @if (gc_config_admin('product_cost') && $product->kind == GC_PRODUCT_SINGLE)
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'cost', 'type' => 'number',  'data' => $product, 'label' => gc_language_render('product.cost'), 'step' => '0.01'])
+                    @endif
 
-                                <button type="button" style="display: none;" id="add_product_promotion"
-                                    class="btn btn-flat btn-success">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                    {{ gc_language_render('product.admin.add_product_promotion') }}
-                                </button>
-                                @else
-                                <button type="button" id="add_product_promotion" class="btn btn-flat btn-success">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                    {{ gc_language_render('product.admin.add_product_promotion') }}
-                                </button>
-                                @endif
-                                @if ($errors->has('price_promotion'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('price_promotion') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        {{-- //price promotion --}}
-                        @endif
-@endif
+                    @if (gc_config_admin('product_price') && ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD))
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'price', 'type' => 'number',  'data' => $product, 'label' => gc_language_render('product.price'), 'step' => '0.01'])
+                    @endif
 
-@if (gc_config_admin('product_stock'))
-                        {{-- Stock --}}
-                        @if ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD)
-                        <div class="form-group row {{ $errors->has('stock') ? ' text-red' : '' }}">
-                            <label for="stock" class="col-sm-2 col-form-label">{{ gc_language_render('product.stock') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="number" style="width: 100px;" id="stock" name="stock"
-                                        value="{!! old('stock',$product->stock) !!}" class="form-control stock"
-                                        placeholder="" />
-                                </div>
-                                @if ($errors->has('stock'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('stock') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        @endif
-                        {{-- //Stock --}}
-@endif
+                    @if (gc_config_admin('product_tax') && ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD))
+                        @includeIf($templatePathAdmin.'forms.select', ['name' => 'tax_id', 'type' => 'number',  'data' => $product, 'options' => $taxs_options, 'label' => gc_language_render('product.tax'), 'add_url' => gc_route_admin('admin_tax.index')])
+                    @endif
 
-@if (gc_config_admin('product_weight'))
-                        {{-- weight --}}
-                        @if ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD)
+                    @if (gc_config_admin('product_promotion'))
+                        @includeIf($templatePathAdmin.'forms.group', ['label' => gc_language_render('product.price_promotion'), 'names' => ['price_promotion', 'price_promotion_start', 'price_promotion_end'], 'types' => [ ['input', 'number'], ['date', 'text'], ['date', 'text']], 'labels' => [gc_language_render('product.price'), gc_language_render('product.price_promotion_start'), gc_language_render('product.price_promotion_end')], 'data' => $product, 'steps' => [0.01], 'removes' => ['removePromotion'], 'add_button' => 'add_product_promotion', 'add_button_label' => gc_language_render('product.admin.add_product_promotion') ])
+                    @endif
 
-                        <div class="form-group row {{ $errors->has('weight_class') ? ' text-red' : '' }}">
-                            <label for="weight_class" class="col-sm-2 col-form-label">{{ gc_language_render('product.admin.weight_class') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                <select class="form-control weight_class select2"
-                                    name="weight_class">
-                                    <option value="">{{ gc_language_render('product.admin.select_weight') }}<option>
-                                    @foreach ($listWeight as $k => $v)
-                                    <option value="{{ $k }}"
-                                        {{ (old('weight_class') == $k || (!old() && $product->weight_class ==$k) ) ? 'selected':'' }}>
-                                        {{ $v }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="input-group-append">
-                                    <a target=_new href="{{ gc_route_admin('admin_weight_unit.index') }}" class="btn  btn-flat" title="New">
-                                        <i class="fa fa-plus" title="{{ gc_language_render('action.add') }}"></i>
-                                     </a>
-                                </div>
-                                </div>
-                                @if ($errors->has('weight_class'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('weight_class') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
+                    @if (gc_config_admin('product_stock') && ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD))
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'stock', 'type' => 'number',  'data' => $product, 'label' => gc_language_render('product.stock'), 'step' => '1'])
+                    @endif
+
+                    @if (gc_config_admin('product_weight') && ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD))
+                        @includeIf($templatePathAdmin.'forms.select', ['name' => 'weight_class',  'data' => $product, 'options' => $listWeight, 'label' => gc_language_render('product.admin.weight_class'), 'placeholder' => gc_language_render('product.admin.select_weight'), 'add_url' => gc_route_admin('admin_weight_unit.index')])
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'weight', 'type' => 'number',  'data' => $product, 'label' => gc_language_render('product.weight'), 'step' => '0.01'])
+                    @endif
+
+                    @if (gc_config_admin('product_length') && ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD))
+                        @includeIf($templatePathAdmin.'forms.select', ['name' => 'length_class',  'data' => $product, 'options' => $listLength, 'label' => gc_language_render('product.admin.length_class'), 'placeholder' => gc_language_render('product.admin.select_length'), 'add_url' => gc_route_admin('admin_length_unit.index')])
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'length', 'type' => 'number',  'data' => $product, 'label' => gc_language_render('product.length'), 'step' => '0.01'])
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'height', 'type' => 'number',  'data' => $product, 'label' => gc_language_render('product.height'), 'step' => '0.01'])
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'width', 'type' => 'number',  'data' => $product, 'label' => gc_language_render('product.width'), 'step' => '0.01'])
+                    @endif
+
+                    @if (gc_config_admin('product_property') && $product->kind == GC_PRODUCT_SINGLE)
+                        @includeIf($templatePathAdmin.'forms.radio', ['name' => 'property',  'data' => $product, 'label' => gc_language_render('product.property'), 'options' => $properties, 'actives' => [0, 1], 'add_url' => gc_route_admin('admin_product_property.index')])
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'download_path',  'data' => $product, 'label' => '&nbsp;', 'class_form' => (old('property', $product->property) != GC_PROPERTY_DOWNLOAD) ? 'd-none':'', 'prepend' => 'download', 'placeholder' => gc_language_render('product.download_path')])
+                    @endif
+
+                    @if (gc_config_admin('product_available') && ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD))
+                        @includeIf($templatePathAdmin.'forms.date', ['name' => 'date_available', 'data' => $product, 'label' => gc_language_render('product.date_available')])
+                    @endif
+
+                    @if (($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD))
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'minimum', 'type' => 'number',  'data' => $product, 'label' => gc_language_render('product.minimum'), 'step' => '1', 'info' => gc_language_render('product.minimum_help')])
+                    @endif
+
+                    @includeIf($templatePathAdmin.'forms.input', ['name' => 'sort', 'type' => 'number',  'data' => $product, 'label' => gc_language_render('product.admin.sort'), 'step' => '1', 'prepend' => 'sort-amount-desc'])
+                    @includeIf($templatePathAdmin.'forms.checkbox', ['name' => 'status', 'data' => $product, 'label' => gc_language_render('product.status')])
+                    @includeIf($templatePathAdmin.'forms.checkbox', ['name' => 'approve', 'data' => $product, 'label' => gc_language_render('product.approve')])
 
 
-                        <div class="form-group row {{ $errors->has('weight') ? ' text-red' : '' }}">
-                            <label for="weight" class="col-sm-2 col-form-label">{{ gc_language_render('product.weight') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="number" step="0.01" style="width: 100px;" id="weight" name="weight"
-                                        value="{!! old('weight',$product->weight) !!}" class="form-control weight"
-                                        placeholder="" />
-                                </div>
-                                @if ($errors->has('weight'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('weight') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        @endif
-                        {{-- //weight --}}
-@endif
-
-
-@if (gc_config_admin('product_length'))
-                        {{-- length --}}
-                        @if ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD)
-
-                        <div class="form-group row {{ $errors->has('length_class') ? ' text-red' : '' }}">
-                            <label for="length_class" class="col-sm-2 col-form-label">{{ gc_language_render('product.admin.length_class') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                <select class="form-control length_class select2"
-                                    name="length_class">
-                                    <option value="">{{ gc_language_render('product.admin.select_length') }}<option>
-                                    @foreach ($listLength as $k => $v)
-                                    <option value="{{ $k }}"
-                                        {{ (old('length_class') == $k || (!old() && $product->length_class ==$k) ) ? 'selected':'' }}>
-                                        {{ $v }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="input-group-append">
-                                    <a target=_new href="{{ gc_route_admin('admin_length_unit.index') }}" class="btn  btn-flat" title="New">
-                                        <i class="fa fa-plus" title="{{ gc_language_render('action.add') }}"></i>
-                                     </a>
-                                </div>
-                                </div>
-                                @if ($errors->has('length_class'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('length_class') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row {{ $errors->has('length') ? ' text-red' : '' }}">
-                            <label for="length" class="col-sm-2 col-form-label">{{ gc_language_render('product.length') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="number" step="0.01" style="width: 100px;" id="length" name="length"
-                                        value="{!! old('length',$product->length) !!}" class="form-control length"
-                                        placeholder="" />
-                                </div>
-                                @if ($errors->has('length'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('length') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row {{ $errors->has('height') ? ' text-red' : '' }}">
-                            <label for="height" class="col-sm-2 col-form-label">{{ gc_language_render('product.height') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="number" step="0.01" style="width: 100px;" id="height" name="height"
-                                        value="{!! old('height',$product->height) !!}" class="form-control height"
-                                        placeholder="" />
-                                </div>
-                                @if ($errors->has('height'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('height') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row {{ $errors->has('width') ? ' text-red' : '' }}">
-                            <label for="width" class="col-sm-2 col-form-label">{{ gc_language_render('product.width') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="number" step="0.01" style="width: 100px;" id="width" name="width"
-                                        value="{!! old('width',$product->width) !!}" class="form-control width"
-                                        placeholder="" />
-                                </div>
-                                @if ($errors->has('width'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('width') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>                        
-
-                        @endif
-                        {{-- //length --}}
-@endif
-
-
-@if (gc_config_admin('product_property'))
-                        {{-- Virtual --}}
-                        @if ($product->kind == GC_PRODUCT_SINGLE)
-                        <div class="form-group row kind kind0 kind1  {{ $errors->has('property') ? ' text-red' : '' }}">
-                            <label for="property" class="col-sm-2 col-form-label">{{ gc_language_render('product.property') }}</label>
-                            <div class="col-sm-8">
-                                @foreach ( $properties as $key => $property)
-                                <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary{{ $key }}" name="property" value="{{ $key }}"  {{ (old('property',$product->property) == $key)?'checked':'' }}>
-                                    <label for="radioPrimary{{ $key }}">
-                                        {{ $property }}
-                                    </label>
-                                </div>
-                                @endforeach
-                                <div class="icheck-primary d-inline">
-                                <label>
-                                    <a target=_new href="{{ gc_route_admin('admin_product_property.index') }}" title="New">
-                                        <i class="fa fa-plus" title="{{ gc_language_render('action.add') }}"></i>
-                                    </a>
-                                </label>
-                                </div>
-                                @if ($errors->has('property'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('property') }}
-                                </span>
-                                @endif
-
-                                <div class="input-group" style="margin-top: 10px; {{ (old('property', $product->property) != GC_PROPERTY_DOWNLOAD) ? 'display:none':'' }}" id="download_path">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fa fa-download"></i></span>
-                                    </div>
-                                    <input type="text"  name="download_path" value="{{ old('download_path', $product->downloadPath->path ?? '') }}" class="form-control input-sm" placeholder="{{ gc_language_render('product.download_path') }}" />
-                                </div>
-
-                            </div>
-                        </div>
-                        @endif
-                        {{-- //Virtual --}}
-@endif
-
-@if (gc_config_admin('product_available'))
-                        {{-- Date vailalable --}}
-                        @if ($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD)
-                        <div
-                            class="form-group row kind kind0 kind1  {{ $errors->has('date_available') ? ' text-red' : '' }}">
-                            <label for="date_available"
-                                class="col-sm-2 col-form-label">{{ gc_language_render('product.date_available') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fa fa-calendar fa-fw"></i></span>
-                                    </div>
-                                    <input type="text" style="width: 100px;" id="date_available" name="date_available"
-                                        value="{!!old('date_available',$product->date_available)!!}"
-                                        class="form-control date_available date_time" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" />
-                                </div>
-                                @if ($errors->has('date_available'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('date_available') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        @endif
-                        {{-- //Date vailalable --}}
-@endif
-
-
-@if (($product->kind == GC_PRODUCT_SINGLE || $product->kind == GC_PRODUCT_BUILD))
-                            
-                        {{-- minimum --}}
-                        <div class="form-group row kind kind0 kind1  {{ $errors->has('minimum') ? ' text-red' : '' }}">
-                            <label for="minimum" class="col-sm-2 col-form-label">{{ gc_language_render('product.minimum') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="number" style="width: 100px;" id="minimum" name="minimum"
-                                        value="{!! old('minimum',$product['minimum']) !!}" class="form-control minimum"
-                                        placeholder="" />
-                                </div>
-                                @if ($errors->has('minimum'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('minimum') }}
-                                </span>
-                                @else
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ gc_language_render('product.minimum_help') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        {{-- //minimum --}}
-@endif
-
-                        {{-- Sort --}}
-                        <div class="form-group row  {{ $errors->has('sort') ? ' text-red' : '' }}">
-                            <label for="sort" class="col-sm-2 col-form-label">{{ gc_language_render('product.admin.sort') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="number" style="width: 100px;" id="sort" name="sort"
-                                        value="{!! old('sort',$product['sort']) !!}" class="form-control sort"
-                                        placeholder="" />
-                                </div>
-                                @if ($errors->has('sort'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        {{-- //Sort --}}
-
-                        {{-- Status --}}
-                        <div class="form-group row ">
-                            <label for="status" class="col-sm-2 col-form-label">{{ gc_language_render('product.status') }}</label>
-                            <div class="col-sm-8">
-                                <input class="checkbox" type="checkbox" name="status" {{ old('status',$product['status'])?'checked':''}}>
-                            </div>
-                        </div>
-                        {{-- //Status --}}
-
-                        {{-- Approve --}}
-                        <div class="form-group row ">
-                            <label for="approve" class="col-sm-2 col-form-label">{{ gc_language_render('product.approve') }}</label>
-                            <div class="col-sm-8">
-                                <input class="checkbox" type="checkbox" name="approve" {{ old('approve',$product['approve'])?'checked':''}}>
-                            </div>
-                        </div>
-                        {{-- //Approve --}}
-
-@if (gc_config_admin('product_kind'))
+                    @if (gc_config_admin('product_kind'))
                         @if ($product->kind == GC_PRODUCT_GROUP)
                         {{-- List product in groups --}}
                         <hr>
@@ -884,32 +175,40 @@
                             </div>
                             <div class="col-sm-8">
                                 @php
-                                $listgroups= [];
-                                $groups = old('productInGroup',$product->groups->pluck('product_id')->toArray());
-                                if(is_array($groups)){
-                                foreach($groups as $value){
-                                $listgroups[] = $value;
-                                }
-                                }
+                                    $listgroups= [];
+                                    $groups = old('productInGroup',$product->groups->pluck('product_id')->toArray());
+                                    dd($groups);
+                                    if(is_array($groups)){
+                                        foreach($groups as $value){
+                                            $listgroups[] = $value;
+                                        }
+                                    }
+                                    if ($listgroups){
+                                        foreach ($listgroups as $pID){
+                                            if($pID){
+                                                $newHtml = str_replace('value="'.$pID.'"', 'value="'.$pID.'" selected', $htmlSelectGroup);
+                                                echo $newHtml;
+                                            }
+                                        }
+                                    }
                                 @endphp
-                                @if ($listgroups)
-                                @foreach ($listgroups as $pID)
-                                @if ($pID)
-                                @php
-                                $newHtml = str_replace('value="'.$pID.'"', 'value="'.$pID.'" selected',
-                                $htmlSelectGroup);
-                                @endphp
-                                {!! $newHtml !!}
-                                @endif
-                                @endforeach
-                                @endif
+{{--                                @if ($listgroups)--}}
+{{--                                @foreach ($listgroups as $pID)--}}
+{{--                                @if ($pID)--}}
+{{--                                @php--}}
+{{--                                $newHtml = str_replace('value="'.$pID.'"', 'value="'.$pID.'" selected', $htmlSelectGroup);--}}
+{{--                                @endphp--}}
+{{--                                {!! $newHtml !!}--}}
+{{--                                @endif--}}
+{{--                                @endforeach--}}
+{{--                                @endif--}}
                                 <div id="position_group_flag"></div>
                                 @if ($errors->has('productInGroup'))
                                 <span class="form-text">
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('productInGroup') }}
                                 </span>
                                 @endif
-                                <button type="button" id="add_product_in_group" class="btn btn-flat btn-success">
+                                <button type="button" id="add_product_in_group" class="btn btn-light btn-active-color-primary me-3 border-2 border">
                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                     {{ gc_language_render('product.admin.add_product') }}
                                 </button>
@@ -922,8 +221,6 @@
                         </div>
                         {{-- //end List product in groups --}}
                         @endif
-
-
 
                         @if ($product->kind == GC_PRODUCT_BUILD)
                         <hr>
@@ -972,7 +269,7 @@
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('productBuild') }}
                                 </span>
                                 @endif
-                                <button type="button" id="add_product_in_build" class="btn btn-flat btn-success">
+                                <button type="button" id="add_product_in_build" class="btn btn-light btn-active-color-primary me-3 border-2 border">
                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                     {{ gc_language_render('product.admin.add_product') }}
                                 </button>
@@ -985,11 +282,11 @@
                         </div>
                         {{-- //end List product build --}}
                         @endif
-@endif
+                    @endif
 
 
-@if (gc_config_admin('product_attribute'))
-                    @if ($product->kind == GC_PRODUCT_SINGLE)
+                    @if (gc_config_admin('product_attribute'))
+                        @if ($product->kind == GC_PRODUCT_SINGLE)
                         {{-- List product attributes --}}
                         <hr>
                         @if (!empty($attributeGroup))
@@ -1031,12 +328,12 @@
                                         @endforeach
                                     @endif
                                         <tr>
-                                            <td colspan="3"><br><button type="button"
-                                                    class="btn btn-flat btn-success add_attribute"
-                                                    data-id="{{ $attGroupId }}">
+                                            <td colspan="3">
+                                                <button type="button" class="btn btn-light btn-active-color-primary mt-2 mb-3 me-3 border-2 border add_attribute" data-id="{{ $attGroupId }}">
                                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                                     {{ gc_language_render('product.admin.add_attribute') }}
-                                                </button><br><br></td>
+                                                </button>
+                                            </td>
                                         </tr>
                                     </table>
                                 @endforeach
@@ -1045,7 +342,7 @@
                         @endif
                         {{-- //end List product attributes --}}
                     @endif
-@endif
+                    @endif
 
 
 
@@ -1111,33 +408,44 @@
 
 <script type="text/javascript">
 
-$("[name='property']").change(function() {
-    if($(this).val() == '{{ GC_PROPERTY_DOWNLOAD }}') {
-        $('#download_path').show();
-    } else {
-        $('#download_path').hide();
-    }
-});
+    $("[name='property']").change(function() {
+        if($(this).val() == '{{ GC_PROPERTY_DOWNLOAD }}') {
+            $('#download_path_form').removeClass('d-none');
+        } else {
+            $('#download_path_form').addClass('d-none');
+        }
+    });
 
 // Promotion
 $('#add_product_promotion').click(function(event) {
     $(this).before(
         '<div class="price_promotion">'
-        +'<div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-pencil-alt"></i></span></div>'
-        +'  <input type="number" step="0.01" id="price_promotion" name="price_promotion" value="0" class="form-control input-sm price" placeholder="" />'
-        +'  <span title="Remove" class="btn btn-flat btn-danger removePromotion"><i class="fa fa-times"></i></span>'
+        +'<label>{{ gc_language_render('product.price') }}</label>'
+        +'<div class="form-group row mb-3">'
+        +'   <div class="col-sm-8">'
+        +'      <input type="number" step="0.01" id="price_promotion" name="price_promotion" value="0" class="form-control form-control-solid price" placeholder="" />'
+        +'   </div>'
+        +'   <div class="col-sm-1">'
+        +'      <span title="{{ gc_language_render('action.remove') }}" class="btn btn-icon btn-icon-muted btn-light btn-active-color-primary me-3 border-2 border removePromotion" ><i class="fa fa-times-circle"></i></span>'
+        +'   </div>'
         +'</div>'
-        +'<div class="form-group">'
+        +'<div class="form-group row mb-3">'
+        +'   <div class="col-sm-8">'
         +'      <label>{{ gc_language_render('product.price_promotion_start') }}</label>'
         +'      <div class="input-group">'
-        +'          <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar fa-fw"></i></span></div>'
-        +'          <input type="text" style="width: 150px;"  id="price_promotion_start" name="price_promotion_start" value="" class="form-control input-sm price_promotion_start date_time" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" />'
+        +'          <div class="input-group-prepend"><span class="input-group-text"><i class="la la-calendar icon-lg la-2x"></i></span></div>'
+        +'          <input type="text" style="width: 150px;"  id="price_promotion_start" name="price_promotion_start" value="" class="form-control form-control-solid date_time flatpickr-input price_promotion_start" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" />'
         +'      </div>'
+        +'   </div>'
+        +'</div>'
+        +'<div class="form-group row mb-3">'
+        +'   <div class="col-sm-8">'
         +'      <label>{{ gc_language_render('product.price_promotion_end') }}</label>'
         +'      <div class="input-group">'
-        +'          <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar fa-fw"></i></span></div>'
-        +'          <input type="text" style="width: 150px;"  id="price_promotion_end" name="price_promotion_end" value="" class="form-control input-sm price_promotion_end date_time" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" />'
+        +'          <div class="input-group-prepend"><span class="input-group-text"><i class="la la-calendar icon-lg la-2x"></i></span></div>'
+        +'          <input type="text" style="width: 150px;"  id="price_promotion_end" name="price_promotion_end" value="" class="form-control form-control-solid date_time flatpickr-input price_promotion_end" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" />'
         +'      </div>'
+        +'   </div>'
         +'  </div>'
         +'</div>');
     $(this).hide();
@@ -1146,9 +454,9 @@ $('#add_product_promotion').click(function(event) {
         $('#add_product_promotion').show();
     });
     $(function () {
-      $(".date_time").datepicker({
-          dateFormat: "yy-mm-dd"
-      });
+        $(".date_time").flatpickr({
+            dateFormat: "Y-m-d"
+        });
   });
 });
 $('.removePromotion').click(function(event) {

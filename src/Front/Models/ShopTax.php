@@ -31,6 +31,52 @@ class ShopTax extends Model
     }
 
     /**
+     * Get item
+     *
+     * @return  [type]  [return description]
+     */
+    public static function getAuto()
+    {
+        $auto = new (self::class);
+        $auto->id = 'auto';
+        $auto->tax_id = 'auto';
+        $auto->name = gc_language_render('admin.tax.auto');
+        $auto->value = gc_language_render('admin.tax.auto');
+        return $auto;
+    }
+
+    /**
+     * Get list item
+     *
+     * @return  [type]  [return description]
+     */
+    public static function getListOptions()
+    {
+        $getListOptions = collect(self::getListAll());
+        $getListOptions->prepend(self::getAuto());
+        $getListOptions->prepend(self::getZero());
+
+        return $getListOptions;
+    }
+
+
+
+    /**
+     * Get list item
+     *
+     * @return  [type]  [return description]
+     */
+    public static function getZero()
+    {
+        $zero = new (self::class);
+        $zero->id = 0;
+        $zero->tax_id = 0;
+        $zero->name = gc_language_render('admin.tax.non_tax');
+        $zero->value = 0;
+        return $zero;
+    }
+
+    /**
      * Get array ID
      *
      * @return  [type]  [return description]
