@@ -19,67 +19,20 @@
 
 
                     <div class="card-body">
-                            <div class="form-group row  {{ $errors->has('name') ? ' text-red' : '' }}">
-                                <label for="name" class="col-sm-2 col-form-label">{{ gc_language_render('admin.email_template.name') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                        <input type="name" id="name" name="name" value="{{ old()?old('name'):$obj['name']??'' }}" class="form-control" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('name'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'name', 'data' => $obj ?? null, 'label' => gc_language_render('admin.email_template.name')])
+                        @includeIf($templatePathAdmin.'forms.select', ['name' => 'group', 'data' => $obj ?? null, 'options' => $arrayGroup, 'label' => gc_language_render('admin.email_template.group'), 'placeholder' => '' ])
+                        @includeIf($templatePathAdmin.'forms.textarea', ['name' => 'text', 'data' => $obj ?? null, 'label' => gc_language_render('admin.email_template.text')])
+                        @includeIf($templatePathAdmin.'forms.checkbox', ['name' => 'status', 'data' => $obj ?? null, 'label' => gc_language_render('admin.email_template.status')])
 
-                            <div class="form-group row  {{ $errors->has('group') ? ' text-red' : '' }}">
-                                <label for="group" class="col-sm-2 col-form-label">{{ gc_language_render('admin.email_template.group') }}</label>
-                                <div class="col-sm-8">
-                                    <select class="form-control group select2" style="width: 100%;" name="group" >
-                                        <option value=""></option>
-                                        @foreach ($arrayGroup as $k => $v)
-                                            <option value="{{ $k }}" {{ (old('group',$obj['group']??'') ==$k) ? 'selected':'' }}>{{ $v }}</option>
-                                        @endforeach
-                                    </select>
-                                        @if ($errors->has('group'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('group') }}
-                                            </span>
-                                        @endif
+                        <hr>
+                        <div class="form-group row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                <label>{{ gc_language_render('admin.email_template.variable_support') }}</label>
+                                <div id="list-variables">
                                 </div>
                             </div>
-
-                            <div class="form-group row {{ $errors->has('text') ? ' text-red' : '' }}">
-                                <label for="text" class="col-sm-2 col-form-label">{{ gc_language_render('admin.email_template.text') }}</label>
-                                <div class="col-sm-8">
-                                        <textarea class="form-control" rows="10" id="text" name="text">{!! old('text',$obj['text']??'') !!}</textarea>
-                                        @if ($errors->has('text'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('text') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row ">
-                                <label for="status" class="col-sm-2 col-form-label">{{ gc_language_render('admin.email_template.status') }}</label>
-                                <div class="col-sm-8">
-                                    <input class="checkbox" type="checkbox" name="status"  {{ old('status',(empty($obj['status'])?0:1))?'checked':''}}>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="form-group row">
-                                <div class="col-sm-2"></div>
-                                <div class="col-sm-8">
-                                    <label>{{ gc_language_render('admin.email_template.variable_support') }}</label>
-                                    <div id="list-variables">
-                                    </div>                                   
-                                </div>
-                            </div>
+                        </div>
                     </div>
 
                     <!-- /.card-body -->

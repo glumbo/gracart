@@ -292,6 +292,7 @@ class AdminPageController extends RootAdminController
             }
         }
 
+
         $validator = Validator::make(
             $data,$arrValidation,
             [
@@ -299,6 +300,7 @@ class AdminPageController extends RootAdminController
                 'descriptions.*.title.required' => gc_language_render('validation.required', ['attribute' => gc_language_render('admin.page.title')]),
             ]
         );
+
 
         if ($validator->fails()) {
             return redirect()->back()

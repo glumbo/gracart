@@ -4,6 +4,7 @@
         $str = $str1.'.'.$str2.'.'.$str3;
         $data = ${$str1}[$str2] ?? null;
         $val = $str3;
+        $id = $str1.'_'.$str2.'_'.$str3;
     }
     if(!isset($name)){
         $name = 'name';
@@ -11,11 +12,14 @@
     if(!isset($str)){
         $str = $name;
     }
+    if($name == "password" && !empty($data)){
+        $data['password'] = null;
+    }
 @endphp
 
 <div class="form-group  row mb-3 {{ $errors->has($str ?? $name) ? ' text-red' : '' }} {{ $class_form ?? '' }}" id="{{ $name ?? '' }}_form">
     @if(!empty($label))
-        <label for="{{ $name ?? '' }}" class="col-sm-2 col-form-label">
+        <label for="{{ $id ?? $name }}" class="col-sm-2 col-form-label">
             {!! $label ?? '' !!}
             @if(!empty($seo))
                 <span class="seo" title="SEO">
@@ -24,7 +28,7 @@
             @endif
         </label>
     @endif
-    <div class="col-sm-8">
+    <div class="col-sm-{{ $col ?? 8 }}">
         <div class="input-group {{ $class_group ?? '' }}" id="{{ $name ?? '' }}_group">
             @if(!empty($prepend))
                 <div class="input-group-prepend">
@@ -37,7 +41,7 @@
                     </span>
                 </div>
             @endif
-            <input type="{{ $type ?? 'text' }}" {{ isset($min) ? 'min="'.$min.'"': '' }} {{ isset($step) ? 'step='.$step: '' }}   style="width: 100px;" id="{{ $id ?? $str }}" name="{{ $name }}" value="{{ old($name) ? old($name):$data[$val ?? $name] ?? '' }}" class="form-control form-control-solid {{ $class ?? '' }}" placeholder="{{ $placeholder ?? '' }}" />
+            <input type="{{ $type ?? 'text' }}" {{ isset($min) ? 'min="'.$min.'"': '' }} {{ isset($step) ? 'step='.$step: '' }}   style="width: 100px;" id="{{ $id ?? $str }}" name="{{ $name }}" value="{{ old($name) ? old($name):$data[$val ?? $name] ?? '' }}" class="form-control form-control-solid  {{ $errors->has($str ?? $name) ? ' is-invalid' : '' }} {{ $class ?? '' }}" placeholder="{{ $placeholder ?? '' }}" />
             @if(!empty($append))
                 <div class="input-group-append">
                     <span class="input-group-text"><i class="la la-{{ $append }} icon-lg la-2x"></i></span>
@@ -51,7 +55,7 @@
             </span>
         @elseif(!empty($info))
             <span class="form-text">
-                <i class="fa fa-info-circle"></i> {{ $info ?? '' }}
+                <i class="fa fa-info-circle"></i> {!! $info ?? '' !!}
             </span>
         @endif
     </div>

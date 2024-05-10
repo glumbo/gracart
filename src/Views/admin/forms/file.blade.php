@@ -4,9 +4,9 @@ if(!isset($name)){
 }
 @endphp
 
-<div class="form-group  row mb-2 {{ $errors->has($name) ? ' text-red' : '' }}">
+<div class="form-group row mb-2 {{ $errors->has($name) ? ' text-red' : '' }}">
     <label for="image" class="col-sm-2 col-form-label">{{ $label ?? $name }}</label>
-    <div class="col-sm-8">
+    <div class="col-sm-{{ $col ?? 8 }}">
         <div class="input-group">
             <input type="text" id="{{ $id ?? $name }}" name="{{ $name ?? '' }}" value="{{ old($name,$data[$name]??'') }}" class="form-control form-control-solid image" placeholder=""  />
             <div class="input-group-append">
@@ -53,9 +53,11 @@ if(!isset($name)){
                 @endif
             @endforeach
         @endif
+        @if (!empty($multiple))
         <button type="button" id="add_sub_image" class="btn btn-light btn-active-color-primary me-3 border-2 border">
             <i class="fa fa-plus-circle" aria-hidden="true"></i>
             {{ gc_language_render('product.admin.add_sub_image') }}
         </button>
+        @endif
     </div>
 </div>

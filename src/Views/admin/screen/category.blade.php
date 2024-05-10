@@ -27,244 +27,35 @@
 
                     @foreach ($languages as $code => $language)
                     
-                    <div class="card">
-                        <div class="card-header with-border">
-                            <h3 class="card-title">{{ $language->name }} {!! gc_image_render($language->icon,'20px','20px', $language->name) !!}</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                </div>
-                        </div>
-                
-                        <div class="card-body">
-
-                        <div class="form-group row  {{ $errors->has('descriptions.'.$code.'.title') ? ' text-red' : '' }}">
-                            <label for="{{ $code }}__title"
-                                class="col-sm-2 col-form-label">{{ gc_language_render('admin.category.title') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                        <div class="card">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">{{ $language->name }} {!! gc_image_render($language->icon,'20px','20px', $language->name) !!}</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
                                     </div>
-                                    <input type="text" id="{{ $code }}__title" name="descriptions[{{ $code }}][title]"
-                                        value="{{ old()? old('descriptions.'.$code.'.title'):($descriptions[$code]['title']??'') }}"
-                                        class="form-control {{ $code.'__title' }}" placeholder="" />
-                                </div>
-                                @if ($errors->has('descriptions.'.$code.'.title'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('descriptions.'.$code.'.title') }}
-                                </span>
-                                @else
-                                    <span class="form-text">
-                                        <i class="fa fa-info-circle"></i> {{ gc_language_render('admin.max_c',['max'=>200]) }}
-                                    </span>
-                                @endif
+                            </div>
+
+                            <div class="card-body">
+                                @includeIf($templatePathAdmin.'forms.input', ['str1' => 'descriptions', 'str2' => $code, 'str3' => 'title', 'label' => gc_language_render('admin.category.title'), 'info' => gc_language_render('admin.max_c',['max'=>200]), 'seo' => 1])
+                                @includeIf($templatePathAdmin.'forms.input', ['str1' => 'descriptions', 'str2' => $code, 'str3' => 'keyword', 'label' => gc_language_render('admin.category.keyword'), 'info' => gc_language_render('admin.max_c',['max'=>200]), 'seo' => 1])
+                                @includeIf($templatePathAdmin.'forms.textarea', ['str1' => 'descriptions', 'str2' => $code, 'str3' => 'description', 'label' => gc_language_render('admin.category.description'), 'info' => gc_language_render('admin.max_c',['max'=>300]), 'seo' => 1])
                             </div>
                         </div>
+                    @endforeach
 
-                        <div
-                            class="form-group row  {{ $errors->has('descriptions.'.$code.'.keyword') ? ' text-red' : '' }}">
-                            <label for="{{ $code }}__keyword"
-                                class="col-sm-2 col-form-label">{{ gc_language_render('admin.category.keyword') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="text" id="{{ $code }}__keyword"
-                                        name="descriptions[{{ $code }}][keyword]"
-                                        value="{{ old()?old('descriptions.'.$code.'.keyword'):($descriptions[$code]['keyword']??'') }}"
-                                        class="form-control {{ $code.'__keyword' }}" placeholder="" />
-                                </div>
-                                @if ($errors->has('descriptions.'.$code.'.keyword'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('descriptions.'.$code.'.keyword') }}
-                                </span>
-                                @else
-                                    <span class="form-text">
-                                        <i class="fa fa-info-circle"></i> {{ gc_language_render('admin.max_c',['max'=>200]) }}
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                    @php
+                        $categories = [0=>'==ROOT==']+ $categories;
+                    @endphp
+                    @includeIf($templatePathAdmin.'forms.select', ['name' => 'parent', 'options' => $categories, 'label' => gc_language_render('admin.category.select_category'), 'add_url' => gc_route_admin('admin_category.index'), 'placeholder' => '' ])
+                    @includeIf($templatePathAdmin.'forms.shop_store')
+                    @includeIf($templatePathAdmin.'forms.input', ['name' => 'alias', 'data' => $category ?? null, 'label' => gc_language_render('admin.category.alias'), 'info' => gc_language_render('admin.category.alias_validate')])
+                    @includeIf($templatePathAdmin.'forms.file', ['name' => 'image', 'data' => $category ?? null, 'type' => 'category', 'label' => gc_language_render('admin.category.image'),  'text' => gc_language_render('product.admin.choose_image'), 'sub_images' => [], 'multiple' => 0 ])
 
-                        <div
-                            class="form-group row  {{ $errors->has('descriptions.'.$code.'.description') ? ' text-red' : '' }}">
-                            <label for="{{ $code }}__description"
-                                class="col-sm-2 col-form-label">{{ gc_language_render('admin.category.description') }} <span class="seo" title="SEO"><i class="fa fa-coffee" aria-hidden="true"></i></span></label>
-                            <div class="col-sm-8">
-                                    <textarea type="text" id="{{ $code }}__description" 
-                                        name="descriptions[{{ $code }}][description]"
-                                        class="form-control {{ $code.'__description' }}" placeholder="" />{{  old()?old('descriptions.'.$code.'.description'):($descriptions[$code]['description']??'')  }}</textarea>
-                                @if ($errors->has('descriptions.'.$code.'.description'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('descriptions.'.$code.'.description') }}
-                                </span>
-                                @else
-                                    <span class="form-text">
-                                        <i class="fa fa-info-circle"></i> {{ gc_language_render('admin.max_c',['max'=>300]) }}
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                            </div>
-                        </div>
-                        @endforeach
-
-                        <div class="form-group row {{ $errors->has('parent') ? ' text-red' : '' }}">
-                            <label for="parent"
-                                class="col-sm-2 col-form-label">{{ gc_language_render('admin.category.select_category') }}</label>
-                            <div class="col-sm-8">
-                                <select class="form-control parent select2" style="width: 100%;" name="parent">
-                                    <option value=""></option>
-                                    @php
-                                    $categories = [0=>'==ROOT==']+ $categories;
-                                    @endphp
-                                    @foreach ($categories as $k => $v)
-                                    <option value="{{ $k }}"
-                                    {{ (old('parent', $category['parent']??'') ==$k) ? 'selected':'' }}>{{ $v }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('parent'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('parent') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-
-
-
-@if (gc_check_multi_store_installed())
-                        {{-- select shop_store --}}
-                        @php
-                        $listStore = [];
-                        if (function_exists('gc_get_list_store_of_category_detail')) {
-                                $oldData = gc_get_list_store_of_category_detail($category['id'] ?? '');
-                            } else {
-                                $oldData = null;
-                            }
-                        $shop_store = old('shop_store', $oldData);
-
-                        if(is_array($shop_store)){
-                            foreach($shop_store as $value){
-                                $listStore[] = $value;
-                            }
-                        }
-                        @endphp
-
-                        <div class="form-group row {{ $errors->has('shop_store') ? ' text-red' : '' }}">
-                            <label for="shop_store"
-                                class="col-sm-2 col-form-label">{{ gc_language_render('admin.select_store') }}</label>
-                            <div class="col-sm-8">
-                                <select class="form-control shop_store select2" multiple="multiple"
-                                    data-placeholder="{{ gc_language_render('admin.select_store') }}" style="width: 100%;"
-                                    name="shop_store[]">
-                                    <option value=""></option>
-                                    @foreach (gc_get_list_code_store() as $k => $v)
-                                    <option value="{{ $k }}"
-                                        {{ (count($listStore) && in_array($k, $listStore))?'selected':'' }}>{{ $v }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('shop_store'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('shop_store') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-                        {{-- //select shop_store --}}
-@endif
-
-
-                        <div class="form-group row  {{ $errors->has('alias') ? ' text-red' : '' }}">
-                            <label for="alias" class="col-sm-2 col-form-label">{!! gc_language_render('admin.category.alias') !!}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="text" id="alias" name="alias"
-                                        value="{{ old('alias',($category['alias']??'')) }}" class="form-control"
-                                        placeholder="" />
-                                </div>
-                                @if ($errors->has('alias'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('alias') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>                        
-
-                        <div class="form-group row  {{ $errors->has('image') ? ' text-red' : '' }}">
-                            <label for="image" class="col-sm-2 col-form-label">{{ gc_language_render('admin.category.image') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <input type="text" id="image" name="image"
-                                        value="{{ old('image',$category['image']??'') }}"
-                                        class="form-control input image" placeholder="" />
-                                    <div class="input-group-append">
-                                        <a data-input="image" data-preview="preview_image" data-type="category"
-                                            class="btn btn-primary lfm">
-                                            <i class="fa fa-image"></i> {{gc_language_render('product.admin.choose_image')}}
-                                        </a>
-                                    </div>
-                                </div>
-                                @if ($errors->has('image'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('image') }}
-                                </span>
-                                @endif
-                                <div id="preview_image" class="img_holder">
-                                    @if (old('image',$category['image']??''))
-                                    <img src="{{ gc_file(old('image',$category['image']??'')) }}">
-                                    @endif
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row  {{ $errors->has('sort') ? ' text-red' : '' }}">
-                            <label for="sort" class="col-sm-2 col-form-label">{{ gc_language_render('admin.category.sort') }}</label>
-                            <div class="col-sm-8">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                    </div>
-                                    <input type="number" style="width: 100px;" id="sort" name="sort"
-                                        value="{!! old()?old('sort'):$category['sort']??0 !!}" class="form-control sort"
-                                        placeholder="" />
-                                </div>
-                                @if ($errors->has('sort'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
-                                </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group  row">
-                            <label for="top" class="col-sm-2 col-form-label">{{ gc_language_render('admin.category.top') }}</label>
-                            <div class="col-sm-8">
-                                <input class="checkbox" type="checkbox" name="top"
-                                    {{ old('top',(empty($category['top'])?0:1))?'checked':''}}>
-                            </div>
-                            <span class="form-text">
-                                <i class="fa fa-info-circle"></i> {{ gc_language_render('admin.category.top_help') }}
-                            </span>
-                        </div>
-
-                        <div class="form-group  row">
-                            <label for="status" class="col-sm-2 col-form-label">{{ gc_language_render('admin.category.status') }}</label>
-                            <div class="col-sm-8">
-                                <input class="checkbox" type="checkbox" name="status"
-                                    {{ old('status',(empty($category['status'])?0:1))?'checked':''}}>
-
-                            </div>
-                        </div>
+                    @includeIf($templatePathAdmin.'forms.input', ['name' => 'sort', 'type' => 'number',  'data' => $category ?? null, 'label' => gc_language_render('admin.category.sort'), 'step' => '1', 'prepend' => 'sort-amount-desc'])
+                    @includeIf($templatePathAdmin.'forms.checkbox', ['name' => 'top', 'data' => $category ?? null, 'label' => gc_language_render('admin.category.top'), 'info' => gc_language_render('admin.category.top_help')])
+                    @includeIf($templatePathAdmin.'forms.checkbox', ['name' => 'status', 'data' => $category ?? null, 'label' => gc_language_render('admin.category.status')])
 
                         {{-- Custom fields --}}
                         @php

@@ -65,7 +65,7 @@
                             </div>
                             {{-- //select shop_store --}}
                         @endif
-                    @includeIf($templatePathAdmin.'forms.file', ['name' => 'image', 'data' => null, 'type' => 'product', 'label' => gc_language_render('product.image'),  'text' => gc_language_render('product.admin.choose_image'), 'sub_images' => [] ])
+                    @includeIf($templatePathAdmin.'forms.file', ['name' => 'image', 'data' => null, 'type' => 'product', 'label' => gc_language_render('product.image'),  'text' => gc_language_render('product.admin.choose_image'), 'sub_images' => [], 'multiple' => 1 ])
                     @includeIf($templatePathAdmin.'forms.input', ['name' => 'sku', 'data' => null, 'label' => gc_language_render('product.sku')])
                     @includeIf($templatePathAdmin.'forms.input', ['name' => 'alias', 'data' => null, 'label' => gc_language_render('product.alias'), 'info' => gc_language_render('product.alias_validate')])
 

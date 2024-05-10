@@ -19,130 +19,13 @@
 
 
                     <div class="card-body">
-                            <div class="form-group  row {{ $errors->has('name') ? ' text-red' : '' }}">
-                                <label for="name" class="col-sm-2  control-label">{{ gc_language_render('admin.user.name') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                        <input type="text"   id="name" name="name" value="{{ old('name',$user['name']??'')}}" class="form-control name" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('name'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group  row {{ $errors->has('username') ? ' text-red' : '' }}">
-                                <label for="username" class="col-sm-2  control-label">{{ gc_language_render('admin.user.user_name') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                        <input type="text"   id="username" name="username" value="{{ old('username',$user['username']??'') }}" class="form-control username" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('username'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('username') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group  row {{ $errors->has('email') ? ' text-red' : '' }}">
-                                <label for="email" class="col-sm-2  control-label">{{ gc_language_render('admin.user.email') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                        <input type="text"   id="email" name="email" value="{{ old('email',$user['email']??'') }}" class="form-control email" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('email'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('email') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group  row {{ $errors->has('avatar') ? ' text-red' : '' }}">
-                                <label for="avatar" class="col-sm-2  control-label">{{ gc_language_render('admin.user.avatar') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <input type="text" id="avatar" name="avatar" value="{{ old('avatar',$user['avatar']??'') }}" class="form-control avatar" placeholder=""  />
-                                       <span class="input-group-btn">
-                                         <a data-input="avatar" data-preview="preview_avatar" data-type="avatar" class="btn btn-primary lfm">
-                                           <i class="fa fa-image"></i> {{gc_language_render('product.admin.choose_image')}}
-                                         </a>
-                                       </span>
-                                    </div>
-                                        @if ($errors->has('avatar'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('avatar') }}
-                                            </span>
-                                        @endif
-                                        <div id="preview_avatar" class="img_holder">
-                                        @if (old('avatar',$user['avatar']??''))
-                                            <img src="{{ gc_file(old('avatar',$user['avatar']??'')) }}">
-                                        @endif
-                                        </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group  row {{ $errors->has('password') ? ' text-red' : '' }}">
-                                <label for="password" class="col-sm-2  control-label">{{ gc_language_render('admin.user.password') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                        <input type="password"   id="password" name="password" value="{{ old('password')??'' }}" class="form-control password" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('password'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('password') }}
-                                            </span>
-                                        @else
-                                            @if ($user)
-                                                <span class="form-text">
-                                                     {{ gc_language_render('admin.user.keep_password') }}
-                                                 </span>
-                                            @endif
-                                        @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group  row {{ $errors->has('password_confirmation') ? ' text-red' : '' }}">
-                                <label for="password" class="col-sm-2  control-label">{{ gc_language_render('admin.user.password_confirmation') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                        <input type="password"   id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation')??'' }}" class="form-control password_confirmation" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('password_confirmation'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('password_confirmation') }}
-                                            </span>
-                                        @else
-                                            @if ($user)
-                                                <span class="form-text">
-                                                     {{ gc_language_render('admin.user.keep_password') }}
-                                                 </span>
-                                            @endif
-                                        @endif
-                                </div>
-                            </div>
-
-                            {{-- select roles --}}
-                            <div class="form-group row {{ $errors->has('roles') ? ' text-red' : '' }}">
-                            @php
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'name', 'data' => $user ?? null, 'label' => gc_language_render('admin.user.name')])
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'username', 'data' => $user ?? null, 'label' => gc_language_render('admin.user.username')])
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'email', 'type'=> 'email', 'data' => $user ?? null, 'label' => gc_language_render('admin.user.email')])
+                        @includeIf($templatePathAdmin.'forms.file', ['name' => 'avatar', 'data' => $user ?? null, 'type' => 'avatar', 'label' => gc_language_render('admin.user.avatar'),  'text' => gc_language_render('admin.page.choose_image'), 'sub_images' => [], 'multiple' => 0 ])
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'password', 'type'=> 'password', 'data' => $user ?? null, 'label' => gc_language_render('admin.user.password'), 'info' => $user ? gc_language_render('admin.user.keep_password') : null])
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'password_confirmation', 'type'=> 'password', 'data' => $user ?? null, 'label' => gc_language_render('admin.user.password_confirmation'), 'info' => $user ? gc_language_render('admin.user.keep_password') : null])
+                        @php
                             $listRoles = [];
                                 $old_roles = old('roles',($user)?$user->roles->pluck('id')->toArray():'');
                                 if(is_array($old_roles)){
@@ -150,7 +33,10 @@
                                         $listRoles[] = (int)$value;
                                     }
                                 }
-                            @endphp
+                        @endphp
+                            {{-- select roles --}}
+                            <div class="form-group row {{ $errors->has('roles') ? ' text-red' : '' }}">
+
                                 <label for="roles" class="col-sm-2  control-label">{{ gc_language_render('admin.user.select_roles') }}</label>
                                 <div class="col-sm-8">
 

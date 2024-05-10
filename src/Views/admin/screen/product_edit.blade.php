@@ -98,7 +98,7 @@
                         @includeIf($templatePathAdmin.'forms.select', ['name' => 'shop_store[]', 'data' => $listStore, 'options' => gc_get_list_code_store(), 'label' => gc_language_render('admin.select_store'), 'multiple' => 1 ])
 
                      @endif
-                    @includeIf($templatePathAdmin.'forms.file', ['name' => 'image', 'data' => $product, 'label' => gc_language_render('product.image'),  'text' => gc_language_render('product.admin.choose_image'), 'sub_images' => old('sub_image',$product->images->pluck('image')->all()) ])
+                    @includeIf($templatePathAdmin.'forms.file', ['name' => 'image', 'data' => $product, 'label' => gc_language_render('product.image'),  'text' => gc_language_render('product.admin.choose_image'), 'sub_images' => old('sub_image',$product->images->pluck('image')->all()), 'multiple' => 1 ])
                     @includeIf($templatePathAdmin.'forms.input', ['name' => 'sku', 'data' => $product, 'label' => gc_language_render('product.sku')])
                     @includeIf($templatePathAdmin.'forms.input', ['name' => 'alias', 'data' => $product, 'label' => gc_language_render('product.alias'), 'info' => gc_language_render('product.alias_validate')])
 

@@ -22,356 +22,68 @@
                         <div class="fields-group">
 
                             @if (gc_config_admin('customer_lastname'))
-                            <div class="form-group row {{ $errors->has('first_name') ? ' text-red' : '' }}">
-                                <label for="first_name"
-                                    class="col-sm-2 col-form-label">{{ gc_language_render('customer.first_name') }}</label>
-    
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                    <input id="first_name" type="text" class="form-control" name="first_name" 
-                                        value="{{ (old('first_name', $customer['first_name'] ?? ''))}}">
-                                    </div>
-                                    @if($errors->has('first_name'))
-                                    <span class="form-text">{{ $errors->first('first_name') }}</span>
-                                    @endif
-    
-                                </div>
-                            </div>
-                            <div class="form-group row {{ $errors->has('last_name') ? ' text-red' : '' }}">
-                                <label for="last_name"
-                                    class="col-sm-2 col-form-label">{{ gc_language_render('customer.last_name') }}</label>
-    
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                    <input id="last_name" type="text" class="form-control" name="last_name" 
-                                        value="{{ (old('last_name', $customer['last_name'] ?? ''))}}">
-                                    </div>
-                                    @if($errors->has('last_name'))
-                                    <span class="form-text">{{ $errors->first('last_name') }}</span>
-                                    @endif
-    
-                                </div>
-                            </div>
+                                @includeIf($templatePathAdmin.'forms.input', ['name' => 'first_name', 'data' => $customer ?? null, 'label' => gc_language_render('customer.first_name')])
+                                @includeIf($templatePathAdmin.'forms.input', ['name' => 'last_name', 'data' => $customer ?? null, 'label' => gc_language_render('customer.last_name')])
                             @else
-                            <div class="form-group row {{ $errors->has('first_name') ? ' text-red' : '' }}">
-                                <label for="first_name"
-                                    class="col-sm-2 col-form-label">{{ gc_language_render('customer.name') }}</label>
-    
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                    <input id="first_name" type="text" class="form-control" name="first_name" 
-                                        value="{{ (old('first_name', $customer['first_name'] ?? ''))}}">
-                                    </div>
-                                    @if($errors->has('first_name'))
-                                    <span class="form-text">{{ $errors->first('first_name') }}</span>
-                                    @endif
-    
-                                </div>
-                            </div>
+                                @includeIf($templatePathAdmin.'forms.input', ['name' => 'first_name', 'data' => $customer ?? null, 'label' => gc_language_render('customer.name')])
                             @endif
-    
+
                             @if (gc_config_admin('customer_name_kana'))
-                            <div class="form-group row {{ $errors->has('first_name_kana') ? ' text-red' : '' }}">
-                                <label for="first_name_kana"
-                                    class="col-sm-2 col-form-label">{{ gc_language_render('customer.first_name_kana') }}</label>
-    
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                    <input id="first_name_kana" type="text" class="form-control" name="first_name_kana"
-                                        value="{{ (old('first_name_kana', $customer['first_name_kana'] ?? ''))}}">
-                                    </div>
-                                    @if($errors->has('first_name_kana'))
-                                    <span class="form-text">{{ $errors->first('first_name_kana') }}</span>
-                                    @endif
-    
-                                </div>
-                            </div>
-                            <div class="form-group row {{ $errors->has('last_name_kana') ? ' text-red' : '' }}">
-                                <label for="last_name_kana"
-                                    class="col-sm-2 col-form-label">{{ gc_language_render('customer.last_name_kana') }}</label>
-    
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                    <input id="last_name_kana" type="text" class="form-control" name="last_name_kana"
-                                        value="{{ (old('last_name_kana', $customer['last_name_kana'] ?? ''))}}">
-                                    </div>
-                                    @if($errors->has('last_name_kana'))
-                                    <span class="form-text">{{ $errors->first('last_name_kana') }}</span>
-                                    @endif
-    
-                                </div>
-                            </div>
+                                @includeIf($templatePathAdmin.'forms.input', ['name' => 'first_name_kana', 'data' => $customer ?? null, 'label' => gc_language_render('customer.first_name_kana')])
+                                @includeIf($templatePathAdmin.'forms.input', ['name' => 'last_name_kana', 'data' => $customer ?? null, 'label' => gc_language_render('customer.last_name_kana')])
                             @endif
-    
+
+
                             @if (gc_config_admin('customer_phone'))
-                            <div class="form-group row {{ $errors->has('phone') ? ' text-red' : '' }}">
-                                <label for="phone"
-                                    class="col-sm-2 col-form-label">{{ gc_language_render('customer.phone') }}</label>
-    
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                    <input id="phone" type="text" class="form-control" name="phone" 
-                                        value="{{ (old('phone', $customer['phone'] ?? ''))}}">
-                                    </div>
-                                    @if($errors->has('phone'))
-                                    <span class="form-text">{{ $errors->first('phone') }}</span>
-                                    @endif
-    
-                                </div>
-                            </div>
+                                @includeIf($templatePathAdmin.'forms.input', ['name' => 'phone', 'data' => $customer ?? null, 'label' => gc_language_render('customer.phone'), 'prepend' => 'phone'])
                             @endif
-    
+
                             @if (gc_config_admin('customer_postcode'))
-                            <div class="form-group row {{ $errors->has('postcode') ? ' text-red' : '' }}">
-                                <label for="postcode"
-                                    class="col-sm-2 col-form-label">{{ gc_language_render('customer.postcode') }}</label>
-    
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                    <input id="postcode" type="text" class="form-control" name="postcode" 
-                                        value="{{ (old('postcode', $customer['postcode'] ?? ''))}}">
-                                    </div>
-    
-                                    @if($errors->has('postcode'))
-                                    <span class="form-text">{{ $errors->first('postcode') }}</span>
-                                    @endif
-    
-                                </div>
-                            </div>
+                                @includeIf($templatePathAdmin.'forms.input', ['name' => 'postcode', 'data' => $customer ?? null, 'label' => gc_language_render('customer.postcode')])
                             @endif
-    
-                            <div class="form-group row {{ $errors->has('email') ? ' text-red' : '' }}">
-                                <label for="email"
-                                    class="col-sm-2 col-form-label">{{ gc_language_render('customer.email') }}</label>
-    
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                    <input id="email" type="text" class="form-control" name="email" 
-                                        value="{{ (old('email',$customer['email'] ?? ''))}}">
-                                    </div>
-    
-                                    @if($errors->has('email'))
-                                    <span class="form-text">{{ $errors->first('email') }}</span>
-                                    @endif
-    
-                                </div>
-                            </div>
-    
-                            <div class="form-group row {{ $errors->has('address1') ? ' text-red' : '' }}">
-                                <label for="address1"
-                                    class="col-sm-2 col-form-label">{{ gc_language_render('customer.address1') }}</label>
-    
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                    <input id="address1" type="text" class="form-control" name="address1" 
-                                        value="{{ (old('address1', $customer['address1'] ?? ''))}}">
-                                    </div>
-                                    @if($errors->has('address1'))
-                                    <span class="form-text">{{ $errors->first('address1') }}</span>
-                                    @endif
-    
-                                </div>
-                            </div>
 
+                            @includeIf($templatePathAdmin.'forms.input', ['name' => 'email', 'data' => $customer ?? null, 'label' => gc_language_render('customer.email'), 'prepend' => 'envelope'])
+                            @includeIf($templatePathAdmin.'forms.input', ['name' => 'address1', 'data' => $customer ?? null, 'label' => gc_language_render('customer.address1')])
                             @if (gc_config_admin('customer_address2'))
-                            <div class="form-group row {{ $errors->has('address2') ? ' text-red' : '' }}">
-                                <label for="address2"
-                                    class="col-sm-2 col-form-label">{{ gc_language_render('customer.address2') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                    <input id="address2" type="text" class="form-control" name="address2" 
-                                        value="{{ (old('address2', $customer['address2'] ?? ''))}}">
-                                    </div>
-                                    @if($errors->has('address2'))
-                                    <span class="form-text">{{ $errors->first('address2') }}</span>
-                                    @endif
-    
-                                </div>
-                            </div>
+                                @includeIf($templatePathAdmin.'forms.input', ['name' => 'address2', 'data' => $customer ?? null, 'label' => gc_language_render('customer.address2')])
                             @endif
-    
                             @if (gc_config_admin('customer_address3'))
-                            <div class="form-group row {{ $errors->has('address3') ? ' text-red' : '' }}">
-                                <label for="address3"
-                                    class="col-sm-2 col-form-label">{{ gc_language_render('customer.address3') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                    <input id="address3" type="text" class="form-control" name="address3" 
-                                        value="{{ (old('address3', $customer['address3'] ?? ''))}}">
-                                    </div>
-                                    @if($errors->has('address3'))
-                                    <span class="form-text">{{ $errors->first('address3') }}</span>
-                                    @endif
-    
-                                </div>
-                            </div>
+                                @includeIf($templatePathAdmin.'forms.input', ['name' => 'address3', 'data' => $customer ?? null, 'label' => gc_language_render('customer.address3')])
                             @endif
 
-    
                             @if (gc_config_admin('customer_country'))
-                            @php
-                            $country = old('country', $customer['country'] ?? '');
-                            @endphp
-    
-                            <div class="form-group row {{ $errors->has('country') ? ' text-red' : '' }}">
-                                <label for="country"
-                                    class="col-sm-2 col-form-label">{{ gc_language_render('customer.country') }}</label>
-                                <div class="col-sm-8">
-                                    <select class="form-control country" style="width: 100%;" name="country">
-                                        <option>__{{ gc_language_render('customer.country') }}__</option>
-                                        @foreach ($countries as $k => $v)
-                                        <option value="{{ $k }}" {{ ($country == $k) ? 'selected':'' }}>{{ $v }}</option>
-                                        @endforeach
-                                    </select>
-                                    @if ($errors->has('country'))
-                                    <span class="form-text">
-                                        {{ $errors->first('country') }}
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
+                                @includeIf($templatePathAdmin.'forms.select', ['name' => 'country', 'data' => $customer ?? null, 'options' => $countries, 'label' => gc_language_render('customer.country'), 'placeholder' => gc_language_render('customer.country') ])
                             @endif
-    
+
                             @if (gc_config_admin('customer_sex'))
-                            @php
-                            $sex = old('sex', $customer['sex'] ?? 0);
-                            @endphp
-                            <div class="form-group{{ $errors->has('sex') ? ' text-red' : '' }}">
-                                <label
-                                    class="col-sm-2 validate account_input {{ ($errors->has('sex'))?"input-error":"" }}">{{ gc_language_render('customer.sex') }}:
-                                </label>
-                                <div class="col-sm-8">
-                                <label class="radio-inline"><input value="0" type="radio" name="sex"
-                                        {{ ($sex == 0)?'checked':'' }}> {{ gc_language_render('customer.sex_women') }}</label>
-                                <label class="radio-inline"><input value="1" type="radio" name="sex"
-                                        {{ ($sex == 1)?'checked':'' }}> {{ gc_language_render('customer.sex_men') }}</label>
-                                </div>
-                                @if ($errors->has('sex'))
-                                <span class="form-text">
-                                    {{ $errors->first('sex') }}
-                                </span>
-                                @endif
-                            </div>
+                                @php
+                                    $sex = old('sex', $customer['sex'] ?? 0);
+                                    $sexes = [0 => gc_language_render('customer.sex_women'), 1 => gc_language_render('customer.sex_men')]
+                                @endphp
+                                @includeIf($templatePathAdmin.'forms.select', ['name' => 'sex', 'data' => $customer ?? null, 'options' => $sexes, 'label' => gc_language_render('customer.sex'), 'placeholder' => '' ])
                             @endif
-    
+
                             @if (gc_config_admin('customer_birthday'))
-                            <div class="form-group row {{ $errors->has('birthday') ? ' text-red' : '' }}">
-                                <label for="birthday"
-                                    class="col-sm-2 col-form-label">
-                                    {{ gc_language_render('customer.birthday') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                    <input type="text" id="birthday" class="form-control date_time" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd"
-                                        name="birthday" 
-                                        value="{{ (old('birthday', $customer['birthday'] ?? ''))}}">
-                                    </div>
-                                    @if($errors->has('birthday'))
-                                    <span class="form-text">{{ $errors->first('birthday') }}</span>
-                                    @endif
-    
-                                </div>
-                            </div>
+                                @includeIf($templatePathAdmin.'forms.date', ['name' => 'birthday', 'data' => $customer ?? null, 'label' => gc_language_render('customer.birthday')])
                             @endif
 
                             @if (gc_config_admin('customer_group'))
-                            <div class="form-group row {{ $errors->has('group') ? ' text-red' : '' }}">
-                                <label for="group"
-                                    class="col-sm-2 col-form-label">{{ gc_language_render('customer.group') }}</label>
-    
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                    <input id="group" type="number" class="form-control" name="group" 
-                                        value="{{ (old('group', $customer['group'] ?? ''))}}">
-                                    </div>
-    
-                                    @if($errors->has('group'))
-                                    <span class="form-text">{{ $errors->first('group') }}</span>
-                                    @endif
-    
-                                </div>
-                            </div>
+                                @includeIf($templatePathAdmin.'forms.input', ['name' => 'group', 'type'=> 'number', 'data' => $customer ?? null, 'label' => gc_language_render('customer.group')])
                             @endif
 
+                            @includeIf($templatePathAdmin.'forms.input', ['name' => 'password', 'data' => $customer ?? null, 'label' => gc_language_render('customer.password'), 'info' => $customer ? gc_language_render('customer.admin.keep_password') : ''])
+                            @includeIf($templatePathAdmin.'forms.checkbox', ['name' => 'status', 'data' => $customer ?? null, 'label' => gc_language_render('customer.status')])
 
-                            <div class="form-group  row {{ $errors->has('password') ? ' text-red' : '' }}">
-                                <label for="password" class="col-sm-2  col-form-label">{{ gc_language_render('customer.password') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                        <input type="text"   id="password" name="password" value="{{ old('password')??'' }}" class="form-control password" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('password'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('password') }}
-                                            </span>
-                                        @else
-                                            @if ($customer)
-                                                <span class="form-text">
-                                                     {!! gc_language_render('customer.admin.keep_password') !!}
-                                                 </span>
-                                            @endif
-                                        @endif
-                                </div>
-                            </div>
-                            
+
                             @if ($customer['provider'])
-                            <div class="form-group  row">
-                                <label for="status" class="col-sm-2  col-form-label">{{ gc_language_render('customer.admin.provider') }}</label>
-                                <div class="col-sm-8">
-                                    {{ $customer['provider'] }}
+                                <div class="form-group  row">
+                                    <label for="status" class="col-sm-2  col-form-label">{{ gc_language_render('customer.admin.provider') }}</label>
+                                    <div class="col-sm-8">
+                                        {{ $customer['provider'] }}
+                                    </div>
                                 </div>
-                            </div>
                             @endif
 
-
-                            <div class="form-group  row">
-                                <label for="status" class="col-sm-2  col-form-label">{{ gc_language_render('customer.status') }}</label>
-                                <div class="col-sm-8">
-                                    <input class="checkbox" type="checkbox" name="status"  {{ old('status',(empty($customer['status'])?0:1))?'checked':''}}>
-
-                                </div>
-                            </div>
 
 
                             {{-- Custom fields --}}
@@ -453,7 +165,7 @@
                             <a href="#" title="{{ gc_language_render('customer.addresses.delete') }}" class="delete-address" data-id="{{ $address->id }}"><i class="fa fa-trash"></i></a>
                         </span>
                         @if ($address->id == $customer['address_id'])
-                        <span class="btn" title="{{ gc_language_render('customer.addresses.default') }}"><i class="fa fa-university" aria-hidden="true"></i></span>
+                        <span class="btn" title="{{ gc_language_render('customer.addresses.default') }}"><i class="fa fa-check" aria-hidden="true"></i></span>
                         @endif
                         </div>
                     @endforeach

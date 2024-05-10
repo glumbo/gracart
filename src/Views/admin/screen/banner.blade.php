@@ -1,5 +1,4 @@
 @extends($templatePathAdmin.'layout')
-
 @section('main')
    <div class="row">
       <div class="col-12">

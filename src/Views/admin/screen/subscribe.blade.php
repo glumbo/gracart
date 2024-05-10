@@ -20,33 +20,8 @@
 
                     <div class="card-body">
                         <div class="fields-group">
-
-                            <div class="form-group  row {{ $errors->has('email') ? ' text-red' : '' }}">
-                                <label for="email" class="col-sm-2 col-form-label">{{ gc_language_render('subscribe.admin.email') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                        <input type="email" id="email" name="email" value="{{ old()?old('email'):$subscribe['email']??'' }}" class="form-control" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('email'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('email') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-group row ">
-                                <label for="status" class="col-sm-2 col-form-label">{{ gc_language_render('subscribe.admin.status') }}</label>
-                                <div class="col-sm-8">
-                                <input class="checkbox" type="checkbox" name="status"  {{ old('status',(empty($subscribe['status'])?0:1))?'checked':''}}>
-
-                                </div>
-                            </div>
+                            @includeIf($templatePathAdmin.'forms.input', ['name' => 'email', 'data' => $subscribe ?? null, 'label' => gc_language_render('subscribe.admin.email'), 'prepend' => 'envelope'])
+                            @includeIf($templatePathAdmin.'forms.checkbox', ['name' => 'status', 'data' => $subscribe ?? null, 'label' => gc_language_render('subscribe.admin.status')])
                     <!-- /.card-body -->
 
                     <div class="card-footer row">

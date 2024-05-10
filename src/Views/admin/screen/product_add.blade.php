@@ -65,7 +65,7 @@
                                 </div>
                                 {{-- //select shop_store --}}
                             @endif
-                            @includeIf($templatePathAdmin.'forms.file', ['name' => 'image', 'data' => null, 'type' => 'product', 'label' => gc_language_render('product.image'),  'text' => gc_language_render('product.admin.choose_image'), 'sub_images' => [] ])
+                            @includeIf($templatePathAdmin.'forms.file', ['name' => 'image', 'data' => null, 'type' => 'product', 'label' => gc_language_render('product.image'),  'text' => gc_language_render('product.admin.choose_image'), 'sub_images' => [], 'multiple' => 1 ])
                             @includeIf($templatePathAdmin.'forms.input', ['name' => 'sku', 'data' => null, 'label' => gc_language_render('product.sku')])
                             @includeIf($templatePathAdmin.'forms.input', ['name' => 'alias', 'data' => null, 'label' => gc_language_render('product.alias'), 'info' => gc_language_render('product.alias_validate')])
 
@@ -123,7 +123,6 @@
                             @includeIf($templatePathAdmin.'forms.input', ['name' => 'sort', 'type' => 'number',  'data' => null, 'label' => gc_language_render('product.admin.sort'), 'step' => '1', 'prepend' => 'sort-amount-desc'])
                             @includeIf($templatePathAdmin.'forms.checkbox', ['name' => 'status', 'data' => null, 'label' => gc_language_render('product.status')])
                             @includeIf($templatePathAdmin.'forms.checkbox', ['name' => 'approve', 'data' => null, 'label' => gc_language_render('product.approve')])
-
 
 
                         @if (gc_config_admin('product_attribute'))
