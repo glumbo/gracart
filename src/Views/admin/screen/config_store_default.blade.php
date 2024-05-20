@@ -1,48 +1,48 @@
 @extends($templatePathAdmin.'layout')
 @section('main')
-      <div class="card card-primary card-outline card-outline-tabs">
+      <div class="card card-primary">
         <div class="card-header p-0 border-bottom-0">
-          <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('grakan.ecommerce_mode'))
-            <li class="nav-item">
-              <a class="nav-link active" id="tab-store-order-tab" data-toggle="pill" href="#tab-store-order" role="tab" aria-controls="tab-store-order" aria-selected="false">{{ gc_language_render('store.admin.config_order') }}</a>
+          <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder" id="custom-tabs-four-tab" role="tablist">
+            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('gracart.ecommerce_mode'))
+            <li class="nav-item mt-2">
+              <a class="nav-link text-active-primary ms-0 me-10 py-5 active" id="tab-store-order-tab" data-bs-toggle="tab" href="#tab-store-order" role="tab"><span class="nav-text fw-bold fs-4 mb-3">{{ gc_language_render('store.admin.config_order') }}</span></a>
             </li>
             @endif
-            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('grakan.ecommerce_mode'))
-            <li class="nav-item">
-              <a class="nav-link" id="tab-store-customer-tab" data-toggle="pill" href="#tab-store-customer" role="tab" aria-controls="tab-store-customer" aria-selected="false">{{ gc_language_render('store.admin.config_customer') }}</a>
+            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('gracart.ecommerce_mode'))
+            <li class="nav-item mt-2">
+              <a class="nav-link text-active-primary ms-0 me-10 py-5" id="tab-store-customer-tab" data-bs-toggle="tab" href="#tab-store-customer"><span class="nav-text fw-bold fs-4 mb-3">{{ gc_language_render('store.admin.config_customer') }}</span></a>
             </li>
             @endif
-            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('grakan.ecommerce_mode'))
-            <li class="nav-item">
-              <a class="nav-link" id="tab-store-product-tab" data-toggle="pill" href="#tab-store-product" role="tab" aria-controls="tab-store-product" aria-selected="false">{{ gc_language_render('store.admin.config_product') }}</a>
+            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('gracart.ecommerce_mode'))
+            <li class="nav-item mt-2">
+              <a class="nav-link text-active-primary ms-0 me-10 py-5" id="tab-store-product-tab" data-bs-toggle="tab" href="#tab-store-product" role="tab" aria-controls="tab-store-product" aria-selected="false">{{ gc_language_render('store.admin.config_product') }}</a>
             </li>
             @endif
-            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('grakan.ecommerce_mode'))
-            <li class="nav-item">
-              <a class="nav-link" id="tab-store-email-tab" data-toggle="pill" href="#tab-store-email" role="tab" aria-controls="tab-store-email" aria-selected="false">{{ gc_language_render('store.admin.config_email') }}</a>
+            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('gracart.ecommerce_mode'))
+            <li class="nav-item mt-2">
+              <a class="nav-link text-active-primary ms-0 me-10 py-5" id="tab-store-email-tab" data-bs-toggle="pill" href="#tab-store-email" role="tab" aria-controls="tab-store-email" aria-selected="false">{{ gc_language_render('store.admin.config_email') }}</a>
             </li>
             @endif
-            <li class="nav-item">
-              <a class="nav-link" id="tab-store-url-tab" data-toggle="pill" href="#tab-store-url" role="tab" aria-controls="tab-store-url" aria-selected="false">{{ gc_language_render('store.admin.config_url') }}</a>
+            <li class="nav-item mt-2">
+              <a class="nav-link text-active-primary ms-0 me-10 py-5" id="tab-store-url-tab" data-bs-toggle="tab" href="#tab-store-url" role="tab" aria-controls="tab-store-url" aria-selected="false">{{ gc_language_render('store.admin.config_url') }}</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="tab-store-captcha-tab" data-toggle="pill" href="#tab-store-captcha" role="tab" aria-controls="tab-store-captcha" aria-selected="false">{{ gc_language_render('admin.captcha.captcha_title') }}</a>
+            <li class="nav-item mt-2">
+              <a class="nav-link text-active-primary ms-0 me-10 py-5" id="tab-store-captcha-tab" data-bs-toggle="tab" href="#tab-store-captcha" role="tab" aria-controls="tab-store-captcha" aria-selected="false">{{ gc_language_render('admin.captcha.captcha_title') }}</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="tab-store-display-tab" data-toggle="pill" href="#tab-store-display" role="tab" aria-controls="tab-store-display" aria-selected="false">{{ gc_language_render('store.admin.config_display') }}</a>
+            <li class="nav-item mt-2">
+              <a class="nav-link text-active-primary ms-0 me-10 py-5" id="tab-store-display-tab" data-bs-toggle="tab" href="#tab-store-display" role="tab" aria-controls="tab-store-display" aria-selected="false">{{ gc_language_render('store.admin.config_display') }}</a>
             </li>
 
-            @if (count($configLayout) && config('grakan.ecommerce_mode'))
-            <li class="nav-item">
-              <a class="nav-link" id="tab-store-layout-tab" data-toggle="pill" href="#tab-store-layout" role="tab" aria-controls="tab-store-layout" aria-selected="false">{{ gc_language_render('store.admin.config_layout') }}</a>
+            @if (count($configLayout) && config('gracart.ecommerce_mode'))
+            <li class="nav-item mt-2">
+              <a class="nav-link text-active-primary ms-0 me-10 py-5" id="tab-store-layout-tab"  data-bs-toggle="tab" href="#tab-store-layout" role="tab" aria-controls="tab-store-layout" aria-selected="false">{{ gc_language_render('store.admin.config_layout') }}</a>
             </li>
             @endif
-            <li class="nav-item">
-              <a class="nav-link" id="tab-admin-other-tab" data-toggle="pill" href="#tab-admin-other" role="tab" aria-controls="tab-admin-other" aria-selected="false">{{ gc_language_render('store.admin.config_admin_other') }}</a>
+            <li class="nav-item mt-2">
+              <a class="nav-link text-active-primary ms-0 me-10 py-5" id="tab-admin-other-tab"  data-bs-toggle="tab" href="#tab-admin-other" role="tab" aria-controls="tab-admin-other" aria-selected="false">{{ gc_language_render('store.admin.config_admin_other') }}</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="tab-admin-customize-tab" data-toggle="pill" href="#tab-admin-customize" role="tab" aria-controls="tab-admin-customize" aria-selected="false">{{ gc_language_render('store.admin.config_customize') }}</a>
+            <li class="nav-item mt-2">
+              <a class="nav-link text-active-primary ms-0 me-10 py-5" id="tab-admin-customize-tab"  data-bs-toggle="tab" href="#tab-admin-customize" role="tab" aria-controls="tab-admin-customize" aria-selected="false">{{ gc_language_render('store.admin.config_customize') }}</a>
             </li>
           </ul>
         </div>
@@ -50,15 +50,15 @@
         <div class="card-body">
           <div class="tab-content" id="custom-tabs-four-tabContent">
             {{-- Tab order --}}
-            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('grakan.ecommerce_mode'))
-            <div class="tab-pane fade  fade active show" id="tab-store-order" role="tabpanel" aria-labelledby="store-order">
+            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('gracart.ecommerce_mode'))
+            <div class="tab-pane fade active show" id="tab-store-order" role="tabpanel" aria-labelledby="store-order">
               @include($templatePathAdmin.'screen.config_store.config_order')
             </div>
             @endif
             {{-- //End tab order --}}
 
             {{-- Tab customer --}}
-            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('grakan.ecommerce_mode'))
+            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('gracart.ecommerce_mode'))
             <div class="tab-pane fade" id="tab-store-customer" role="tabpanel" aria-labelledby="tab-store-customer-tab">
               @include($templatePathAdmin.'screen.config_store.config_customer')
             </div>
@@ -66,14 +66,14 @@
             {{-- //Tab customer --}}
 
             {{-- Tab product --}}
-            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('grakan.ecommerce_mode'))
+            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('gracart.ecommerce_mode'))
             <div class="tab-pane fade" id="tab-store-product" role="tabpanel" aria-labelledby="tab-store-product-tab">
               @include($templatePathAdmin.'screen.config_store.config_product')
             </div>
             @endif
             
             {{-- //Tab product --}}
-            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('grakan.ecommerce_mode'))
+            @if ((admin()->user()->isAdministrator() ||  admin()->user()->isViewAll()) && config('gracart.ecommerce_mode'))
             {{-- Tab email config --}}
             <div class="tab-pane fade" id="tab-store-email" role="tabpanel" aria-labelledby="tab-store-email-tab">
               @include($templatePathAdmin.'screen.config_store.config_mail')
@@ -128,7 +128,7 @@
 
 @push('styles')
 <!-- Ediable -->
-<link rel="stylesheet" href="{{ gc_file('admin/plugin/bootstrap-editable.css')}}">
+<link rel="stylesheet" href="{{ gc_file('admin/plugin/bootstrap5-editable/css/bootstrap-editable.css')}}">
 <style type="text/css">
   #maintain_content img{
     max-width: 100%;
@@ -139,7 +139,7 @@
 @if (empty($dataNotFound))
 @push('scripts')
 <!-- Ediable -->
-<script src="{{ gc_file('admin/plugin/bootstrap-editable.min.js')}}"></script>
+<script src="{{ gc_file('admin/plugin/bootstrap5-editable/js/bootstrap-editable.min.js')}}"></script>
 
 <script type="text/javascript">
 

@@ -25,25 +25,22 @@
                     $descriptions = $category?$category->descriptions->keyBy('lang')->toArray():[];
                     @endphp
 
-                    @foreach ($languages as $code => $language)
-                    
-                        <div class="card">
-                            <div class="card-header with-border">
-                                <h3 class="card-title">{{ $language->name }} {!! gc_image_render($language->icon,'20px','20px', $language->name) !!}</h3>
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
+                    <div class="accordion accordion-flush" id="accordionDescriptions">
+                        @foreach ($languages as $code => $language)
+                            <div class="card accordion-item shadow-sm p-1 mb-5 bg-body rounded">
+                                <h2 class="card-title accordion-header" id="descriptions">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#descriptions_{{$code}}" aria-expanded="false" aria-controls="descriptions">
+                                        {{ $language->name }} &nbsp; {!! gc_image_render($language->icon,'20px','20px', $language->name) !!}
                                     </button>
-                                    </div>
+                                </h2>
+                                <div id="descriptions_{{$code}}" class="card-body accordion-collapse collapse show" aria-labelledby="descriptions" data-bs-parent="#accordionDescriptions">
+                                    @includeIf($templatePathAdmin.'forms.input', ['str1' => 'descriptions', 'str2' => $code, 'str3' => 'title', 'label' => gc_language_render('admin.category.title'), 'info' => gc_language_render('admin.max_c',['max'=>200]), 'seo' => 1])
+                                    @includeIf($templatePathAdmin.'forms.input', ['str1' => 'descriptions', 'str2' => $code, 'str3' => 'keyword', 'label' => gc_language_render('admin.category.keyword'), 'info' => gc_language_render('admin.max_c',['max'=>200]), 'seo' => 1])
+                                    @includeIf($templatePathAdmin.'forms.textarea', ['str1' => 'descriptions', 'str2' => $code, 'str3' => 'description', 'label' => gc_language_render('admin.category.description'), 'info' => gc_language_render('admin.max_c',['max'=>300]), 'seo' => 1])
+                                </div>
                             </div>
-
-                            <div class="card-body">
-                                @includeIf($templatePathAdmin.'forms.input', ['str1' => 'descriptions', 'str2' => $code, 'str3' => 'title', 'label' => gc_language_render('admin.category.title'), 'info' => gc_language_render('admin.max_c',['max'=>200]), 'seo' => 1])
-                                @includeIf($templatePathAdmin.'forms.input', ['str1' => 'descriptions', 'str2' => $code, 'str3' => 'keyword', 'label' => gc_language_render('admin.category.keyword'), 'info' => gc_language_render('admin.max_c',['max'=>200]), 'seo' => 1])
-                                @includeIf($templatePathAdmin.'forms.textarea', ['str1' => 'descriptions', 'str2' => $code, 'str3' => 'description', 'label' => gc_language_render('admin.category.description'), 'info' => gc_language_render('admin.max_c',['max'=>300]), 'seo' => 1])
-                            </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
 
                     @php
                         $categories = [0=>'==ROOT==']+ $categories;

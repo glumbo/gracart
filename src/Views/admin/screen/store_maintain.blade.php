@@ -13,54 +13,27 @@
                 enctype="multipart/form-data">
 
 
-                <div class="card-body">
-                        @php
-                        $descriptions = $maintain->descriptions->keyBy('lang')->toArray();
-                        @endphp
+                <div class="card-body accordion">
+                    @php
+                    $descriptions = $maintain->descriptions->keyBy('lang')->toArray();
+                    @endphp
 
+
+                    <div class="accordion accordion-flush" id="accordionDescriptions">
                         @foreach ($languages as $code => $language)
-                        <div class="card">
-                            <div class="card-header with-border">
-                                <h3 class="card-title">{{ $language->name }} {!! gc_image_render($language->icon,'20px','20px', $language->name) !!}</h3>
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                      <i class="fas fa-minus"></i>
-                                    </button>
-                                  </div>
-                            </div>
-                            <div class="card-body">
-                                <div
-                                    class="form-group {{ $errors->has('descriptions.'.$code.'.maintain_content') ? ' text-red' : '' }}">
-                                    <label for="{{ $code }}__maintain_content"
-                                        class="col-sm-2 col-form-label">{{ gc_language_render('admin.maintain.description') }}</label>
-                                    <div class="col-sm-8">
-                                        <textarea id="{{ $code }}__maintain_content" class="editor"
-                                            name="descriptions[{{ $code }}][maintain_content]">{{ old('descriptions.'.$code.'.maintain_content',($descriptions[$code]['maintain_content']??'')) }}</textarea>
-                                        @if ($errors->has('descriptions.'.$code.'.maintain_content'))
-                                        <span class="form-text">
-                                            <i class="fa fa-info-circle"></i> {{ $errors->first('descriptions.'.$code.'.maintain_content') }}
-                                        </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div
-                                class="form-group {{ $errors->has('descriptions.'.$code.'.maintain_note') ? ' text-red' : '' }}">
-                                <label for="{{ $code }}__maintain_note"
-                                    class="col-sm-2 col-form-label">{{ gc_language_render('admin.maintain.description_note') }}</label>
-                                <div class="col-sm-8">
-                                    <input id="{{ $code }}__maintain_note" type="text" class="form-control input-sm"
-                                        name="descriptions[{{ $code }}][maintain_note]" value="{{ old('descriptions.'.$code.'.maintain_note',($descriptions[$code]['maintain_note']??'')) }}">
-                                    @if ($errors->has('descriptions.'.$code.'.maintain_note'))
-                                    <span class="form-text">
-                                        <i class="fa fa-info-circle"></i> {{ $errors->first('descriptions.'.$code.'.maintain_note') }}
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
+                        <div class="card accordion-item shadow-sm p-1 mb-5 bg-body rounded">
+                            <h2 class="card-title accordion-header" id="descriptions">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#descriptions_{{$code}}" aria-expanded="false" aria-controls="descriptions">
+                                    {{ $language->name }} &nbsp; {!! gc_image_render($language->icon,'20px','20px', $language->name) !!}
+                                </button>
+                            </h2>
+                            <div id="descriptions_{{$code}}" class="card-body accordion-collapse collapse show" aria-labelledby="descriptions" data-bs-parent="#accordionDescriptions">
+                                @includeIf($templatePathAdmin.'forms.textarea', ['str1' => 'descriptions', 'str2' => $code, 'str3' => 'maintain_content', 'class' => 'editor', 'label' => gc_language_render('admin.maintain.description')])
+                                @includeIf($templatePathAdmin.'forms.input', ['str1' => 'descriptions', 'str2' => $code, 'str3' => 'maintain_note', 'label' => gc_language_render('admin.maintain.description_note') ])
                             </div>
                         </div>
                         @endforeach
+                    </div>
                 </div>
 
 

@@ -323,7 +323,7 @@
 
 </style>
 <!-- Ediable -->
-<link rel="stylesheet" href="{{ gc_file('admin/plugin/bootstrap-editable.css')}}">
+<link rel="stylesheet" href="{{ gc_file('admin/plugin/bootstrap5-editable/css/bootstrap-editable.css')}}">
 @endpush
 
 @push('scripts')
@@ -331,7 +331,7 @@
 <script src="{{ gc_file('admin/plugin/jquery.pjax.js')}}"></script>
 
 <!-- Ediable -->
-<script src="{{ gc_file('admin/plugin/bootstrap-editable.min.js')}}"></script>
+<script src="{{ gc_file('admin/plugin/bootstrap5-editable/js/bootstrap-editable.min.js')}}"></script>
 
 
 

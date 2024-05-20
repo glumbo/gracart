@@ -28,7 +28,7 @@
 
 @push('styles')
 <!-- Ediable -->
-<link rel="stylesheet" href="{{ gc_file('admin/plugin/bootstrap-editable.css')}}">
+<link rel="stylesheet" href="{{ gc_file('admin/plugin/bootstrap5-editable/css/bootstrap-editable.css')}}">
 <style type="text/css">
   #maintain_content img{
     max-width: 100%;
@@ -39,7 +39,7 @@
 @if (empty($dataNotFound))
 @push('scripts')
 <!-- Ediable -->
-<script src="{{ gc_file('admin/plugin/bootstrap-editable.min.js')}}"></script>
+<script src="{{ gc_file('admin/plugin/bootstrap5-editable/js/bootstrap-editable.min.js')}}"></script>
 
 <script type="text/javascript">
 
