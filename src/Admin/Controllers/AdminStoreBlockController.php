@@ -254,7 +254,7 @@ class AdminStoreBlockController extends RootAdminController
             'text' => $data['text'],
             'type' => $data['type'],
             'sort' => (int) $data['sort'],
-            'template' => $store->template,
+            'template' => $store->frontend_template,
             'status' => (empty($data['status']) ? 0 : 1),
             'store_id' => $storeId,
         ];
@@ -297,7 +297,7 @@ class AdminStoreBlockController extends RootAdminController
     public function getListViewBlock($storeId = null)
     {
         $arrView = [];
-        foreach (glob(base_path() . "/resources/views/templates/".gc_store('template', $storeId)."/block/*.blade.php") as $file) {
+        foreach (glob(base_path() . "/resources/views/templates/backend/".gc_store('backend_template', $storeId)."/block/*.blade.php") as $file) {
             if (file_exists($file)) {
                 $arr = explode('/', $file);
                 $arrView[substr(end($arr), 0, -10)] = substr(end($arr), 0, -10);

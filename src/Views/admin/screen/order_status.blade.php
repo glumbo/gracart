@@ -12,7 +12,7 @@
         <h3 class="card-title">{!! $title_action !!}</h3>
         @if ($layout == 'edit')
           <div class="btn-group float-right" style="margin-right: 5px">
-              <a href="{{ gc_route_admin('admin_order_status.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{ gc_language_render('admin.back_list') }}</span></a>
+              <a href="{{ gc_route_admin('admin_order_status.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i> <span class="hidden-xs"> {{ gc_language_render('admin.back_list') }}</span></a>
           </div>
         @endif
       </div>
@@ -20,24 +20,7 @@
       <!-- form start -->
       <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main">
         <div class="card-body">
-          <div class="form-group row {{ $errors->has('name') ? ' text-red' : '' }}">
-            <label for="name" class="col-sm-2 col-form-label">{{ gc_language_render('admin.order_status.name') }}</label>
-            <div class="col-sm-10 ">
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                </div>
-                <input type="text" id="name" name="name" value="{{ old()?old('name'):$order_status['name']??'' }}" class="form-control name {{ $errors->has('name') ? ' is-invalid' : '' }}">
-              </div>
-
-              @if ($errors->has('name'))
-              <span class="text-sm">
-                <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
-              </span>
-              @endif
-
-            </div>
-          </div>
+            @includeIf($templatePathAdmin.'forms.input', ['col' => 10, 'name' => 'name', 'data' => $order_status ?? null, 'label' => gc_language_render('admin.order_status.name')])
         </div>
         <!-- /.card-body -->
         @csrf

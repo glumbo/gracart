@@ -20,46 +20,8 @@
       <!-- form start -->
       <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main">
         <div class="card-body">
-
-          <div class="form-group row {{ $errors->has('name') ? ' text-red' : '' }}">
-            <label for="name" class="col-sm-2 col-form-label">{{ gc_language_render('admin.tax.name') }}</label>
-            <div class="col-sm-10 ">
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                </div>
-                <input type="text" id="name" name="name" value="{{ old()?old('name'):$tax['name']??'' }}" class="form-control name {{ $errors->has('name') ? ' is-invalid' : '' }}">
-              </div>
-
-              @if ($errors->has('name'))
-              <span class="text-sm">
-                <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
-              </span>
-              @endif
-
-            </div>
-          </div>
-
-          <div class="form-group row {{ $errors->has('value') ? ' text-red' : '' }}">
-            <label for="name" class="col-sm-2 col-form-label">{{ gc_language_render('admin.tax.value') }}</label>
-            <div class="col-sm-10 ">
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                </div>
-                <input type="number" id="value" name="value" value="{!! old()?old('value'):$tax['value']??'' !!}" class="form-control value {{ $errors->has('value') ? ' is-invalid' : '' }}">
-              </div>
-
-              @if ($errors->has('value'))
-              <span class="text-sm">
-                <i class="fa fa-info-circle"></i> {{ $errors->first('value') }}
-              </span>
-              @endif
-
-            </div>
-          </div>
-
-
+            @includeIf($templatePathAdmin.'forms.input', ['col' => 10, 'name' => 'name', 'data' => $tax ?? null, 'label' => gc_language_render('admin.tax.name')])
+            @includeIf($templatePathAdmin.'forms.input', ['col' => 10, 'name' => 'value', 'data' => $tax ?? null, 'label' => gc_language_render('admin.tax.value')])
         </div>
         <!-- /.card-body -->
         @csrf

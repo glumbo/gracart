@@ -21,7 +21,7 @@ class AdminWeightController extends RootAdminController
     {
         $data = [
             'title' => gc_language_render('admin.weightlist'),
-            'title_action' => '<i class="fa fa-plus" aria-hidden="true"></i> ' . gc_language_render('admin.weightadd_new_title'),
+            'title_action' => '<i class="fa fa-plus" aria-hidden="true"></i> ' . gc_language_render('admin.weight.add_new_title'),
             'subTitle' => '',
             'icon' => 'fa fa-indent',
             'urlDeleteItem' => gc_route_admin('admin_weight_unit.delete'),
@@ -33,8 +33,8 @@ class AdminWeightController extends RootAdminController
         ];
 
         $listTh = [
-            'name' => gc_language_render('admin.weightname'),
-            'description' => gc_language_render('admin.weightdescription'),
+            'name' => gc_language_render('admin.weight.name'),
+            'description' => gc_language_render('admin.weight.description'),
             'action' => gc_language_render('action.title'),
         ];
         $obj = new ShopWeight;
@@ -120,8 +120,8 @@ class AdminWeightController extends RootAdminController
     ];
 
         $listTh = [
-        'name' => gc_language_render('admin.weightname'),
-        'description' => gc_language_render('admin.weightdescription'),
+        'name' => gc_language_render('admin.weight.name'),
+        'description' => gc_language_render('admin.weight.description'),
         'action' => gc_language_render('action.title'),
     ];
         $obj = new ShopWeight;

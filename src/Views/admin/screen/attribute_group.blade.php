@@ -20,51 +20,8 @@
       <!-- form start -->
       <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main">
         <div class="card-body">
-
-          <div class="form-group row {{ $errors->has('name') ? ' text-red' : '' }}">
-            <label for="name" class="col-sm-2 col-form-label">{{ gc_language_render('admin.attribute_group.name') }}</label>
-            <div class="col-sm-10 ">
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                </div>
-                <input type="text" id="name" name="name" value="{{ old()?old('name'):$attribute_group['name']??'' }}" class="form-control name {{ $errors->has('name') ? ' is-invalid' : '' }}">
-              </div>
-
-              @if ($errors->has('name'))
-              <span class="text-sm">
-                <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
-              </span>
-              @endif
-
-            </div>
-          </div>
-
-          <div class="form-group row {{ $errors->has('type') ? ' text-red' : '' }}">
-            <label for="type" class="col-sm-2 col-form-label">{{ gc_language_render('admin.attribute_group.type') }}</label>
-            <div class="form-group clearfix">
-              <div class="icheck-primary d-inline">
-                <input type="radio" id="radioPrimary1" name="type" value="radio" {{ (old('type', ($attribute_group['type']??'')) =='radio')?'checked':'' }}>
-                <label for="radioPrimary1">
-                  Radio
-                </label>
-              </div>
-              <div class="icheck-primary d-inline">
-                <input type="radio" id="radioPrimary2" name="type" value="select" {{ (old('type',($attribute_group['type']??'')) =='select')?'checked':'' }}>
-                <label for="radioPrimary2">
-                  Select
-                </label>
-              </div>
-              @if ($errors->has('type'))
-              <br>
-              <span class="text-sm clearfix">
-                <i class="fa fa-info-circle"></i> {{ $errors->first('type') }}
-              </span>
-              @endif
-            </div>
-          </div>
-
-
+            @includeIf($templatePathAdmin.'forms.input', ['col' => 10, 'name' => 'name', 'data' => $attribute_group ?? null, 'label' => gc_language_render('admin.attribute_group.name')])
+            @includeIf($templatePathAdmin.'forms.radio', ['name' => 'type',  'data' => $attribute_group ?? null, 'label' => gc_language_render('admin.attribute_group.type'), 'options' => ['radio' => gc_language_render('radio'), 'select' => gc_language_render('select')], 'actives' => [0, 1]])
         </div>
         <!-- /.card-body -->
         @csrf

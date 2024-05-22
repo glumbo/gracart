@@ -20,47 +20,8 @@
       <!-- form start -->
       <form action="{{ $url_action }}" method="post" accept-charset="UTF-8" class="form-horizontal" id="form-main">
         <div class="card-body">
-
-          <div class="form-group row {{ $errors->has('name') ? ' text-red' : '' }}">
-            <label for="name" class="col-sm-2 col-form-label">{{ gc_language_render('admin.weightname') }}</label>
-            <div class="col-sm-10 ">
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                </div>
-                <input type="text" id="name" name="name" value="{{ old()?old('name'):$weight['name']??'' }}" class="form-control name {{ $errors->has('name') ? ' is-invalid' : '' }}">
-              </div>
-
-              @if ($errors->has('name'))
-              <span class="text-sm">
-                <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
-              </span>
-              @endif
-
-            </div>
-          </div>
-
-          <div class="form-group row {{ $errors->has('description') ? ' text-red' : '' }}">
-            <label for="description" class="col-sm-2 col-form-label">{{ gc_language_render('admin.weightdescription') }}</label>
-            <div class="col-sm-10 ">
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                </div>
-                <input type="text" id="description" name="description" value="{{ old()?old('description'):$weight['description']??'' }}" class="form-control description {{ $errors->has('description') ? ' is-invalid' : '' }}">
-              </div>
-
-              @if ($errors->has('description'))
-              <span class="text-sm">
-                <i class="fa fa-info-circle"></i> {{ $errors->first('description') }}
-              </span>
-              @endif
-
-            </div>
-          </div>
-
-
-
+            @includeIf($templatePathAdmin.'forms.input', ['col' => 10, 'name' => 'name', 'data' => $weight ?? null, 'label' => gc_language_render('admin.weight.name')])
+            @includeIf($templatePathAdmin.'forms.input', ['col' => 10, 'name' => 'description', 'data' => $weight ?? null, 'label' => gc_language_render('admin.weight.description')])
         </div>
         <!-- /.card-body -->
         @csrf

@@ -19,167 +19,37 @@
 
 
                     <div class="card-body">
-                            <div class="form-group row  {{ $errors->has('name') ? ' text-red' : '' }}">
-                                <label for="name" class="col-sm-2 col-form-label">{{ gc_language_render('admin.store_block.name') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                        <input type="text" id="name" name="name" value="{{ old('name',$layout['name']??'') }}" class="form-control" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('name'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('name') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-                            <div class="form-group row {{ $errors->has('position') ? ' text-red' : '' }}">
-                                <label for="position" class="col-sm-2 col-form-label">{{ gc_language_render('admin.store_block.select_position') }}</label>
-                                <div class="col-sm-8">
-                                    <select class="form-control position select2" style="width: 100%;" name="position" >
-                                        <option value=""></option>
-                                        @foreach ($layoutPosition as $k => $v)
-                                            <option value="{{ $k }}" {{ (old('position',$layout['position']??'') ==$k) ? 'selected':'' }}>{{ gc_language_render($v) }}</option>
-                                        @endforeach
-                                    </select>
-                                        @if ($errors->has('position'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('position') }}
-                                            </span>
-                                        @endif
-                                </div>
-                                <span style="cursor: pointer;" onclick="imagedemo('https://static.grakan.org/file/block-template.jpg');"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
-                            </div>
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'name', 'data' => $layout ?? null, 'label' => gc_language_render('admin.store_block.name')])
+                        @includeIf($templatePathAdmin.'forms.select', ['name' => 'position',  'data' => $layout ?? null, 'options' => $layoutPosition, 'label' => gc_language_render('admin.store_block.select_position'), 'placeholder' => ''])
+{{--                                <span style="cursor: pointer;" onclick="imagedemo('https://static.grakan.org/file/block-template.jpg');"><i class="fa fa-question-circle" aria-hidden="true"></i></span>--}}
+                        @php
+                            $layoutPage = ['*'=> gc_language_render('admin.position_all')] + $layoutPage;
+                            $arrPage = explode(',', $layout['page']??'');
+                        @endphp
+                        @includeIf($templatePathAdmin.'forms.select', ['name' => 'page',  'data' => $arrPage ?? null, 'options' => $layoutPage, 'label' => gc_language_render('admin.store_block.select_page'), 'placeholder' => '', 'multiple' => 1])
+                        @if ($layout)
+                            @includeIf($templatePathAdmin.'forms.radio', ['name' => 'type',  'data' => $layout ?? null, 'label' => gc_language_render('admin.store_block.type'), 'options' => [$layout['type'] => $layoutType[$layout['type']]], 'actives' => [1]])
+                        @else
+                            @includeIf($templatePathAdmin.'forms.radio', ['name' => 'type',  'data' => $layout ?? null, 'label' => gc_language_render('admin.store_block.type'), 'options' => $layoutType, 'actives' => [0, 1]])
+                        @endif
 
-                            <div class="form-group row {{ $errors->has('page') ? ' text-red' : '' }}">
-                                <label for="page" class="col-sm-2 col-form-label">{{ gc_language_render('admin.store_block.select_page') }}</label>
-                                <div class="col-sm-8">
-                                    <select class="form-control page select2" multiple="multiple" style="width: 100%;" name="page[]" >
-                                        <option value=""></option>
-                                        @php
-                                            $layoutPage = ['*'=> gc_language_render('admin.position_all')] + $layoutPage;
-                                            $arrPage = explode(',', $layout['page']??'');
-                                        @endphp
-                                        @foreach ($layoutPage as $k => $v)
-                                            <option value="{{ $k }}" {{ in_array($k,old('page',$arrPage)) ? 'selected':'' }}>{{ gc_language_render($v) }}</option>
-                                        @endforeach
-                                    </select>
-                                        @if ($errors->has('page'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('page') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
+                        @php
+                            $dataType = old('type',$layout['type']??'')
+                        @endphp
 
-                            <div class="form-group row {{ $errors->has('type') ? ' text-red' : '' }}">
-                                <label class="col-sm-2 col-form-label">{{ gc_language_render('admin.store_block.type') }}</label>
-                                <div class="col-sm-8">
-                            @if ($layout)
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="radio-default" name="type" value="{!! $layout['type'] !!}" checked>
-                                <label for="radio-default" class="radio-inline">{{ $layoutType[$layout['type']]}}</label>
-                            </div>
-                            @else
-                                @foreach ( $layoutType as $key => $type)
-                                <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radio-{{ $key }}" name="type" value="{!! $key !!}" {{ (old('type',$layout['type']??'') == $key)?'checked':'' }}>
-                                    <label for="radio-{{ $key }}" class="radio-inline">{{ $type }}</label>
-                                </div>
-                                @endforeach
-                            @endif
-                                        @if ($errors->has('type'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('type') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-                            <div class="form-group row {{ $errors->has('text') ? ' text-red' : '' }}">
-                                <label for="text" class="col-sm-2 col-form-label">{{ gc_language_render('admin.store_block.text') }}</label>
-                                <div class="col-sm-8">
-                                    @php
-                                        $dataType = old('type',$layout['type']??'')
-                                    @endphp
-                                    @if ($dataType =='page')
-                                    <select name="text" class="form-control text">
-                                        @foreach ($listViewPage as $view)
-                                            <option value="{!! $view !!}" {{ (old('text',$layout['text']??'') == $view)?'selected':'' }} >{{ $view }}</option>
-                                        @endforeach
-                                    </select>
-                                    @elseif ($dataType =='view')
-                                        <select name="text" class="form-control text">
-                                            @foreach ($listViewBlock as $view)
-                                                <option value="{!! $view !!}" {{ (old('text',$layout['text']??'') == $view)?'selected':'' }} >{{ $view }}</option>
-                                            @endforeach
-                                        </select>
-                                        <span class="form-text"><i class="fa fa-info-circle"></i> {{ gc_language_render('admin.store_block.helper_view',['template' => gc_store('template', $storeId)]) }}</span>
-                                    @else
-                                        <textarea name="text" class="form-control text" rows="5" placeholder="Layout text">
-                                            {{ old('text',$layout['text']??'') }}
-                                        </textarea>
-                                        <span class="form-text"><i class="fa fa-info-circle"></i> {{ gc_language_render('admin.store_block.helper_html') }}</span>
-                                    @endif
+                        @if ($dataType =='page')
+                            @includeIf($templatePathAdmin.'forms.select', ['name' => 'text',  'data' => $layout ?? null, 'options' => $listViewPage, 'label' => gc_language_render('admin.store_block.text'), 'placeholder' => ''])
+                        @elseif ($dataType =='view')
+                            @includeIf($templatePathAdmin.'forms.select', ['name' => 'text',  'data' => $layout ?? null, 'options' => $listViewBlock, 'label' => gc_language_render('admin.store_block.text'), 'placeholder' => '', 'info' => gc_language_render('admin.store_block.helper_view',['template' => 'backend/'.gc_store('backend_template', $storeId)])])
+                        @else
+                            @includeIf($templatePathAdmin.'forms.textarea', ['name' => 'text', 'data' => $layout ?? null, 'label' => gc_language_render('admin.store_block.text'), 'info' => gc_language_render('admin.store_block.helper_html') ])
+                        @endif
 
-
-                                    @if ($errors->has('text'))
-                                        <span class="form-text">
-                                            {{ $errors->first('text') }}
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-
-
-@if (gc_check_multi_shop_installed())
-
-                            <div class="form-group row {{ $errors->has('store_id') ? ' text-red' : '' }}">
-                                <label for="store_id" class="col-sm-2 col-form-label">{{ gc_language_render('admin.select_store') }}</label>
-                                <div class="col-sm-8">
-                                    <select class="form-control store_id select2" style="width: 100%;" name="store_id" >
-                                        <option value=""></option>
-                                        @foreach (gc_get_list_code_store() as $k => $v)
-                                            <option value="{{ $k }}" {{ (old('store_id', $layout['store_id']??'') ==$k) ? 'selected':'' }}>{{ gc_language_render($v) }}</option>
-                                        @endforeach
-                                    </select>
-                                        @if ($errors->has('store_id'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('store_id') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-    @endif
-
-
-                            <div class="form-group row  {{ $errors->has('sort') ? ' text-red' : '' }}">
-                                <label for="sort" class="col-sm-2 col-form-label">{{ gc_language_render('admin.store_block.sort') }}</label>
-                                <div class="col-sm-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        </div>
-                                        <input type="number" style="width: 100px;"  id="sort" name="sort" value="{{ old()?old('sort'):$layout['sort']??0 }}" class="form-control sort" placeholder="" />
-                                    </div>
-                                        @if ($errors->has('sort'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('sort') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
-
-
-                            <div class="form-group row ">
-                                <label for="status" class="col-sm-2 col-form-label">{{ gc_language_render('admin.store_block.status') }}</label>
-                                <div class="col-sm-8">
-                                <input class="checkbox" type="checkbox" name="status"  {!! old('status',(empty($layout['status'])?0:1))?'checked':''!!}>
-
-                                </div>
-                            </div>
+                        @if (gc_check_multi_shop_installed())
+                            @includeIf($templatePathAdmin.'forms.select', ['name' => 'store_id',  'data' => $layout ?? null, 'options' => gc_get_list_code_store(), 'label' => gc_language_render('admin.select_store'), 'placeholder' => ''])
+                        @endif
+                        @includeIf($templatePathAdmin.'forms.input', ['name' => 'sort', 'type' => 'number',  'data' => $layout ?? null, 'label' => gc_language_render('admin.store_block.sort'), 'step' => '1', 'prepend' => 'sort-amount-desc'])
+                        @includeIf($templatePathAdmin.'forms.checkbox', ['name' => 'status', 'data' => $layout ?? null, 'label' => gc_language_render('admin.store_block.status')])
                     </div>
 
 

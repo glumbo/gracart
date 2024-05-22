@@ -2,6 +2,9 @@
 if(!isset($name)){
     $name = 'name';
 }
+if(isset($multiple)){
+    $name = $name."[]";
+}
 $rnd = rand(0,9999999999);
 if(!isset($data) || empty($data)){
     if(isset($multiple)){
