@@ -21,7 +21,7 @@ if(!isset($data) || empty($data)){
         <label for="{{ $id ?? $name.$rnd }}" class="col-sm-2 col-form-label">{{ $label ?? $name }}</label>
         @endif
         <div class="col-sm-6">
-            <select class="form-select form-select-solid {{$id ?? ''}}" id="{{ $id ?? $name.$rnd }}" name="{{ $name }}" {{ isset($multiple) ? 'multiple="multiple"' : '' }}>
+            <select data-control="select2" data-hide-search="{{ $search ?? 'true'  }}" class="form-select form-select-sm border-body fw-bolder form-select-solid {{$id ?? ''}}" id="{{ $id ?? $name.$rnd }}" name="{{ $name }}" {{ isset($multiple) ? 'multiple="multiple"' : '' }}>
                 @if( isset($placeholder) || isset($text))
                 <option value="">{{ $placeholder ?? ($text ?? '')  }}</option>
                 @endif

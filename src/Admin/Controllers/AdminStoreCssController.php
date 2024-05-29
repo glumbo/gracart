@@ -24,10 +24,10 @@ class AdminStoreCssController extends RootAdminController
         if (!key_exists($template, $templates)) {
             return redirect()->route('admin.data_not_found')->with(['url' => url()->full()]);
         }
+
         $cssContent = ShopStoreCss::where('store_id', $storeId)
             ->where('template', $template)
             ->first();
-
         if (!$cssContent) {
             return redirect()->route('admin.data_not_found')->with(['url' => url()->full()]);
         }
@@ -40,6 +40,7 @@ class AdminStoreCssController extends RootAdminController
             'storeId' => $storeId,
             'icon' => 'fa fa-edit',
             'css' => $cssContent->css,
+            'store_css' => ['css' => $cssContent->css],
             'url_action' => gc_route_admin('admin_store_css.index'),
         ];
         return view($this->templatePathAdmin.'screen.store_css')

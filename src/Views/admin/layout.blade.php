@@ -81,7 +81,7 @@
             <div class="aside-logo flex-column-auto" id="kt_aside_logo">
                 <!--begin::Logo-->
                 <a href="{{ gc_route_admin('home') }}">
-                    <img alt="Logo" src="{{ gc_file($gc_templateFile.'assets/media/logos/logo-1-dark.svg')}}" class="h-25px logo"/>
+                    <img alt="Logo" src="{{ gc_file($gc_templateFile.'assets/media/logos/grakan_logo_reverse.png')}}" class="h-25px logo"/>
                 </a>
                 <!--end::Logo-->
                 <!--begin::Aside toggler-->
@@ -192,6 +192,8 @@
                     <!--end::Container-->
                 </div>
                 <!--end::Toolbar-->
+                @yield('top')
+
                 <!--begin::Post-->
                 <div class="post d-flex flex-column-fluid" id="kt_post">
                     <!--begin::Container-->

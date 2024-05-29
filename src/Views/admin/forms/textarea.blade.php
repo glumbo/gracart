@@ -25,7 +25,7 @@
             @endif
         </label>
     @endif
-    <div class="col-sm-8">
+    <div class="col-sm-{{$col ?? 8}}">
         <textarea class="form-control form-control-solid {{ $class ?? '' }}" rows="5" id="{{ $id ?? $str }}" name="{{ $name }}">{{ old($name,$data[$val ?? $name]??'') }}</textarea>
         @if ($errors->has($str ?? $name))
             <span class="form-text">

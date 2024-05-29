@@ -54,6 +54,19 @@
                     </tr>
 
                     <tr>
+                        <td>{{ gc_language_render('store.logo_reverse') }}</td>
+                        <td>
+                            <div class="input-group">
+                                <input type="hidden" id="logo_reverse" name="logo_reverse" value="{{ $store->logo_reverse }}" class="form-control input-sm logo_reverse" placeholder=""  />
+                            </div>
+                            <div id="preview_image" class="img_holder">{!! gc_image_render($store->logo_reverse,'100px', '', 'Logo Reverse') !!}</div>
+                            <a data-input="logo_reverse" data-preview="preview_image" data-type="logo_reverse" class="lfm pointer">
+                                <i class="fa fa-image"></i> {{gc_language_render('product.admin.choose_image')}}
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
                       <td>{{ gc_language_render('store.icon') }}</td>
                       <td>
                           <div class="input-group">
@@ -274,7 +287,7 @@ $(document).ready(function() {
 
 <script>
 //Logo
-  $('.logo, .icon, .og_image').change(function() {
+  $('.logo, .logo_reverse, .icon, .og_image').change(function() {
         $.ajax({
         url: '{{ gc_route_admin('admin_store.update') }}',
         type: 'POST',

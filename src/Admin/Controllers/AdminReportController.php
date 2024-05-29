@@ -107,7 +107,7 @@ class AdminReportController extends RootAdminController
         //menu_left
         $data['menu_left'] = '<div class="pull-left">
 
-                    <a class="btn   btn-flat btn-primary grid-refresh" title="Refresh"><i class="fas fa-sync-alt"></i><span class="hidden-xs"> ' . gc_language_render('action.refresh') . '</span></a> &nbsp;</div>
+                    <a class="btn btn-sm btn-light btn-active-primary grid-refresh" title="Refresh"><i class="fas fa-sync-alt"></i><span class="hidden-xs"> ' . gc_language_render('action.refresh') . '</span></a> &nbsp;</div>
                     ';
         //=menu_left
 

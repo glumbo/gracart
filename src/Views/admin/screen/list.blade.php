@@ -44,7 +44,7 @@
 
                         @if (!empty($buttonRefresh))
                             <div class="menu-left">
-                                <span class="btn btn-flat btn-primary grid-refresh" title="{{ gc_language_render('action.refresh') }}"><i class="fas fa-sync-alt"></i></span>
+                                <span class="btn btn-sm btn-light btn-active-primary grid-refresh" title="{{ gc_language_render('action.refresh') }}"><i class="fas fa-sync-alt"></i></span>
                             </div>
                         @endif
 

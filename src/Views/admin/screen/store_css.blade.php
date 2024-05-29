@@ -6,23 +6,16 @@
         <div class="card">
             <div class="card-header with-border">
                 <h2 class="card-title">{{ $title_description??'' }}</h2>
+
                 @if (function_exists('gc_get_list_code_store') && count(gc_get_list_code_store()))
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                        {{ gc_language_render('admin.select_store') }}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-left p-0">
-                    
-                    @foreach (gc_get_list_code_store() as $id => $code)
-                    <a href="{{ gc_route_admin('admin_store_css.index', ['store_id' => $id]) }}" class="dropdown-item  {{ ($storeId == $id) ? 'disabled active':'' }}">
-                        <div class="hover">
-                        {{ $code }}
-                        </div>
-                    </a>
-                    @endforeach
-                    </div>
-                </ul>
+                <div class="m-0">
+                    <select name="select_store" data-control="select2" data-hide-search="true" class="select_store form-select form-select-sm bg-body border-body fw-bolder w-125px">
+                        <option value="" selected="selected">{{ gc_language_render('admin.select_store') }}</option>
+                        @foreach (gc_get_list_code_store() as $id => $code)
+                            <option value="{{ gc_route_admin('admin_store_css.index', ['store_id' => $id]) }}" {{ ($storeId == $id) ? 'disabled active selected':'' }}>{{ $code }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 @endif
             </div>
             <!-- /.card-header -->
@@ -35,16 +28,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h2>{{ gc_language_render('store.admin.css') }}</h2>
-                            <div class="form-group row {{ $errors->has('css') ? 'text-red' : '' }}">
-                                <div class="col-sm-12">
-                                        <textarea  id="css" name="css">{{ old('css',$css??'') }}</textarea>
-                                        @if ($errors->has('css'))
-                                            <span class="form-text">
-                                                <i class="fa fa-info-circle"></i> {{ $errors->first('css') }}
-                                            </span>
-                                        @endif
-                                </div>
-                            </div>
+                            @includeIf($templatePathAdmin.'forms.textarea', ['col' => 12, 'name' => 'css', 'id' => 'css', 'data' => $store_css ?? null])
                         </div>
                     </div>
                 </div>
@@ -96,5 +80,12 @@
       styleActiveLine: true,
       matchBrackets: true
     });
+
+
+    $(document.body).on("change",".select_store",function(){
+        if(this.value !== ""){
+            window.location.href = this.value;
+        }
+    })
   </script>
 @endpush
