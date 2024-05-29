@@ -69,11 +69,11 @@
                             $pluginAction .='<a href="'.url()->current().'?action=config&pluginKey='.$codePlugin.'"><span title="'.gc_language_render('admin.plugin.config').'" class="btn btn-flat btn-primary"><i class="fas fa-cog"></i></span>&nbsp;</a>';
                           }
                           //Delete data
-                          $pluginAction .='<span onClick="uninstallPlugin($(this),\''.$codePlugin.'\', 1);" title="'.gc_language_render('admin.plugin.only_delete_data').'" class="btn btn-flat btn-danger"><i class="fas fa-times"></i></span>';
+                          $pluginAction .='<span onClick="uninstallPlugin($(this),\''.$codePlugin.'\', 1);" title="'.gc_language_render('admin.plugin.only_delete_data').'" class="btn btn-sm btn-light btn-active-danger"><i class="fas fa-times"></i></span>';
 
                           //You can not remove if plugin is default
                           if(!in_array($codePlugin, $arrDefault)) {
-                            $pluginAction .=' <span onClick="uninstallPlugin($(this),\''.$codePlugin.'\');" title="'.gc_language_render('admin.plugin.remove').'" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>';
+                            $pluginAction .=' <span onClick="uninstallPlugin($(this),\''.$codePlugin.'\');" title="'.gc_language_render('admin.plugin.remove').'" class="btn btn-sm btn-light btn-active-danger"><i class="fa fa-trash"></i></span>';
                           }
                       }else{
                         $pluginStatusTitle = gc_language_render('admin.plugin.disabled');
@@ -82,11 +82,11 @@
                             $pluginAction .='<a href="'.url()->current().'?action=config&pluginKey='.$codePlugin.'"><span title="'.gc_language_render('admin.plugin.config').'" class="btn btn-flat btn-primary"><i class="fas fa-cog"></i></span>&nbsp;</a>';
                           }
                           //Delete data
-                          $pluginAction .='<span onClick="uninstallPlugin($(this),\''.$codePlugin.'\', 1);" title="'.gc_language_render('admin.plugin.only_delete_data').'" class="btn btn-flat btn-danger"><i class="fas fa-times"></i></span>';
+                          $pluginAction .='<span onClick="uninstallPlugin($(this),\''.$codePlugin.'\', 1);" title="'.gc_language_render('admin.plugin.only_delete_data').'" class="btn btn-sm btn-light btn-active-danger"><i class="fas fa-times"></i></span>';
 
                           //You can not remove if plugin is default
                           if(!in_array($codePlugin, $arrDefault)) {
-                            $pluginAction .=' <span onClick="uninstallPlugin($(this),\''.$codePlugin.'\');" title="'.gc_language_render('admin.plugin.remove').'" class="btn btn-flat btn-danger"><i class="fa fa-trash"></i></span>';
+                            $pluginAction .=' <span onClick="uninstallPlugin($(this),\''.$codePlugin.'\');" title="'.gc_language_render('admin.plugin.remove').'" class="btn btn-sm btn-light btn-active-danger"><i class="fa fa-trash"></i></span>';
                           }
                       }
                     }

@@ -88,7 +88,7 @@ class AdminLogController extends RootAdminController
                 'input' => htmlspecialchars($row['input']),
                 'created_at' => $row['created_at'],
                 'action' => '
-                  <span  onclick="deleteItem(\'' . $row['id'] . '\');"  title="' . gc_language_render('action.delete') . '" class="btn btn-flat btn-sm btn-danger"><i class="fas fa-trash-alt"></i></span>
+                  <span  onclick="deleteItem(\'' . $row['id'] . '\');"  title="' . gc_language_render('action.delete') . '" class="btn btn-sm btn-light btn-active-danger"><i class="fas fa-trash-alt"></i></span>
                   ',
             ];
         }

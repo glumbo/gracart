@@ -15,7 +15,7 @@
         <td>{{ gc_language_render($config->detail) }}</td>
         <td>{{ $config->key }}</td>
         <td><a href="#" class="editable editable-click" data-name="{{ $config->key }}" data-type="text" data-pk="{{ $config->key }}" data-source="" data-url="{{ $urlUpdateConfig }}" data-title="{{ gc_language_render($config->detail) }}" data-value="{{ gc_config($config->key, $storeId) }}" data-original-title="" title=""></a></td>
-        <td><span onclick="deleteKey('{{ $config->key }}');" title="Delete" class="btn btn-flat btn-sm btn-danger">
+        <td><span onclick="deleteKey('{{ $config->key }}');" title="Delete" class="btn btn-sm btn-light btn-active-danger">
           <i class="fas fa-trash-alt"></i>
           </span>
         </td>

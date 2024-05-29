@@ -477,7 +477,7 @@ $('#add_sub_image').click(function(event) {
     +'      <i class="fa fa-image"></i> {{gc_language_render('product.admin.choose_image')}}'
     +'  </span>'
     +' </div>'
-    +'<span title="Remove" class="btn btn-flat btn-danger removeImage"><i class="fa fa-times"></i></span>'
+    +'<span title="Remove" class="btn btn-sm btn-light btn-active-danger removeImage"><i class="fa fa-times"></i></span>'
     +'</div>'
     +'<div id="preview_sub_image_'+id_sub_image+'" class="img_holder"></div>'
     +'</div>');

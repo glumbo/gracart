@@ -212,7 +212,7 @@
         '<div class="price_promotion">'
         +'<div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-pencil-alt"></i></span></div>'
         +'  <input type="number"  step="0.01" id="price_promotion" name="price_promotion" value="0" class="form-control input-sm price" placeholder="" />'
-        +'  <span title="Remove" class="btn btn-flat btn-danger removePromotion"><i class="fa fa-times"></i></span>'
+        +'  <span title="Remove" class="btn btn-sm btn-light btn-active-danger removePromotion"><i class="fa fa-times"></i></span>'
         +'</div>'
         +'<div class="form-group">'
         +'      <label>{{ gc_language_render('product.price_promotion_start') }}</label>'
@@ -255,7 +255,7 @@ $('#add_sub_image').click(function(event) {
     +'      <i class="fa fa-image"></i> {{gc_language_render('product.admin.choose_image')}}'
     +'  </span>'
     +' </div>'
-    +'<span title="Remove" class="btn btn-flat btn-danger removeImage"><i class="fa fa-times"></i></span>'
+    +'<span title="Remove" class="btn btn-sm btn-light btn-active-danger removeImage"><i class="fa fa-times"></i></span>'
     +'</div>'
     +'<div id="preview_sub_image_'+id_sub_image+'" class="img_holder"></div>'
     +'</div>');

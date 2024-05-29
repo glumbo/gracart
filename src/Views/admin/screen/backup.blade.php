@@ -76,7 +76,7 @@
                      <td>{{ $file['name']}}</td>
                      <td>{{ $file['size']}}</td>
                       <td>{!! '<a href="?download='.$file['name'].'"><button title="'.gc_language_render('admin.backup.download').'" data-loading-text="'.gc_language_render('admin.backup.processing').'" class="btn btn-flat btn-primary"><i class="fas fa-download"></i> '.gc_language_render('admin.backup.download').'</button ></a>' !!}</td>
-                      <td>{!! '<button  onClick="processBackup($(this),\''.$file['name'].'\',\'remove\');" title="'.gc_language_render('admin.backup.remove').'" data-loading-text="'.gc_language_render('admin.backup.processing').'" class="btn btn-flat btn-danger"><span class="glyphicon glyphicon-trash"></span> '.gc_language_render('admin.backup.remove').'</button >' !!}</td>
+                      <td>{!! '<button  onClick="processBackup($(this),\''.$file['name'].'\',\'remove\');" title="'.gc_language_render('admin.backup.remove').'" data-loading-text="'.gc_language_render('admin.backup.processing').'" class="btn btn-sm btn-light btn-active-danger"><span class="glyphicon glyphicon-trash"></span> '.gc_language_render('admin.backup.remove').'</button >' !!}</td>
                       <td>{!! '<button  onClick="processBackup($(this),\''.$file['name'].'\',\'restore\');" title="'.gc_language_render('admin.backup.restore').'" data-loading-text="'.gc_language_render('admin.backup.processing').'" class="btn btn-flat btn-warning"><span class="glyphicon glyphicon-retweet"></span> '.gc_language_render('admin.backup.restore').'</button >' !!}</td>
                     </tr>
                   @endforeach

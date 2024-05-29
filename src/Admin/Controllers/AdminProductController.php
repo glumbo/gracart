@@ -179,20 +179,20 @@ class AdminProductController extends RootAdminController
             }
             $htmlAction = '
             <a href="' . gc_route_admin('admin_product.edit', ['id' => $row['id'] ? $row['id'] : 'not-found-id']) . '">
-            <span title="' . gc_language_render('product.admin.edit') . '" type="button" class="btn btn-flat btn-sm btn-primary">
+            <span title="' . gc_language_render('product.admin.edit') . '" type="button" class="btn btn-sm btn-light btn-active-primary">
             <i class="fa fa-edit"></i>
             </span>
             </a>';
             if ($row['kind'] == GC_PRODUCT_SINGLE) {
                 $htmlAction .= '
-                <span onclick="cloneProduct(\'' . $row['id'] . '\');" title="' . gc_language_render('product.admin.clone') . '" type="button" class="btn btn-flat btn-sm btn-secondary">
+                <span onclick="cloneProduct(\'' . $row['id'] . '\');" title="' . gc_language_render('product.admin.clone') . '" type="button" class="btn btn-sm btn-light btn-active-info">
                 <i class="fa fa-clipboard"></i>
                 </span>';
             }
-            $htmlAction .='<span onclick="deleteItem(\'' . $row['id'] . '\');"  title="' . gc_language_render('action.delete') . '" class="btn btn-flat btn-sm btn-danger">
+            $htmlAction .='<span onclick="deleteItem(\'' . $row['id'] . '\');"  title="' . gc_language_render('action.delete') . '" class="btn btn-sm btn-light btn-active-danger">
             <i class="fas fa-trash-alt"></i>
             </span>
-            <a target=_new href="' . gc_route('product.detail', ['alias' => $row['alias']]) . '"><span title="Link" type="button" class="btn btn-flat btn-sm btn-warning"><i class="fas fa-external-link-alt"></i></a>';
+            <a target=_new href="' . gc_route('product.detail', ['alias' => $row['alias']]) . '"><span title="Link" type="button" class="btn btn-sm btn-light btn-active-warning"><i class="fas fa-external-link-alt"></i></a>';
 
             $dataMap['action'] = $htmlAction;
             $dataTr[$row['id']] = $dataMap;
@@ -319,7 +319,7 @@ class AdminProductController extends RootAdminController
         //end select product build
 
         // html select attribute
-        $htmlProductAtrribute = '<tr><td><br><input type="text" name="attribute[attribute_group][name][]" value="attribute_value" class="form-control rounded-0 input-sm" placeholder="' . gc_language_render('product.admin.add_attribute_place') . '" /></td><td><br><input type="number" step="0.01" name="attribute[attribute_group][add_price][]" value="add_price_value" class="form-control rounded-0 input-sm" placeholder="' . gc_language_render('product.admin.add_price_place') . '"></td><td><br><span title="Remove" class="btn btn-flat btn-sm btn-danger removeAttribute"><i class="fa fa-times"></i></span></td></tr>';
+        $htmlProductAtrribute = '<tr><td><br><input type="text" name="attribute[attribute_group][name][]" value="attribute_value" class="form-control rounded-0 input-sm" placeholder="' . gc_language_render('product.admin.add_attribute_place') . '" /></td><td><br><input type="number" step="0.01" name="attribute[attribute_group][add_price][]" value="add_price_value" class="form-control rounded-0 input-sm" placeholder="' . gc_language_render('product.admin.add_price_place') . '"></td><td><br><span title="Remove" class="btn btn-sm btn-light btn-active-danger removeAttribute"><i class="fa fa-times"></i></span></td></tr>';
         //end select attribute
 
         // html add more images
@@ -677,7 +677,7 @@ class AdminProductController extends RootAdminController
         foreach ($listProductSingle as $k => $v) {
             $htmlSelectGroup .= '<option value="' . $k . '">' . $v['name'] . '</option>';
         }
-        $htmlSelectGroup .= '</select></td><td><span title="Remove" class="btn btn-flat btn-sm btn-danger removeproductInGroup"><i class="fa fa-times"></i></span></td></tr></table>';
+        $htmlSelectGroup .= '</select></td><td><span title="Remove" class="btn btn-sm btn-light btn-active-danger removeproductInGroup"><i class="fa fa-times"></i></span></td></tr></table>';
         $htmlSelectGroup .= '</div>';
         //End select product group
 

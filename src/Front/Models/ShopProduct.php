@@ -168,7 +168,7 @@ class ShopProduct extends Model
         $priceFinal = $this->getFinalPrice();
         // Process with tax
         return  view(
-            'templates.'.gc_store('template').'.common.show_price_detail',
+            'templates.frontend.'.gc_store('frontend_template').'.common.show_price_detail',
             [
                 'price' => $price,
                 'priceFinal' => $priceFinal,
@@ -323,7 +323,7 @@ class ShopProduct extends Model
     public function renderAttributeDetails()
     {
         return  view(
-            'templates.'.gc_store('template').'.common.render_attribute',
+            'templates.frontend.'.gc_store('frontend_template').'.common.render_attribute',
             [
                 'details' => $this->attributes()->get()->groupBy('attribute_group_id'),
                 'groups' => ShopAttributeGroup::getListAll(),

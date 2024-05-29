@@ -71,7 +71,7 @@
               <button type="button" class="btn btn-default grid-select-all"><i class="far fa-square"></i></button>
             </div>
             <div class="menu-left">
-              <span class="btn btn-flat btn-danger grid-trash" title="{{ gc_language_render('action.delete') }}"><i class="fas fa-trash-alt"></i></span>
+              <span class="btn btn-sm btn-light btn-active-danger grid-trash" title="{{ gc_language_render('action.delete') }}"><i class="fas fa-trash-alt"></i></span>
             </div>
           @endif
 
