@@ -1,6 +1,6 @@
 <footer class="main-footer">
   @if (!gc_config('hidden_copyright_footer_admin'))
-    <div class="float-right d-none d-sm-inline-block">
+    <div class="float-end d-none d-sm-inline-block">
       <strong>Env</strong>
       {{ config('app.env') }}
       &nbsp;&nbsp;

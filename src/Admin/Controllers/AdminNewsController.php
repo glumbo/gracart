@@ -125,7 +125,7 @@ class AdminNewsController extends RootAdminController
                         <select class="form-control rounded-0 select2" name="sort_order" id="sort_order">
                         '.$optionSort.'
                         </select> &nbsp;
-                        <input type="text" name="keyword" class="form-control rounded-0 float-right" placeholder="' . gc_language_render('admin.news.search_place') . '" value="' . $keyword . '">
+                        <input type="text" name="keyword" class="form-control rounded-0 float-end" placeholder="' . gc_language_render('admin.news.search_place') . '" value="' . $keyword . '">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                         </div>

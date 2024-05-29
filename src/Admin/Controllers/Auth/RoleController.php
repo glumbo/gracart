@@ -105,7 +105,7 @@ class RoleController extends RootAdminController
         //topMenuRight
         $data['topMenuRight'][] ='
                 <form action="' . gc_route_admin('admin_role.index') . '" id="button_search">
-                <div class="input-group input-group float-left">
+                <div class="input-group input-group float-start">
                     <select class="form-control rounded-0 select2" name="sort_order" id="sort_order">
                     '.$optionSort.'
                     </select>

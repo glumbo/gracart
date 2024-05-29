@@ -42,7 +42,7 @@
                   </li>
                   <li>
                       &nbsp;<input id="file-name" value="" placeholder="File name">.sql
-                      <div class="float-right">
+                      <div class="float-end">
                         <button class="btn btn-sm btn-default column-un-select-all">X</button>&nbsp;
                         <button class="btn btn-sm btn-default column-select-all">All</button>&nbsp;
                         <button class="btn btn-sm btn-success column-select-submit" onClick="generateBackup($(this));" id="generate">Submit</button>

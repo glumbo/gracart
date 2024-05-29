@@ -23,7 +23,7 @@
             @endforeach
           @endif
         </div>
-        <div class="float-left">
+        <div class="float-start">
           @if (!empty($topMenuLeft) && count($topMenuLeft))
             @foreach ($topMenuLeft as $item)
                 <div class="menu-left">
@@ -65,7 +65,7 @@
          </div>
 
 
-         <div class="float-left">
+         <div class="float-start">
           @if (!empty($removeList))
             <div class="menu-left">
               <button type="button" class="btn btn-default grid-select-all"><i class="far fa-square"></i></button>
@@ -135,10 +135,10 @@
         </div>
 
         <div class="block-pagination clearfix m-10">
-          <div class="ml-3 float-left">
+          <div class="ml-3 float-start">
             {!! $resultItems??'' !!}
           </div>
-          <div class="pagination pagination-sm mr-3 float-right">
+          <div class="pagination pagination-sm mr-3 float-end">
             {!! $pagination??'' !!}
           </div>
         </div>

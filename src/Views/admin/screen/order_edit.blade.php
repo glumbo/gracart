@@ -8,10 +8,10 @@
           <div class="card-header with-border">
               <h3 class="card-title">{{ gc_language_render('order.order_detail') }} #{{ $order->id }}</h3>
               <div class="card-tools not-print">
-                  <div class="btn-group float-right" style="margin-right: 0px">
+                  <div class="btn-group float-end" style="margin-right: 0px">
                       <a href="{{ gc_route_admin('admin_order.index') }}" class="btn btn-flat btn-default"><i class="fa fa-list"></i>&nbsp;{{ gc_language_render('admin.back_list') }}</a>
                   </div>
-                  <div class="btn-group float-right" style="margin-right: 10px;border:1px solid #c5b5b5;">
+                  <div class="btn-group float-end" style="margin-right: 10px;border:1px solid #c5b5b5;">
                       <a class="btn btn-flat" target=_new title="Invoice" href="{{ gc_route_admin('admin_order.invoice', ['order_id' => $order->id]) }}"><i class="far fa-file-pdf"></i><span class="hidden-xs"> {{ gc_language_render('order.invoice') }}</span></a>
                   </div>
               </div>

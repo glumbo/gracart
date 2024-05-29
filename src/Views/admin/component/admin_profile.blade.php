@@ -15,10 +15,10 @@
           </div>
           <!-- Menu Footer-->
           <div class="user-footer">
-            <div class="float-left">
+            <div class="float-start">
               <a href="{{ gc_route_admin('admin.setting') }}" class="btn btn-default btn-flat">{{ gc_language_render('admin.user.setting') }}</a>
             </div>
-            <div class="float-right">
+            <div class="float-end">
               <a href="{{ gc_route_admin('admin.logout') }}" class="btn btn-default btn-flat">{{ gc_language_render('admin.user.logout') }}</a>
             </div>
           </div>

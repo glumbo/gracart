@@ -11,7 +11,7 @@
       <div class="card-header">
         <h3 class="card-title">{!! $title_action !!}</h3>
         @if ($layout == 'edit')
-        <div class="btn-group float-right" style="margin-right: 5px">
+        <div class="btn-group float-end" style="margin-right: 5px">
             <a href="{{ gc_route_admin('admin_supplier.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{ gc_language_render('admin.back_list') }}</span></a>
         </div>
       @endif
@@ -44,7 +44,7 @@
         @csrf
         <div class="card-footer">
           <button type="reset" class="btn btn-warning">{{ gc_language_render('action.reset') }}</button>
-          <button type="submit" class="btn btn-primary float-right">{{ gc_language_render('action.submit') }}</button>
+          <button type="submit" class="btn btn-primary float-end">{{ gc_language_render('action.submit') }}</button>
         </div>
         <!-- /.card-footer -->
       </form>
@@ -89,10 +89,10 @@
                     </tbody>
                  </table>
                  <div class="block-pagination clearfix m-10">
-                  <div class="ml-3 float-left">
+                  <div class="ml-3 float-start">
                     {!! $resultItems??'' !!}
                   </div>
-                  <div class="pagination pagination-sm mr-3 float-right">
+                  <div class="pagination pagination-sm mr-3 float-end">
                     {!! $pagination??'' !!}
                   </div>
                 </div>

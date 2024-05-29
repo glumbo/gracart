@@ -368,11 +368,11 @@
                     </div>
 
                     <div class="col-md-8">
-                        <div class="btn-group float-right">
+                        <div class="btn-group float-end">
                             <button type="submit" class="btn btn-primary">{{ gc_language_render('action.submit') }}</button>
                         </div>
 
-                        <div class="btn-group float-left">
+                        <div class="btn-group float-start">
                             <button type="reset" class="btn btn-warning">{{ gc_language_render('action.reset') }}</button>
                         </div>
                     </div>

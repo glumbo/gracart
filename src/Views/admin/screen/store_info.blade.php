@@ -4,7 +4,7 @@
   @section('main')
       <div class="card">
         <div class="card-tools">
-            <div class="btn-group float-right">
+            <div class="btn-group float-end">
                 <a href="{{ gc_route_admin('admin_store.index') }}" class="btn  btn-flat btn-default" title="List">
                     <i class="fa fa-list"></i><span class="hidden-xs"> {{ gc_language_render('admin.back_list') }}</span>
                 </a>
@@ -13,7 +13,7 @@
         <div class="card-header with-border">
           <h2 class="card-title">{{ $title_description??'' }}</h2>
           <div class="card-tools">
-              <div class="btn-group float-right mr-5">
+              <div class="btn-group float-end mr-5">
                   <a href="{{ gc_route_admin('admin_store.index') }}" class="btn  btn-flat btn-default" title="List">
                       <i class="fa fa-list"></i><span class="hidden-xs"> {{ gc_language_render('admin.back_list') }}</span>
                   </a>

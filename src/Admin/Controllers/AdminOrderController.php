@@ -179,7 +179,7 @@ class AdminOrderController extends RootAdminController
         $rnd = rand(0,9999999999);
         $data['topMenuRight'][] = '
                 <form action="' . gc_route_admin('admin_order.index') . '" id="button_search">
-                    <div class="input-group float-left">
+                    <div class="input-group float-start">
                         <div style="width:150px">
                             <div class="form-group">
                                 <label>'.gc_language_render('action.sort').':</label>
@@ -223,7 +223,7 @@ class AdminOrderController extends RootAdminController
                             <div class="form-group">
                                 <label>'.gc_language_render('order.admin.search_email').':</label>
                                 <div class="input-group">
-                                    <input type="text" name="email" class="form-control form-control-solid rounded-0 float-right" placeholder="' . gc_language_render('order.admin.search_email') . '" value="' . $email . '">
+                                    <input type="text" name="email" class="form-control form-control-solid rounded-0 float-end" placeholder="' . gc_language_render('order.admin.search_email') . '" value="' . $email . '">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-primary  btn-flat"><i class="fas fa-search"></i></button>
                                     </div>

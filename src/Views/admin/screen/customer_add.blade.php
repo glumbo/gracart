@@ -8,7 +8,7 @@
                     <h2 class="card-title">{{ $title_description??'' }}</h2>
 
                     <div class="card-tools">
-                        <div class="btn-group float-right mr_5">
+                        <div class="btn-group float-end mr_5">
                             <a href="{{ gc_route_admin('admin_customer.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{ gc_language_render('admin.back_list') }}</span></a>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                         </div>
 
                         <div class="col-sm-8">
-                            <div class="btn-group float-right">
+                            <div class="btn-group float-end">
                                 <button type="submit" class="btn btn-primary">{{ gc_language_render('action.submit') }}</button>
                             </div>
 

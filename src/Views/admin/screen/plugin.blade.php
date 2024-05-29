@@ -17,7 +17,7 @@
             <li class="nav-item">
               <a class="nav-link" target=_new  href="{{ gc_route_admin('admin_plugin.import') }}" ><span><i class="fas fa-save"></i> {{ gc_language_render('admin.plugin.import_data', ['data' => 'plugin']) }}</span></a>
             </li>
-            <li class="btn-group float-right m-2">
+            <li class="btn-group float-end m-2">
               {!! gc_language_render('admin.plugin.plugin_more') !!}
             </li>
           </ul>

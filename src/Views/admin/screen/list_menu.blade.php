@@ -31,7 +31,7 @@
             <li class="dd-item " data-id="{{ $level0->id }}">
                 <div class="dd-handle header-fix  {{ ($level0->id == $id)? 'active-item' : '' }}">
                   {!! gc_language_render($level0->title) !!}
-                  <span class="float-right dd-nodrag">
+                  <span class="float-end dd-nodrag">
                       <a href="{{ gc_route_admin('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit"></i></a>
                       &nbsp; 
                       <a data-id="{{ $level0->id }}" class="remove_menu"><i class="fa fa-trash"></i></a>
@@ -42,7 +42,7 @@
             <li class="dd-item" data-id="{{ $level0->id }}">
                 <div class="dd-handle {{ ($level0->id == $id)? 'active-item' : '' }}">
                   <i class="{{ $level0->icon }}"></i> {!! gc_language_render($level0->title) !!}
-                  <span class="float-right dd-nodrag">
+                  <span class="float-end dd-nodrag">
                       <a href="{{ gc_route_admin('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit fa-edit"></i></a>
                       &nbsp; 
                       <a data-id="{{ $level0->id }}" class="remove_menu"><i class="fa fa-trash fa-edit"></i></a>
@@ -53,7 +53,7 @@
             <li class="dd-item " data-id="{{ $level0->id }}">
               <div class="dd-handle {{ ($level0->id == $id)? 'active-item' : '' }}">
                 <i class="{{ $level0->icon }}"></i> {!! gc_language_render($level0->title) !!}
-                  <span class="float-right dd-nodrag">
+                  <span class="float-end dd-nodrag">
                       <a href="{{ gc_route_admin('admin_menu.edit',['id'=>$level0->id]) }}"><i class="fa fa-edit fa-edit"></i></a>
                       &nbsp; 
                       <a data-id="{{ $level0->id }}" class="remove_menu"><i class="fa fa-trash fa-edit"></i></a>
@@ -67,7 +67,7 @@
                     <li class="dd-item" data-id="{{ $level1->id }}">
                         <div class="dd-handle {{ ($level1->id == $id)? 'active-item' : '' }}">
                           <i class="{{ $level1->icon }}"></i> {!! gc_language_render($level1->title) !!}
-                          <span class="float-right dd-nodrag">
+                          <span class="float-end dd-nodrag">
                               <a href="{{ gc_route_admin('admin_menu.edit',['id'=>$level1->id]) }}"><i class="fa fa-edit fa-edit"></i></a>
                               &nbsp; 
                               <a data-id="{{ $level1->id }}" class="remove_menu"><i class="fa fa-trash fa-edit"></i></a>
@@ -78,7 +78,7 @@
                   <li class="dd-item" data-id="{{ $level1->id }}">
                     <div class="dd-handle {{ ($level1->id == $id)? 'active-item' : '' }}">
                       <i class="{{ $level1->icon }}"></i> {!! gc_language_render($level1->title) !!}
-                      <span class="float-right dd-nodrag">
+                      <span class="float-end dd-nodrag">
                           <a href="{{ gc_route_admin('admin_menu.edit',['id'=>$level1->id]) }}"><i class="fa fa-edit fa-edit"></i></a>
                           &nbsp; 
                           <a data-id="{{ $level1->id }}" class="remove_menu"><i class="fa fa-trash fa-edit"></i></a>
@@ -92,7 +92,7 @@
                                 <li class="dd-item" data-id="{{ $level2->id }}">
                                     <div class="dd-handle {{ ($level2->id == $id)? 'active-item' : '' }}">
                                       <i class="{{ $level2->icon }}"></i> {!! gc_language_render($level2->title) !!}
-                                      <span class="float-right dd-nodrag">
+                                      <span class="float-end dd-nodrag">
                                           <a href="{{ gc_route_admin('admin_menu.edit',['id'=>$level2->id]) }}"><i class="fa fa-edit fa-edit"></i></a>
                                           &nbsp; 
                                           <a data-id="{{ $level2->id }}" class="remove_menu"><i class="fa fa-trash fa-edit"></i></a>
@@ -103,7 +103,7 @@
                               <li class="dd-item" data-id="{{ $level2->id }}">
                                 <div class="dd-handle {{ ($level2->id == $id)? 'active-item' : '' }}">
                                   <i class="{{ $level2->icon }}"></i> {!! gc_language_render($level2->title) !!}
-                                  <span class="float-right dd-nodrag">
+                                  <span class="float-end dd-nodrag">
                                       <a href="{{ gc_route_admin('admin_menu.edit',['id'=>$level2->id]) }}"><i class="fa fa-edit fa-edit"></i></a>
                                       &nbsp; 
                                       <a data-id="{{ $level2->id }}" class="remove_menu"><i class="fa fa-trash fa-edit"></i></a>
@@ -141,7 +141,7 @@
                 <h3 class="card-title">{!! $title_form !!}</h3>
                 @if ($layout == 'edit')
                 <div class="card-tools">
-                    <div class="btn-group float-right" style="margin-right: 5px">
+                    <div class="btn-group float-end" style="margin-right: 5px">
                         <a href="{{ gc_route_admin('admin_menu.index') }}" class="btn  btn-flat btn-default" title="List"><i class="fa fa-list"></i><span class="hidden-xs"> {{ gc_language_render('admin.back_list') }}</span></a>
                     </div>
                 </div>
@@ -262,11 +262,11 @@
                         </div>
 
                         <div class="col-md-8">
-                            <div class="btn-group float-right">
+                            <div class="btn-group float-end">
                                 <button type="submit" class="btn btn-primary">{{ gc_language_render('action.submit') }}</button>
                             </div>
 
-                            <div class="btn-group float-left">
+                            <div class="btn-group float-start">
                                 <button type="reset" class="btn btn-warning">{{ gc_language_render('action.reset') }}</button>
                             </div>
                         </div>

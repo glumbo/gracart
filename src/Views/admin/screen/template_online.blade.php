@@ -21,7 +21,7 @@
       </div>
 
       <div class="card-header mt-4">
-        <div class="float-right" >
+        <div class="float-end" >
           <div class="form-group">
               <div class="input-group">
               <select data-hide-search="{{ $search ?? 'true'  }}" class="form-select" name="filter_free">
@@ -35,7 +35,7 @@
                 <option value="sort_price_asc" {{ ($filter_type == 'sort_price_asc') ? 'selected':''  }}>{{ gc_language_render('admin.plugin.sort_price_asc') }}</option>
                 <option value="sort_price_desc" {{ ($filter_type == 'sort_price_desc') ? 'selected':''  }}>{{ gc_language_render('admin.plugin.sort_price_desc') }}</option>
               </select>
-                <input type="text" name="filter_keyword" class="form-control rounded-0 float-right" placeholder="{{ gc_language_render('admin.plugin.enter_search_keyword') }}" value="{{ $filter_keyword ?? '' }}">
+                <input type="text" name="filter_keyword" class="form-control rounded-0 float-end" placeholder="{{ gc_language_render('admin.plugin.enter_search_keyword') }}" value="{{ $filter_keyword ?? '' }}">
                 <div class="input-group-append">
                     <button id="filter-button" class="btn btn-icon btn-light-primary btn-flat"><i class="fas fa-filter"></i></button>
                 </div>
@@ -160,7 +160,7 @@
         </div>
 
         <div class="block-pagination clearfix m-10">
-          <div class="ml-3 float-left">
+          <div class="ml-3 float-start">
             {!! $resultItems??'' !!}
           </div>
           {!! $htmlPaging !!}

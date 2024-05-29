@@ -15,7 +15,7 @@
             $percent = floor($element->count() * 100/$totalOrder);
         @endphp
             <li class="footer-static">
-                <div>Orders {{ $arrStatus[$status]??'' }} <span class="float-right">{{ $percent }}%</span></div>
+                <div>Orders {{ $arrStatus[$status]??'' }} <span class="float-end">{{ $percent }}%</span></div>
                 <div class="progress">
                     <div class="progress-bar bg-{{ $style }}" role="progressbar" aria-valuenow="{{ $percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $percent }}%"> <span class="sr-only">{{ $percent }}%</span></div>
                 </div>

@@ -32,7 +32,7 @@
             </div>
             <div class="card-header border-0 pt-5">
                 <div class="card-title align-items-start flex-column">
-                    <div class="float-left">
+                    <div class="float-start">
                         @if (!empty($removeList))
 {{--                            <div class="menu-left">--}}
 {{--                                <button type="button" class="btn btn-default grid-select-all"><i class="far fa-square"></i></button>--}}

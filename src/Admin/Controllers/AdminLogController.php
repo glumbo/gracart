@@ -108,11 +108,11 @@ class AdminLogController extends RootAdminController
         //topMenuRight
         $data['topMenuRight'][] ='
                 <form action="' . gc_route_admin('admin_log.index') . '" id="button_search">
-                <div class="input-group input-group float-left">
+                <div class="input-group input-group float-start">
                     <select class="form-control rounded-0 select2" name="sort_order" id="sort_order">
                     '.$optionSort.'
                     </select> &nbsp;
-                    <input type="text" name="keyword" class="form-control rounded-0 float-right" placeholder="Search: IP,Path,Name" value="' . $keyword . '">
+                    <input type="text" name="keyword" class="form-control rounded-0 float-end" placeholder="Search: IP,Path,Name" value="' . $keyword . '">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                     </div>

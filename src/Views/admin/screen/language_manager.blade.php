@@ -13,7 +13,7 @@
                   <table class="table table-hover box-body text-wrap table-bordered">
                     <tr>
                       <td>
-                        <div class="input-group float-left ml-1">
+                        <div class="input-group float-start ml-1">
                           <div class="btn-group">
                             <select class="form-control select2" name="position">
                               <option value="">{{ gc_language_render('admin.language.select_position') }}</option>
