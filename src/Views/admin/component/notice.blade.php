@@ -6,7 +6,7 @@
 <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#">
       <i class="far fa-bell"></i>
-      <span class="badge badge-warning navbar-badge">{{ $countNotice }}</span>
+      <span class="badge badge-light-warning navbar-badge">{{ $countNotice }}</span>
     </a>
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right notice">
   @if ($topNotice->count())

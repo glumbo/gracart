@@ -19,15 +19,15 @@
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ gc_file('admin/LTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- summernote -->
-  <link rel="stylesheet" href="{{ gc_file('admin/LTE/plugins/summernote/summernote-bs4.css')}}">
+{{--  <link rel="stylesheet" href="{{ gc_file('admin/LTE/plugins/summernote/summernote-bs4.css')}}">--}}
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
   <!-- iCheck -->
-  <link rel="stylesheet" href="{{ gc_file('admin/LTE/plugins/iCheck/square/blue.css')}}">
+{{--  <link rel="stylesheet" href="{{ gc_file('admin/LTE/plugins/iCheck/square/blue.css')}}">--}}
   <link rel="stylesheet" href="{{ gc_file('admin/LTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- Select2 -->
-  <link rel="stylesheet" href="{{ gc_file('admin/LTE/plugins/select2/css/select2.min.css')}}">
+{{--  <link rel="stylesheet" href="{{ gc_file('admin/LTE/plugins/select2/css/select2.min.css')}}">--}}
   <!-- Daterange picker -->
   {{-- <link rel="stylesheet" href="{{ gc_file('admin/LTE/plugins/daterangepicker/daterangepicker.css')}}"> --}}
   <!-- Tempusdominus Bbootstrap 4 -->
@@ -153,7 +153,7 @@
 <script src="{{ gc_file('admin/plugin/sweetalert2.all.min.js')}}"></script>
 {{-- <script src="{{ gc_file('admin/plugin/promise-polyfill.js')}}"></script> --}}
 <!-- Select2 -->
-<script src="{{ gc_file('admin/LTE/plugins/select2/js/select2.full.min.js')}}"></script>
+{{--<script src="{{ gc_file('admin/LTE/plugins/select2/js/select2.full.min.js')}}"></script>--}}
 {{-- switch --}}
 <script src="{{ gc_file('admin/plugin/bootstrap-switch.min.js')}}"></script>
 

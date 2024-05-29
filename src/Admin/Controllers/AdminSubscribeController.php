@@ -61,7 +61,7 @@ class AdminSubscribeController extends RootAdminController
         foreach ($dataTmp as $key => $row) {
             $dataTr[$row['id']] = [
                 'email' => $row['email'],
-                'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
+                'status' => $row['status'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>',
                 'action' => '
                     <a href="' . gc_route_admin('admin_subscribe.edit', ['id' => $row['id'] ? $row['id'] : 'not-found-id']) . '"><span title="' . gc_language_render('action.edit') . '" type="button" class="btn btn-sm btn-light btn-active-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 

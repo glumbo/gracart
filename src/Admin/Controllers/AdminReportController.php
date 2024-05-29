@@ -81,9 +81,9 @@ class AdminReportController extends RootAdminController
         foreach ($dataTmp as $key => $row) {
             $kind = $this->kinds[$row['kind']] ?? $row['kind'];
             if ($row['kind'] == GC_PRODUCT_BUILD) {
-                $kind = '<span class="badge badge-success">' . $kind . '</span>';
+                $kind = '<span class="badge badge-light-success">' . $kind . '</span>';
             } elseif ($row['kind'] == GC_PRODUCT_GROUP) {
-                $kind = '<span class="badge badge-danger">' . $kind . '</span>';
+                $kind = '<span class="badge badge-light-danger">' . $kind . '</span>';
             }
 
             $dataTr[$row['id']] = [
@@ -95,7 +95,7 @@ class AdminReportController extends RootAdminController
                 'sold' => $row['sold'],
                 'view' => $row['view'],
                 'kind' => $kind,
-                'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
+                'status' => $row['status'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>',
             ];
         }
 

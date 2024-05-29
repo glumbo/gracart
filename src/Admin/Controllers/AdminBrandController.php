@@ -59,7 +59,7 @@ class AdminBrandController extends RootAdminController
             $dataMap = [
                 'name' => $row['name'],
                 'image' => gc_image_render($row->getThumb(), '50px', '', $row['name']),
-                'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
+                'status' => $row['status'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>',
             ];
             if (gc_check_multi_shop_installed() && session('adminStoreId') == GC_ID_ROOT) {
                 // Only show store info if store is root
@@ -198,7 +198,7 @@ class AdminBrandController extends RootAdminController
             'name' => $row['name'],
             'image' => gc_image_render($row->getThumb(), '50px', '', $row['name']),
             'sort' => $row['sort'],
-            'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
+            'status' => $row['status'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>',
             'action' => '
                 <a href="' . gc_route_admin('admin_brand.edit', ['id' => $row['id'] ? $row['id'] : 'not-found-id']) . '"><span title="' . gc_language_render('action.edit') . '" type="button" class="btn btn-sm btn-light btn-active-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 

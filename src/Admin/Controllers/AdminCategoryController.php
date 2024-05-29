@@ -85,8 +85,8 @@ class AdminCategoryController extends RootAdminController
                 'image' => gc_image_render($row->getThumb(), '50px', '50px', $row['title']),
                 'title' => $row['title'],
                 'parent' => $row['parent'] ? ($categoriesTitle[$row['parent']] ?? '') : 'ROOT',
-                'top' => $row['top'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
-                'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
+                'top' => $row['top'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>',
+                'status' => $row['status'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>',
                 'sort' => $row['sort'],
             ];
 

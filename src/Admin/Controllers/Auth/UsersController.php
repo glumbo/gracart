@@ -76,13 +76,13 @@ class UsersController extends RootAdminController
             $showRoles = '';
             if ($row['roles']->count()) {
                 foreach ($row['roles'] as $key => $rols) {
-                    $showRoles .= '<span class="badge badge-success">' . $rols->name . '</span> ';
+                    $showRoles .= '<span class="badge badge-light-success">' . $rols->name . '</span> ';
                 }
             }
             $showPermission = '';
             if ($row['permissions']->count()) {
                 foreach ($row['permissions'] as $key => $p) {
-                    $showPermission .= '<span class="badge badge-success">' . $p->name . '</span> ';
+                    $showPermission .= '<span class="badge badge-light-success">' . $p->name . '</span> ';
                 }
             }
             $dataTr[] = [

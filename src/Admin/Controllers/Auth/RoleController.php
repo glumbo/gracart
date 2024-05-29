@@ -64,7 +64,7 @@ class RoleController extends RootAdminController
             $showPermission = '';
             if ($row['permissions']->count()) {
                 foreach ($row['permissions'] as $key => $p) {
-                    $showPermission .= '<span class="badge badge-success"">' . $p->name . '</span> ';
+                    $showPermission .= '<span class="badge badge-light-success"">' . $p->name . '</span> ';
                 }
             }
 

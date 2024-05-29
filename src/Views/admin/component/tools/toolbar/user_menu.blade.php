@@ -19,7 +19,7 @@
                 <!--begin::Username-->
                 <div class="d-flex flex-column">
                     <div class="fw-bolder d-flex align-items-center fs-5">{{ Admin::user()->name }}
-{{--                        <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>--}}
+{{--                        <span class="badge badge-light-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>--}}
                     </div>
                     <a href="#" class="fw-bold text-muted text-hover-primary fs-7">{{ Admin::user()->email }}</a>
                     @if(!empty(Admin::user()->created_at))
@@ -47,7 +47,7 @@
 {{--            <a href="../../demo1/dist/apps/projects/list.html" class="menu-link px-5">--}}
 {{--                <span class="menu-text">My Projects</span>--}}
 {{--                <span class="menu-badge">--}}
-{{--                    <span class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>--}}
+{{--                    <span class="badge badge-light-light-danger badge-circle fw-bolder fs-7">3</span>--}}
 {{--                </span>--}}
 {{--            </a>--}}
 {{--        </div>--}}

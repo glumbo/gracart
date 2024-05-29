@@ -77,7 +77,7 @@ class AdminNewsController extends RootAdminController
                 'title' => $row['title'],
                 'image' => gc_image_render($row['image'], '50px', null, $row['title']),
                 'sort' => $row['sort'],
-                'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
+                'status' => $row['status'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>',
             ];
 
             if (gc_check_multi_shop_installed() && session('adminStoreId') == GC_ID_ROOT) {

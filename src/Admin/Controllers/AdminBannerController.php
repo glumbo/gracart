@@ -90,7 +90,7 @@ class AdminBannerController extends RootAdminController
                 'title' => $row['title'],
                 'url' => $row['url'],
                 'sort' => $row['sort'],
-                'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
+                'status' => $row['status'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>',
                 'click' => number_format($row['click']),
                 'target' => $row['target'],
                 'type' => $this->dataType[$row['type']]??'N/A',

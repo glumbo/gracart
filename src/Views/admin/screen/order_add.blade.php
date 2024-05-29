@@ -96,10 +96,7 @@
 
 <script type="text/javascript">
 
-$(document).ready(function() {
-//Initialize Select2 Elements
-$('.select2').select2()
-});
+
 $('[name="customer_id"]').change(function(){
     addInfo();
 });

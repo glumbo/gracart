@@ -75,9 +75,9 @@ class AdminStoreBlockController extends RootAdminController
 
             $type_name = $this->layoutType[$row['type']] ?? '';
             if ($row['type'] == 'view') {
-                $type_name = '<span class="badge badge-warning">' . $type_name . '</span>';
+                $type_name = '<span class="badge badge-light-warning">' . $type_name . '</span>';
             } elseif ($row['type'] == 'html') {
-                $type_name = '<span class="badge badge-primary">' . $type_name . '</span>';
+                $type_name = '<span class="badge badge-light-primary">' . $type_name . '</span>';
             }        
 
             $storeTmp = [
@@ -87,7 +87,7 @@ class AdminStoreBlockController extends RootAdminController
                 'page' => $htmlPage,
                 'text' => htmlspecialchars($row['text']),
                 'sort' => $row['sort'],
-                'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
+                'status' => $row['status'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>',
                 'template' => $row['template'],
             ];
 

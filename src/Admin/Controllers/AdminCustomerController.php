@@ -83,7 +83,7 @@ class AdminCustomerController extends RootAdminController
                 'address2' => $row['address2'],
                 'address3' => $row['address3'],
                 'country' => $this->countries[$row['country']]->name ?? '',
-                'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
+                'status' => $row['status'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>',
                 'created_at' => $row['created_at'],
                 'action' => '
                     <a href="' . gc_route_admin('admin_customer.edit', ['id' => $row['id'] ? $row['id'] : 'not-found-id']) . '"><span title="' . gc_language_render('action.edit') . '" type="button" class="btn btn-sm btn-light btn-active-primary"><i class="fa fa-edit"></i></span></a>&nbsp;

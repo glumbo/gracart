@@ -43,7 +43,7 @@
                             @if (isset($user['id']) && in_array($user['id'], GC_GUARD_ADMIN))
                                 @if (count($listRoles))
                                 @foreach ($listRoles as $role)
-                                    {!! '<span class="badge badge-primary">'.($roles[$role]??'').'</span>' !!}
+                                    {!! '<span class="badge badge-light-primary">'.($roles[$role]??'').'</span>' !!}
                                 @endforeach
                                 @endif
                             @else
@@ -79,7 +79,7 @@
                                     @if (isset($user['id']) && in_array($user['id'], GC_GUARD_ADMIN))
                                         @if (count($listPermission))
                                             @foreach ($listPermission as $p)
-                                                {!! '<span class="badge badge-primary">'.($permissions[$p]??'').'</span>' !!}
+                                                {!! '<span class="badge badge-light-primary">'.($permissions[$p]??'').'</span>' !!}
                                             @endforeach
                                         @endif
                                     @else

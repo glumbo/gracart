@@ -81,7 +81,7 @@
   $scVersion = explode(',', $template['scart_version']);
   $scRenderVersion = implode(' ',array_map(
   function($version){
-  return '<span title="GCart version '.$version.'" class="badge badge-primary">'.$version.'</span>';
+  return '<span title="GCart version '.$version.'" class="badge badge-light-primary">'.$version.'</span>';
   },$scVersion)
   );
   
@@ -108,7 +108,7 @@
                     <td class="pointer" onclick="imagedemo('{{ $template['image_demo']??'' }}')"><a>{{ gc_language_render('admin.template.click_here') }}</a></td>
                     <td>
                       @if ($template['is_free'] || $template['price_final'] == 0)
-                        <span class="badge badge-success">{{ gc_language_render('admin.template.free') }}</span>
+                        <span class="badge badge-light-success">{{ gc_language_render('admin.template.free') }}</span>
                       @else
                           @if ($template['price_final'] != $template['price'])
                               <span class="sc-old-price">{{ number_format($template['price']) }}</span><br>

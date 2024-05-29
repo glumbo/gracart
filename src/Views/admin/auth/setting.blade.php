@@ -153,7 +153,7 @@
                                 <div class="col-sm-8">
                                     @if (count($listRoles))
                                         @foreach ($listRoles as $role)
-                                            {!! '<span class="badge badge-primary">'.($roles[$role]??'').'</span>' !!}
+                                            {!! '<span class="badge badge-light-primary">'.($roles[$role]??'').'</span>' !!}
                                         @endforeach
                                     @endif
                                 </div>
@@ -175,7 +175,7 @@
                                 <div class="col-sm-8">
                                     @if (count($listPermission))
                                         @foreach ($listPermission as $p)
-                                            {!! '<span class="badge badge-primary">'.($permission[$p]??'').'</span>' !!}
+                                            {!! '<span class="badge badge-light-primary">'.($permission[$p]??'').'</span>' !!}
                                         @endforeach
                                     @endif
                                 </div>

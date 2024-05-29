@@ -49,7 +49,7 @@ class AdminLanguageController extends RootAdminController
                 'icon' => gc_image_render($row['icon'], '30px', '30px', $row['name']),
                 'rtl' => $row['rtl'],
                 'sort' => $row['sort'],
-                'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
+                'status' => $row['status'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>',
                 'action' => '
                     <a href="' . gc_route_admin('admin_language.edit', ['id' => $row['id'] ? $row['id'] : 'not-found-id']) . '"><span title="' . gc_language_render('action.edit') . '" type="button" class="btn btn-sm btn-light btn-active-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
@@ -147,7 +147,7 @@ class AdminLanguageController extends RootAdminController
             'icon' => gc_image_render($row['icon'], '30px', '30px', $row['name']),
             'rtl' => $row['rtl'],
             'sort' => $row['sort'],
-            'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
+            'status' => $row['status'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>',
             'action' => '
                 <a href="' . gc_route_admin('admin_language.edit', ['id' => $row['id'] ? $row['id'] : 'not-found-id']) . '"><span title="' . gc_language_render('action.edit') . '" type="button" class="btn btn-sm btn-light btn-active-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 

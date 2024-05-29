@@ -101,7 +101,7 @@
                                 </div>
                                 <!--end::Section-->
                                 <!--begin::Label-->
-                                <span class="badge badge-light fs-8">{{ gc_datetime_to_date($notice->created_at, 'Y-m-d H:i:s') }}</span>
+                                <span class="badge badge-light-light fs-8">{{ gc_datetime_to_date($notice->created_at, 'Y-m-d H:i:s') }}</span>
                                 <!--end::Label-->
                             </div>
                             <!--end::Item-->
@@ -182,7 +182,7 @@
                                     </div>
                                     <!--end::Section-->
                                     <!--begin::Label-->
-                                    <span class="badge badge-light fs-8">{{ gc_datetime_to_date($notice->created_at, 'Y-m-d H:i:s') }}</span>
+                                    <span class="badge badge-light-light fs-8">{{ gc_datetime_to_date($notice->created_at, 'Y-m-d H:i:s') }}</span>
                                     <!--end::Label-->
                                 </div>
                                 <!--end::Item-->
@@ -225,7 +225,7 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center me-2">
                             <!--begin::Code-->
-                            <span class="w-70px badge badge-light-success me-4">200 OK</span>
+                            <span class="w-70px badge badge-light-light-success me-4">200 OK</span>
                             <!--end::Code-->
                             <!--begin::Title-->
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">New
@@ -234,7 +234,7 @@
                         </div>
                         <!--end::Section-->
                         <!--begin::Label-->
-                        <span class="badge badge-light fs-8">Just now</span>
+                        <span class="badge badge-light-light fs-8">Just now</span>
                         <!--end::Label-->
                     </div>
                     <!--end::Item-->
@@ -243,7 +243,7 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center me-2">
                             <!--begin::Code-->
-                            <span class="w-70px badge badge-light-danger me-4">500 ERR</span>
+                            <span class="w-70px badge badge-light-light-danger me-4">500 ERR</span>
                             <!--end::Code-->
                             <!--begin::Title-->
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">New
@@ -252,7 +252,7 @@
                         </div>
                         <!--end::Section-->
                         <!--begin::Label-->
-                        <span class="badge badge-light fs-8">2 hrs</span>
+                        <span class="badge badge-light-light fs-8">2 hrs</span>
                         <!--end::Label-->
                     </div>
                     <!--end::Item-->
@@ -261,7 +261,7 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center me-2">
                             <!--begin::Code-->
-                            <span class="w-70px badge badge-light-success me-4">200 OK</span>
+                            <span class="w-70px badge badge-light-light-success me-4">200 OK</span>
                             <!--end::Code-->
                             <!--begin::Title-->
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">Payment
@@ -270,7 +270,7 @@
                         </div>
                         <!--end::Section-->
                         <!--begin::Label-->
-                        <span class="badge badge-light fs-8">5 hrs</span>
+                        <span class="badge badge-light-light fs-8">5 hrs</span>
                         <!--end::Label-->
                     </div>
                     <!--end::Item-->
@@ -279,7 +279,7 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center me-2">
                             <!--begin::Code-->
-                            <span class="w-70px badge badge-light-warning me-4">300 WRN</span>
+                            <span class="w-70px badge badge-light-light-warning me-4">300 WRN</span>
                             <!--end::Code-->
                             <!--begin::Title-->
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">Search
@@ -288,7 +288,7 @@
                         </div>
                         <!--end::Section-->
                         <!--begin::Label-->
-                        <span class="badge badge-light fs-8">2 days</span>
+                        <span class="badge badge-light-light fs-8">2 days</span>
                         <!--end::Label-->
                     </div>
                     <!--end::Item-->
@@ -297,7 +297,7 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center me-2">
                             <!--begin::Code-->
-                            <span class="w-70px badge badge-light-success me-4">200 OK</span>
+                            <span class="w-70px badge badge-light-light-success me-4">200 OK</span>
                             <!--end::Code-->
                             <!--begin::Title-->
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">API
@@ -306,7 +306,7 @@
                         </div>
                         <!--end::Section-->
                         <!--begin::Label-->
-                        <span class="badge badge-light fs-8">1 week</span>
+                        <span class="badge badge-light-light fs-8">1 week</span>
                         <!--end::Label-->
                     </div>
                     <!--end::Item-->
@@ -315,7 +315,7 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center me-2">
                             <!--begin::Code-->
-                            <span class="w-70px badge badge-light-success me-4">200 OK</span>
+                            <span class="w-70px badge badge-light-light-success me-4">200 OK</span>
                             <!--end::Code-->
                             <!--begin::Title-->
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">Database
@@ -324,7 +324,7 @@
                         </div>
                         <!--end::Section-->
                         <!--begin::Label-->
-                        <span class="badge badge-light fs-8">Mar 5</span>
+                        <span class="badge badge-light-light fs-8">Mar 5</span>
                         <!--end::Label-->
                     </div>
                     <!--end::Item-->
@@ -333,7 +333,7 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center me-2">
                             <!--begin::Code-->
-                            <span class="w-70px badge badge-light-warning me-4">300 WRN</span>
+                            <span class="w-70px badge badge-light-light-warning me-4">300 WRN</span>
                             <!--end::Code-->
                             <!--begin::Title-->
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">System
@@ -342,7 +342,7 @@
                         </div>
                         <!--end::Section-->
                         <!--begin::Label-->
-                        <span class="badge badge-light fs-8">May 15</span>
+                        <span class="badge badge-light-light fs-8">May 15</span>
                         <!--end::Label-->
                     </div>
                     <!--end::Item-->
@@ -351,7 +351,7 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center me-2">
                             <!--begin::Code-->
-                            <span class="w-70px badge badge-light-warning me-4">300 WRN</span>
+                            <span class="w-70px badge badge-light-light-warning me-4">300 WRN</span>
                             <!--end::Code-->
                             <!--begin::Title-->
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">Server
@@ -360,7 +360,7 @@
                         </div>
                         <!--end::Section-->
                         <!--begin::Label-->
-                        <span class="badge badge-light fs-8">Apr 3</span>
+                        <span class="badge badge-light-light fs-8">Apr 3</span>
                         <!--end::Label-->
                     </div>
                     <!--end::Item-->
@@ -369,7 +369,7 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center me-2">
                             <!--begin::Code-->
-                            <span class="w-70px badge badge-light-warning me-4">300 WRN</span>
+                            <span class="w-70px badge badge-light-light-warning me-4">300 WRN</span>
                             <!--end::Code-->
                             <!--begin::Title-->
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">API
@@ -378,7 +378,7 @@
                         </div>
                         <!--end::Section-->
                         <!--begin::Label-->
-                        <span class="badge badge-light fs-8">Jun 30</span>
+                        <span class="badge badge-light-light fs-8">Jun 30</span>
                         <!--end::Label-->
                     </div>
                     <!--end::Item-->
@@ -387,7 +387,7 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center me-2">
                             <!--begin::Code-->
-                            <span class="w-70px badge badge-light-danger me-4">500 ERR</span>
+                            <span class="w-70px badge badge-light-light-danger me-4">500 ERR</span>
                             <!--end::Code-->
                             <!--begin::Title-->
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">Refund
@@ -396,7 +396,7 @@
                         </div>
                         <!--end::Section-->
                         <!--begin::Label-->
-                        <span class="badge badge-light fs-8">Jul 10</span>
+                        <span class="badge badge-light-light fs-8">Jul 10</span>
                         <!--end::Label-->
                     </div>
                     <!--end::Item-->
@@ -405,7 +405,7 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center me-2">
                             <!--begin::Code-->
-                            <span class="w-70px badge badge-light-danger me-4">500 ERR</span>
+                            <span class="w-70px badge badge-light-light-danger me-4">500 ERR</span>
                             <!--end::Code-->
                             <!--begin::Title-->
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">Withdrawal
@@ -414,7 +414,7 @@
                         </div>
                         <!--end::Section-->
                         <!--begin::Label-->
-                        <span class="badge badge-light fs-8">Sep 10</span>
+                        <span class="badge badge-light-light fs-8">Sep 10</span>
                         <!--end::Label-->
                     </div>
                     <!--end::Item-->
@@ -423,7 +423,7 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center me-2">
                             <!--begin::Code-->
-                            <span class="w-70px badge badge-light-danger me-4">500 ERR</span>
+                            <span class="w-70px badge badge-light-light-danger me-4">500 ERR</span>
                             <!--end::Code-->
                             <!--begin::Title-->
                             <a href="#" class="text-gray-800 text-hover-primary fw-bold">Mail
@@ -432,7 +432,7 @@
                         </div>
                         <!--end::Section-->
                         <!--begin::Label-->
-                        <span class="badge badge-light fs-8">Dec 10</span>
+                        <span class="badge badge-light-light fs-8">Dec 10</span>
                         <!--end::Label-->
                     </div>
                     <!--end::Item-->

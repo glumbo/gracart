@@ -77,12 +77,12 @@ class AdminStoreLinkController extends RootAdminController
         $dataTr = [];
         foreach ($dataTmp as $key => $row) {
             $dataMap = [
-                'name' => ($row['type'] == 'collection' ? '<span class="badge badge-warning"><i class="fas fa-folder-open"></i></span> ' : ' ').gc_language_render($row['name']),
+                'name' => ($row['type'] == 'collection' ? '<span class="badge badge-light-warning"><i class="fas fa-folder-open"></i></span> ' : ' ').gc_language_render($row['name']),
                 'url' => $row['url'],
                 'collection' => $this->arrCollection()[$row['collection_id']] ?? $row['collection_id'],
                 'group' => $this->arrGroup()[$row['group']] ?? $row['group'],
                 'sort' => $row['sort'],
-                'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
+                'status' => $row['status'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>',
             ];
 
             if (gc_check_multi_shop_installed() && session('adminStoreId') == GC_ID_ROOT) {

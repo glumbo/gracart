@@ -51,7 +51,7 @@ class AdminApiConnectionController extends RootAdminController
                 'apikey' => $row['apikey'],
                 'expire' => $row['expire'],
                 'last_active' => $row['last_active'],
-                'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
+                'status' => $row['status'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>',
                 'action' => '
                     <a href="' . gc_route_admin('admin_api_connection.edit', ['id' => $row['id'] ? $row['id'] : 'not-found-id']) . '"><span title="' . gc_language_render('action.edit') . '" type="button" class="btn btn-sm btn-light btn-active-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 
@@ -156,7 +156,7 @@ class AdminApiConnectionController extends RootAdminController
             'apikey' => $row['apikey'],
             'expire' => $row['expire'],
             'last_active' => $row['last_active'],
-            'status' => $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>',
+            'status' => $row['status'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>',
             'action' => '
                 <a href="' . gc_route_admin('admin_api_connection.edit', ['id' => $row['id'] ? $row['id'] : 'not-found-id']) . '"><span title="' . gc_language_render('action.edit') . '" type="button" class="btn btn-sm btn-light btn-active-primary"><i class="fa fa-edit"></i></span></a>&nbsp;
 

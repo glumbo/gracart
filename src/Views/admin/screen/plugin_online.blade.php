@@ -78,7 +78,7 @@
     $scVersion = explode(',', $plugin['scart_version']);
     $scRenderVersion = implode(' ',array_map(
       function($version){
-      return '<span title="GCart version '.$version.'" class="badge badge-primary">'.$version.'</span>';
+      return '<span title="GCart version '.$version.'" class="badge badge-light-primary">'.$version.'</span>';
       },$scVersion)
     );
 
@@ -105,7 +105,7 @@
                         <td>{{ $plugin['username']??'' }}</td>
                         <td>
                           @if ($plugin['is_free'] || $plugin['price_final'] == 0)
-                            <span class="badge badge-success">{{ gc_language_render('admin.plugin.free') }}</span>
+                            <span class="badge badge-light-success">{{ gc_language_render('admin.plugin.free') }}</span>
                           @else
                               @if ($plugin['price_final'] != $plugin['price'])
                                   <span class="sc-old-price">{{ number_format($plugin['price']) }}</span><br>

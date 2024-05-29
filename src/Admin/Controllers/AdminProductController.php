@@ -134,9 +134,9 @@ class AdminProductController extends RootAdminController
         foreach ($dataTmp as $key => $row) {
             $kind = $this->kinds()[$row['kind']] ?? $row['kind'];
             if ($row['kind'] == GC_PRODUCT_BUILD) {
-                $kind = '<span class="badge badge-success">' . $kind . '</span>';
+                $kind = '<span class="badge badge-light-success">' . $kind . '</span>';
             } elseif ($row['kind'] == GC_PRODUCT_GROUP) {
-                $kind = '<span class="badge badge-danger">' . $kind . '</span>';
+                $kind = '<span class="badge badge-light-danger">' . $kind . '</span>';
             }
             $arrName = [];
             $categoriesTmpRow = $categoriesTmp[$row['id']] ?? [];
@@ -162,8 +162,8 @@ class AdminProductController extends RootAdminController
                 $dataMap['kind'] = $kind;
             }
 
-            $dataMap['status'] = $row['status'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>';
-            $dataMap['approve'] = $row['approve'] ? '<span class="badge badge-success">ON</span>' : '<span class="badge badge-danger">OFF</span>';
+            $dataMap['status'] = $row['status'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>';
+            $dataMap['approve'] = $row['approve'] ? '<span class="badge badge-light-success">ON</span>' : '<span class="badge badge-light-danger">OFF</span>';
 
             if (gc_check_multi_shop_installed() && session('adminStoreId') == GC_ID_ROOT) {
                 // Only show store info if store is root

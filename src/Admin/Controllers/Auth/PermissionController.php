@@ -94,11 +94,11 @@ class PermissionController extends RootAdminController
                     $route = explode('::', $value);
                     $methodStyle = '';
                     if ($route[0] == 'ANY') {
-                        $methodStyle = '<span class="badge badge-info">' . $route[0] . '</span>';
+                        $methodStyle = '<span class="badge badge-light-info">' . $route[0] . '</span>';
                     } elseif ($route[0] == 'POST') {
-                        $methodStyle = '<span class="badge badge-warning">' . $route[0] . '</span>';
+                        $methodStyle = '<span class="badge badge-light-warning">' . $route[0] . '</span>';
                     } else {
-                        $methodStyle = '<span class="badge badge-primary">' . $route[0] . '</span>';
+                        $methodStyle = '<span class="badge badge-light-primary">' . $route[0] . '</span>';
                     }
                     return $methodStyle . ' <code>' . $route[1] . '</code>';
                 }, explode(',', $row['http_uri']));
