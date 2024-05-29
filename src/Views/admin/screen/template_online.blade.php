@@ -5,33 +5,30 @@
 <div class="row">
   <div class="col-md-12">
 
-    <div class="card card-primary card-outline card-outline-tabs">
+    <div class="card card-primary">
       <div class="card-header p-0 border-bottom-0">
-        <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ gc_route_admin('admin_template.index') }}" >{{ gc_language_render('admin.template.local') }}</a>
+        <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder" id="custom-tabs-four-tab" role="tablist">
+          <li class="nav-item mt-2">
+            <a class="nav-link text-active-primary ms-0 me-10 py-5" href="{{ gc_route_admin('admin_template.index') }}" >{{ gc_language_render('admin.template.local') }}</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#" >{{ gc_language_render('admin.template.online') }}</a>
+          <li class="nav-item mt-2">
+            <a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="#" >{{ gc_language_render('admin.template.online') }}</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" target=_new  href="{{ gc_route_admin('admin_template.import') }}" ><span><i class="fas fa-save"></i> {{ gc_language_render('admin.plugin.import_data', ['data' => 'template']) }}</span></a>
-          </li>
-          <li class="btn-group float-right m-2">
-            {!! gc_language_render('admin.template.template_more') !!}
+          <li class="nav-item mt-2">
+            <a class="nav-link text-active-primary ms-0 me-10 py-5" target=_new  href="{{ gc_route_admin('admin_template.import') }}" ><span>@includeIf($templatePathAdmin.'svgs.upload', ['size' => 'x', 'color' => 'primary']) {{ gc_language_render('admin.plugin.import_data', ['data' => 'template']) }}</span></a>
           </li>
         </ul>
       </div>
 
-      <div class="card-header">
+      <div class="card-header mt-4">
         <div class="float-right" >
           <div class="form-group">
               <div class="input-group">
-              <select class="form-control" name="filter_free">
+              <select data-hide-search="{{ $search ?? 'true'  }}" class="form-select" name="filter_free">
                 <option value="">All items</option>
                 <option value="1" {{ ($filter_free == 1) ? 'selected':''  }}>{{ gc_language_render('admin.plugin.only_free') }}</option>
               </select>
-              <select class="form-control" name="filter_type">
+              <select class="form-select" name="filter_type">
                 <option value="">Choose filter</option>
                 <option value="download" {{ ($filter_type == 'download') ? 'selected':''  }}>{{ gc_language_render('admin.plugin.sort_download') }}</option>
                 <option value="rating" {{ ($filter_type == 'rating') ? 'selected':''  }}>{{ gc_language_render('admin.plugin.sort_rating') }}</option>
@@ -40,7 +37,7 @@
               </select>
                 <input type="text" name="filter_keyword" class="form-control rounded-0 float-right" placeholder="{{ gc_language_render('admin.plugin.enter_search_keyword') }}" value="{{ $filter_keyword ?? '' }}">
                 <div class="input-group-append">
-                    <button id="filter-button" class="btn btn-primary  btn-flat"><i class="fas fa-filter"></i></button>
+                    <button id="filter-button" class="btn btn-icon btn-light-primary btn-flat"><i class="fas fa-filter"></i></button>
                 </div>
               </div>
               <a class="link-filter" href=""></a>

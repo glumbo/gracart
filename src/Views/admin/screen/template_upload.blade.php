@@ -4,6 +4,19 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
+            <div class="card-header p-0 border-bottom-0">
+                <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder" id="custom-tabs-four-tab" role="tablist">
+                    <li class="nav-item mt-2">
+                        <a class="nav-link text-active-primary ms-0 me-10 py-5" href="{{ gc_route_admin('admin_template.index') }}" >{{ gc_language_render('admin.template.local') }}</a>
+                    </li>
+                    <li class="nav-item mt-2">
+                        <a class="nav-link text-active-primary ms-0 me-10 py-5" href="{{ gc_route_admin('admin_template_online.index') }}" >{{ gc_language_render('admin.template.online') }}</a>
+                    </li>
+                    <li class="nav-item mt-2">
+                        <a class="nav-link text-active-primary ms-0 me-10 py-5 active" target=_new  href="{{ gc_route_admin('admin_template.import') }}" ><span>@includeIf($templatePathAdmin.'svgs.upload', ['size' => 'x', 'color' => 'primary']) {{ gc_language_render('admin.plugin.import_data', ['data' => 'template']) }}</span></a>
+                    </li>
+                </ul>
+            </div>
             <div class="card-header">
                 <h3 class="card-title">{!! $title!!}</h3>
             </div>
@@ -18,11 +31,11 @@
                             <div class="col-sm-6">
                                 <div class="input-group">
                                     <div class="custom-file">
-                                      <input type="file" id="input-file" class="custom-file-input" accept="zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed"  required="required" name="file">
+                                      <input type="file" id="input-file" class="form-control custom-file-input mb-2" accept="zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed"  required="required" name="file">
                                       <label class="custom-file-label" for="input-file">Choose file</label>
                                     </div>
                                     <div class="input-group-append">
-                                      <span class="btn button-upload">{{ gc_language_render('admin.template.import_submit') }}</span>
+                                      <span class="btn btn-flat button-upload btn-primary">@includeIf($templatePathAdmin.'svgs.upload', ['size' => 'x', 'color' => 'primary']) {{ gc_language_render('admin.template.import_submit') }}</span>
                                     </div>
                                 </div>
 

@@ -3,22 +3,19 @@
 @section('main')
    <div class="row">
       <div class="col-md-12">
-        <div class="card card-primary card-outline card-outline-tabs">
+        <div class="card card-primary">
           <div class="card-header p-0 border-bottom-0">
-            <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" href="#"  aria-controls="custom-tabs-four-home" aria-selected="true">{{ gc_language_render('admin.template.local') }}</a>
+            <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder" id="custom-tabs-four-tab" role="tablist">
+              <li class="nav-item mt-2">
+                <a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="{{ gc_route_admin('admin_template.index') }}"  aria-controls="custom-tabs-four-home" aria-selected="true">{{ gc_language_render('admin.template.local') }}</a>
               </li>
               @if (config('admin.settings.api_template'))
-              <li class="nav-item">
-                <a class="nav-link" href="{{ gc_route_admin('admin_template_online.index') }}" >{{ gc_language_render('admin.template.online') }}</a>
+              <li class="nav-item mt-2">
+                <a class="nav-link text-active-primary ms-0 me-10 py-5" href="{{ gc_route_admin('admin_template_online.index') }}" >{{ gc_language_render('admin.template.online') }}</a>
               </li>
               @endif
-              <li class="nav-item">
-                <a class="nav-link" target=_new  href="{{ gc_route_admin('admin_template.import') }}" ><span><i class="fas fa-save"></i> {{ gc_language_render('admin.plugin.import_data', ['data' => 'template']) }}</span></a>
-              </li>
-              <li class="btn-group float-right m-2">
-                {!! gc_language_render('admin.template.template_more') !!}
+              <li class="nav-item mt-2">
+                <a class="nav-link text-active-primary ms-0 me-10 py-5" target=_new  href="{{ gc_route_admin('admin_template.import') }}" ><span>@includeIf($templatePathAdmin.'svgs.upload', ['size' => 'x', 'color' => 'primary']) {{ gc_language_render('admin.plugin.import_data', ['data' => 'template']) }}</span></a>
               </li>
             </ul>
           </div>

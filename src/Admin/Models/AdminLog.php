@@ -29,4 +29,22 @@ class AdminLog extends Model
     {
         return $this->belongsTo(AdminUser::class);
     }
+
+    public static function getCountLogs()
+    {
+        return self::where('user_id', admin()->user()->id)
+            ->count();
+    }
+    /**
+     * Get count notice new
+     *
+     * @return  [type]  [return description]
+     */
+    public static function getTopLogs()
+    {
+        return self::where('user_id', admin()->user()->id)
+            ->orderBy('id','desc')
+            ->limit(10)
+            ->get();
+    }
 }

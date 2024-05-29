@@ -249,7 +249,7 @@ if (!function_exists('gc_get_all_template') && !in_array('gc_get_all_template', 
     function gc_get_all_template():array
     {
         $arrTemplates = [];
-        foreach (glob(resource_path() . "/views/templates/*") as $template) {
+        foreach (glob(resource_path() . "/views/templates/frontend/*") as $template) {
             if (is_dir($template)) {
                 $infoTemlate['code'] = explode('templates/', $template)[1];
                 $config = ['name' => '', 'auth' => '', 'email' => '', 'website' => ''];
